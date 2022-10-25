@@ -1,0 +1,80 @@
+<resources>
+    <string name="empty_warning">هذا الحقل مطلوب </string>
+    <!-- General Strings -->
+    <string name="connection_error">خطأ في الاتصال</string>
+    <string name="no_internet">لا يوجد اتصال بالإنترنت، برجاء المحاولة فى وقت لاحق</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="some_error">حدث خطأ ما، برجاء المحاولة فى وقت لاحق</string>
+
+    <!-- Home -->
+    <string name="childern">أطفال</string>
+    <string name="account">حسابى</string>
+
+    <!-- Tutorial -->
+    <string name="next">التالي</string>
+    <!-- Intro -->
+    <string name="design_program">تصميم وبرمجة</string>
+
+    <!-- Log In -->
+    <string name="login">تسجيل الدخول </string>
+    <string name="phone_hint">رقم الهاتف</string>
+    <string name="password">كلمة المرور</string>
+    <string name="login_as_guest">تسجيل كزائر؟</string>
+    <string name="forgot_your_password">نسيت كلمة المرور؟</string>
+    <string name="forgot_header">أدخل رقم هاتفك, تستطيع تلقي كود التأكيد عليه</string>
+
+    <!-- Sign Up -->
+    <string name="sign_up">إنشاء حساب</string>
+
+    <!-- Account -->
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="skip">تخطى</string>
+
+    <string name="privacy">سياسة الخصوصية</string>
+    <string name="confirm_header_text">تأكيد الحساب</string>
+    <string name="profile">بياناتي الشخصية</string>
+    <string name="mom">أمهات</string>
+    <string name="menu_more">المزيد</string>
+    <string name="not_match_password">كلمتا المرور غير متطابقتان</string>
+    <string name="active">تفعيل الحساب</string>
+    <string name="open_app">ابدأ التطبيق</string>
+    <string name="confirm">تأكيد</string>
+    <!--  Side Menu-->
+    <string name="about">عن التطبيق</string>
+    <string name="terms">الشروط والأحكام</string>
+    <string name="contact_us">إتصل بنا</string>
+    <string name="language">اختر اللغة</string>
+    <!--  Suggestions-->
+    <string name="client_name">الإسم</string>
+    <!--Countries-->
+    <string name="country_hint">اختر الدولة</string>
+    <string name="login_btn">تسجيل</string>
+    <string name="new_account">إنشاء حساب جديد</string>
+    <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
+    <string name="favorite">المفضلة</string>
+    <string name="subscribe_account">اشترك الآن</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="about_80">عن 80 فكرة</string>
+    <string name="team">فريق العمل</string>
+    <string name="version_name">النسخة</string>
+    <string name="ar">اللغة العربية</string>
+    <string name="en">اللغة الإنجليزية</string>
+    <string name="save">حفظ</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="password_hint_confirm">تأكيد كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="forget_password">نسيت كلمه المرور؟</string>
+    <string name="send">إرسال</string>
+    <string name="back">رجوع</string>
+    <string name="non_parent_content">هذا القسم للأطفال والأمهات فقط</string>
+    <string name="continue_open">استمرار</string>
+    <string name="education_categories">مناهج</string>
+    <string name="email_hint">البريد الالكترونى</string>
+    <string name="choose_country">يرجى اختيار الدولة اولا</string>
+    <string name="valid_egy_number">رقم هاتف غير صحيح</string>
+    <string name="email_not_valid">بريد الكتروني غير صحيح</string>
+    <string name="confirm_resend"><u>اعادة ارسال</u></string>
+    <string name="permission_dialog_content1">Allow permission to receive notification</string>
+
+</resources>

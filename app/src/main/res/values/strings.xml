@@ -1,0 +1,87 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name" translatable="false">Lima Zola</string>
+    <string name="empty_warning">This field is required</string>
+
+    <!-- General Strings -->
+    <string name="connection_error">Connection Error</string>
+    <string name="no_internet">No internet connection please try again later</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="some_error">Some error occurred, Please try again later</string>
+
+    <!-- Home -->
+    <string name="childern">Kids</string>
+    <string name="account">Account</string>
+
+    <!-- Tutorial -->
+    <string name="dot" translatable="false">•</string>
+    <string name="next">Next</string>
+    <!-- Intro -->
+    <string name="design_program">Design and program</string>
+
+    <!-- Log In -->
+    <string name="login">Login</string>
+    <string name="phone_hint">Phone</string>
+    <string name="password">Password</string>
+    <string name="login_as_guest">Visitor</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="forgot_header">Enter the phone number you will receive code</string>
+
+    <!-- Sign Up -->
+    <string name="sign_up">Sign up</string>
+
+    <!-- Account -->
+    <string name="log_out">Log out</string>
+    <string name="skip">Skip</string>
+    <!--  <string name="google_api_key">Continue as a guest</string>-->
+
+    <string name="privacy">Privacy policy</string>
+    <string name="confirm_header_text">Confirm account</string>
+    <string name="profile">Profile</string>
+    <string name="mom">Moms</string>
+    <string name="menu_more">More</string>
+    <string name="not_match_password">The two passwords do not match</string>
+    <string name="active">Activate the account</string>
+    <string name="open_app">Start app</string>
+    <string name="confirm">Confirm</string>
+    <!--  Side Menu-->
+    <string name="about">About the app</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="contact_us">Contact us</string>
+    <string name="language">Change language</string>
+    <!--  Suggestions-->
+    <string name="client_name">Name</string>
+    <!--Contact Us-->
+    <!--Countries-->
+    <string name="country_hint">Choose the country</string>
+    <string name="login_btn">Login</string>
+    <string name="new_account">Register</string>
+
+    <string name="log_out_hint">Are you sure you want to log out?</string>
+    <string name="favorite">Favorite</string>
+    <string name="subscribe_account">Subscribe now</string>
+    <string name="change_language">Change language</string>
+    <string name="about_80">About 80 Fekra</string>
+    <string name="team">Team</string>
+    <string name="version_name">Version</string>
+    <string name="ar">اللغة العربية</string>
+    <string name="en">English</string>
+    <string name="save">Save</string>
+    <string name="change_password">Change password</string>
+    <string name="password_hint_confirm">Confirm password</string>
+    <string name="old_password">Old password</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="send">Send</string>
+    <string name="back">Back</string>
+    <string name="non_parent_content">This section is for children and mothers only</string>
+    <string name="continue_open">Continue</string>
+    <string name="education_categories">Subjects</string>
+    <string name="email_hint">Email</string>
+    <string name="choose_country">Choose country first</string>
+    <string name="valid_egy_number">Number format is not valid</string>
+    <string name="email_not_valid">Email not valid</string>
+    <string name="confirm_resend"><u>Resend</u></string>
+    <string name="default_notification_channel_id" translatable="false">lima_app_notification_channel_id</string>
+    <string name="permission_dialog_content1">Allow permission to receive notification</string>
+
+</resources>
