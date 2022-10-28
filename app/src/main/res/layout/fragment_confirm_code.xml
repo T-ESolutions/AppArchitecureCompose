@@ -25,37 +25,32 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/confirm_background">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_arrow_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:background="?selectableItemBackground"
-                android:onClick="@{()-> eventListener.back()}"
-                android:src="@drawable/ic_arrow_back"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/register"
-                style="@style/TextBoldFont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/confirm_header_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/colorPrimaryDark"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ic_verify"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/splash"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ic_arrow_back" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintBottom_toBottomOf="@id/ic_verify"
+                app:layout_constraintEnd_toEndOf="@id/ic_verify"
+                app:layout_constraintStart_toStartOf="@id/ic_verify"
+                app:layout_constraintTop_toTopOf="@id/ic_verify"
+                app:tint="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/register_confirm"
@@ -63,13 +58,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="@{message}"
+                android:text="@string/please_enter_4_digit_code"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/black_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/register" />
+                app:layout_constraintTop_toBottomOf="@+id/ic_verify" />
 
 
             <com.chaos.view.PinView
@@ -83,7 +78,7 @@
                 android:cursorVisible="true"
                 android:gravity="center_horizontal"
                 android:inputType="number"
-                android:itemBackground="@drawable/corner_view_loading"
+                android:itemBackground="@color/overlayBackground"
                 android:padding="8dp"
                 android:text="@={request.otp}"
                 android:textColor="@color/white"
@@ -114,7 +109,7 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatButtonNext" />
+                app:layout_constraintTop_toBottomOf="@+id/pin_Validate" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_login_forget"
@@ -124,18 +119,16 @@
                 android:enabled="false"
                 android:onClick="@{()->eventListener.resendCode()}"
                 android:text="@string/confirm_resend"
-                android:layout_marginBottom="@dimen/_8sdp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/selected_text_color"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_forget_timer" />
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/appCompatButtonNext"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_16sdp"
@@ -143,14 +136,14 @@
                 android:onClick="@{()->eventListener.checkCode()}"
                 android:paddingStart="@dimen/_25sdp"
                 android:paddingEnd="@dimen/_25sdp"
-                android:text="@string/confirm"
+                android:text="@string/verify"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/colorPrimaryDark"
-                app:cornerRadius="@dimen/_25sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pin_Validate" />
+                app:layout_constraintTop_toBottomOf="@id/tv_login_forget" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

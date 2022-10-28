@@ -5,5 +5,4 @@ import app.te.architecture.presentation.base.events.BaseEventListener
 
 interface RegisterEventListener : BaseEventListener {
   fun signUp()
-  fun showCities()
 }

@@ -29,7 +29,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(), SplashEventListene
     }
 
     override fun openOnBoarding() {
-        setLanguage("ar")
+        setLanguage("en")
         navigateSafe(SplashFragmentDirections.actionSplashFragmentToTutorialFragment())
     }
 

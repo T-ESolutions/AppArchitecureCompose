@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.ImageView
@@ -13,6 +14,7 @@ import android.widget.ProgressBar
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -28,6 +30,8 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
 import app.te.architecture.R
 import com.google.android.material.imageview.ShapeableImageView
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import java.io.File
 import kotlin.math.abs
 
@@ -121,7 +125,7 @@ fun ImageView.loadImage(imageUrl: String?, progressBar: ProgressBar?, defaultIma
                 .data(imageUrl)
                 .crossfade(true)
                 .crossfade(400)
-                .error(R.drawable.bg_no_image)
+                .error(R.drawable.place_holder)
                 .placeholder(R.color.white)
                 .listener(
                     onStart = { request ->
@@ -146,11 +150,11 @@ fun ImageView.loadImage(imageUrl: String?, progressBar: ProgressBar?, defaultIma
 
     } else {
         progressBar?.hide()
-        load(defaultImage ?: R.drawable.logo) {
+        load(defaultImage ?: R.drawable.place_holder) {
             crossfade(true)
-//            transformations(
-//                CircleCropTransformation()
-//            )
+            transformations(
+                CircleCropTransformation()
+            )
         }
     }
 }
@@ -326,7 +330,27 @@ fun ShapeableImageView.setupStoke(colorRes: Int) {
     this.setStrokeColorResource(colorRes)
     this.setStrokeWidthResource(R.dimen._1sdp)
 }
+
 @BindingAdapter("app:apply_text_color")
 fun TextView.applyTextColor(color: Int) {
     setTextColor(ContextCompat.getColor(context, color))
+}
+
+fun SearchView.getQueryTextChangeStateFlow(): StateFlow<String> {
+
+    val query = MutableStateFlow("")
+
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            query.value = newText
+            return true
+        }
+    })
+
+    return query
+
 }

@@ -17,46 +17,30 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/login_background">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ic_arrow_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_12sdp"
-                android:background="?selectableItemBackground"
-                android:onClick="@{()-> eventListener.back()}"
-                android:src="@drawable/ic_arrow_back"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ic_logo"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_marginTop="@dimen/_80sdp"
-                android:src="@drawable/login_header"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/tes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:strokeColor="@color/overlayBackground"
-                app:strokeWidth="1dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/login"
-                style="@style/TextBoldFont"
+                style="@style/TextMediumFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:text="@string/login"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colordark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +48,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_name"
+                android:id="@+id/input_phone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -72,12 +56,6 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:textColorHint="@color/medium_color"
-                app:boxBackgroundColor="@color/white"
-                app:boxCornerRadiusBottomEnd="@dimen/_30sdp"
-                app:boxCornerRadiusBottomStart="@dimen/_30sdp"
-                app:boxCornerRadiusTopEnd="@dimen/_30sdp"
-                app:boxCornerRadiusTopStart="@dimen/_30sdp"
-                app:boxStrokeColor="@color/white"
                 app:error="@{request.validation.emailError.equals(Constants.EMPTY)?@string/empty_warning:``}"
                 app:errorEnabled="@{request.validation.emailError==null?false:true}"
                 app:helperTextTextColor="@color/black"
@@ -92,9 +70,9 @@
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="0123456789"
                     android:hint="@string/phone_hint"
                     android:inputType="phone"
-                    android:digits="0123456789"
                     android:text="@={request.phone}"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -112,19 +90,13 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:textColorHint="@color/medium_color"
-                app:boxBackgroundColor="@color/white"
-                app:boxCornerRadiusBottomEnd="@dimen/_30sdp"
-                app:boxCornerRadiusBottomStart="@dimen/_30sdp"
-                app:boxCornerRadiusTopEnd="@dimen/_30sdp"
-                app:boxCornerRadiusTopStart="@dimen/_30sdp"
-                app:boxStrokeColor="@color/white"
                 app:error="@{request.validation.passwordError.equals(Constants.EMPTY)?@string/empty_warning:``}"
                 app:errorEnabled="@{request.validation.passwordError==null?false:true}"
                 app:helperTextTextColor="@color/black"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_name"
+                app:layout_constraintTop_toBottomOf="@+id/input_phone"
                 app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/ic_password"
                 app:startIconTint="@color/dark_grey">
@@ -145,28 +117,27 @@
                 android:id="@+id/tv_login_forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:onClick="@{()-> eventListener.forgetPassword()}"
                 android:text="@string/forget_password"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colordark"
+                android:textColor="@color/dark_grey"
                 app:layout_constraintEnd_toEndOf="@+id/input_register_password"
                 app:layout_constraintTop_toBottomOf="@+id/input_register_password" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_50sdp"
-                android:background="@drawable/corner_view_primary"
                 android:onClick="@{()-> eventListener.login()}"
+                android:padding="@dimen/_8sdp"
                 android:text="@string/login_btn"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="@id/input_phone"
+                app:layout_constraintStart_toStartOf="@id/input_phone"
                 app:layout_constraintTop_toBottomOf="@id/tv_login_forget" />
 
 
@@ -186,23 +157,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_phone" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/whats"
-                style="@style/TextBoldFont"
+                android:id="@+id/create_an_account"
+                style="@style/TextMediumFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="?selectableItemBackground"
+                android:onClick="@{()-> eventListener.toRegister()}"
+                android:text="@string/create_an_account"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/dark_grey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sign_up"
+                style="@style/TextMediumFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
                 android:onClick="@{()-> eventListener.toRegister()}"
                 android:text="@string/new_account"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black"
+                android:textColor="@color/black" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:constraint_referenced_ids="create_an_account,sign_up"
+                app:flow_horizontalGap="@dimen/_6sdp"
+                app:flow_horizontalStyle="packed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/login_new_account" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

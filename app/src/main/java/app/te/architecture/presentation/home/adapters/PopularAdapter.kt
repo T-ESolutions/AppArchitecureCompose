@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import app.te.architecture.R
 import app.te.architecture.databinding.ItemCategoryBinding
+import app.te.architecture.databinding.ItemMenuBinding
+import app.te.architecture.databinding.ItemPopularBinding
 import app.te.architecture.presentation.home.eventListener.HomeEventListener
 import app.te.architecture.presentation.home.ui_state.CategoriesUiItemState
 
-class CategoriesAdapter(val homeEventListener: HomeEventListener) :
-  RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class PopularAdapter(val homeEventListener: HomeEventListener) :
+  RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
   private val differCallback = object : DiffUtil.ItemCallback<CategoriesUiItemState>() {
     override fun areItemsTheSame(
       oldItem: CategoriesUiItemState,
@@ -31,7 +33,7 @@ class CategoriesAdapter(val homeEventListener: HomeEventListener) :
   }
   val differ = AsyncListDiffer(this, differCallback)
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-    val view = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
+    val view = LayoutInflater.from(parent.context).inflate(R.layout.item_popular, parent, false)
     return ViewHolder(view)
   }
 
@@ -56,7 +58,7 @@ class CategoriesAdapter(val homeEventListener: HomeEventListener) :
 
   inner class ViewHolder(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
-    lateinit var itemLayoutBinding: ItemCategoryBinding
+    lateinit var itemLayoutBinding: ItemPopularBinding
 
     init {
       bind()

@@ -2,8 +2,6 @@ package app.te.architecture.presentation.auth.sign_up
 
 import androidx.lifecycle.viewModelScope
 import app.te.architecture.domain.auth.use_case.RegisterUseCase
-import app.te.architecture.domain.general.entity.countries.CityModel
-import app.te.architecture.domain.general.use_case.CitiesUseCase
 import app.te.architecture.domain.utils.BaseResponse
 import app.te.architecture.domain.utils.Resource
 import app.te.architecture.presentation.base.BaseViewModel
@@ -16,22 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val registerUseCase: RegisterUseCase,
-    private val cityUseCases: CitiesUseCase
-) :
+    private val registerUseCase: RegisterUseCase
+    ) :
     BaseViewModel() {
     lateinit var registerUiState: RegisterUiState
     private val _registerResponse = MutableStateFlow<Resource<BaseResponse<*>>>(Resource.Default)
     val registerResponse = _registerResponse
-
-    private val _citiesResponse =
-        MutableStateFlow<Resource<BaseResponse<List<CityModel>>>>(Resource.Default)
-    val citiesResponse = _citiesResponse
-    var cities: List<CityModel> = listOf()
-
-    init {
-        getCities()
-    }
 
     fun register() {
         registerUseCase(registerUiState.request)
@@ -42,12 +30,4 @@ class SignUpViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun getCities() {
-        cityUseCases()
-            .catch { exception -> }
-            .onEach { result ->
-                _citiesResponse.value = result
-            }
-            .launchIn(viewModelScope)
-    }
 }

@@ -8,7 +8,7 @@
     <string name="some_error">حدث خطأ ما، برجاء المحاولة فى وقت لاحق</string>
 
     <!-- Home -->
-    <string name="childern">أطفال</string>
+    <string name="home">أطفال</string>
     <string name="account">حسابى</string>
 
     <!-- Tutorial -->
@@ -22,7 +22,7 @@
     <string name="password">كلمة المرور</string>
     <string name="login_as_guest">تسجيل كزائر؟</string>
     <string name="forgot_your_password">نسيت كلمة المرور؟</string>
-    <string name="forgot_header">أدخل رقم هاتفك, تستطيع تلقي كود التأكيد عليه</string>
+    <string name="forgot_header"> الرجاء إدخال رقم هاتفك المحمول إلى\nتلقي رمز التحقق.</string>
 
     <!-- Sign Up -->
     <string name="sign_up">إنشاء حساب</string>
@@ -46,11 +46,14 @@
     <string name="contact_us">إتصل بنا</string>
     <string name="language">اختر اللغة</string>
     <!--  Suggestions-->
-    <string name="client_name">الإسم</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">الكنية</string>
     <!--Countries-->
     <string name="country_hint">اختر الدولة</string>
-    <string name="login_btn">تسجيل</string>
-    <string name="new_account">إنشاء حساب جديد</string>
+    <string name="login_btn">تسجيل الدخول</string>
+    <string name="new_account">التسجيل</string>
+    <string name="create_an_account">انشئ حساب ؟</string>
+
     <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
     <string name="favorite">المفضلة</string>
     <string name="subscribe_account">اشترك الآن</string>
@@ -61,6 +64,7 @@
     <string name="ar">اللغة العربية</string>
     <string name="en">اللغة الإنجليزية</string>
     <string name="save">حفظ</string>
+    <string name="create_account">إنشاء حساب</string>
     <string name="change_password">تغيير كلمة المرور</string>
     <string name="password_hint_confirm">تأكيد كلمة المرور</string>
     <string name="old_password">كلمة المرور القديمة</string>
@@ -69,12 +73,26 @@
     <string name="back">رجوع</string>
     <string name="non_parent_content">هذا القسم للأطفال والأمهات فقط</string>
     <string name="continue_open">استمرار</string>
-    <string name="education_categories">مناهج</string>
+    <string name="cart">عربة التسوق</string>
     <string name="email_hint">البريد الالكترونى</string>
     <string name="choose_country">يرجى اختيار الدولة اولا</string>
     <string name="valid_egy_number">رقم هاتف غير صحيح</string>
     <string name="email_not_valid">بريد الكتروني غير صحيح</string>
     <string name="confirm_resend"><u>اعادة ارسال</u></string>
     <string name="permission_dialog_content1">Allow permission to receive notification</string>
+    <string name="please_enter_4_digit_code">الرجاء إدخال الرمز المكون من 4 أرقام المرسل إلى</string>
+    <string name="verify">تحقق</string>
+    <string name="enter_password_to_create">أدخل  كلمه المرور لانشاء\n واحده جديده</string>
+    <string name="already_have_account">لديك حساب بالفعل ؟</string>
+    <string name="forget_password_title">نسيت كلمة المرور</string>
+    <string name="home_search_hint">ابحث عن المنتجات هنا…</string>
+    <string name="all_categories">جميع الفئات</string>
+    <string name="menu"> القائمة</string>
+    <string name="view_all">مشاهدة الكل</string>
+    <string name="banner">لافتة</string>
+    <string name="popular_items">العناصر المشهوره</string>
+    <string name="quick_view">نظره سريعه</string>
+    <string name="latest_items">الاحدث</string>
+    <string name="search">Search</string>
 
 </resources>

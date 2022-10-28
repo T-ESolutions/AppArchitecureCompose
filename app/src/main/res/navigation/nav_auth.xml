@@ -42,6 +42,7 @@
     <fragment
         android:id="@+id/logInFragment"
         android:name="app.te.architecture.presentation.auth.log_in.LogInFragment"
+        android:label=""
         tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
@@ -62,6 +63,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="app.te.architecture.presentation.auth.sign_up.SignUpFragment"
+        android:label="@string/create_account"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_confirmCodeFragment"
@@ -75,6 +77,7 @@
     <fragment
         android:id="@+id/confirmCodeFragment"
         android:name="app.te.architecture.presentation.auth.confirmCode.ConfirmCodeFragment"
+        android:label="@string/confirm"
         tools:layout="@layout/fragment_confirm_code">
         <argument
             android:name="user_request"
@@ -100,6 +103,7 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="app.te.architecture.presentation.auth.forgot_password.ForgotPasswordFragment"
+        android:label="@string/forget_password_title"
         tools:layout="@layout/fragment_forgot_password">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_confirmCodeFragment"
@@ -112,7 +116,8 @@
     <fragment
         android:id="@+id/changePasswordFragment2"
         android:name="app.te.architecture.presentation.auth.forgot_password.change_password.AuthChangePasswordFragment"
-        tools:layout="@layout/fragment_change_password">
+        tools:layout="@layout/fragment_change_password"
+        android:label="@string/change_password">
         <argument
             android:name="phone"
             app:argType="string" />

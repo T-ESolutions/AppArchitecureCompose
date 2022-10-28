@@ -57,7 +57,7 @@
                 android:layout_marginStart="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_35sdp"
-                android:hint="@string/client_name"
+                android:hint="@string/first_name"
                 android:textColorHint="@color/colorGray"
                 app:boxBackgroundColor="@color/colorLight"
                 app:boxCornerRadiusBottomEnd="@dimen/_30sdp"

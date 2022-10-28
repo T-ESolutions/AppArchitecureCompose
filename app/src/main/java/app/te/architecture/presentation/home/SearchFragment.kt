@@ -4,8 +4,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.PagingData
 import app.te.architecture.R
 import app.te.architecture.databinding.FragmentHomeBinding
+import app.te.architecture.databinding.FragmentSearchBinding
 import app.te.architecture.domain.home.models.CategoriesApiModel
 import app.te.architecture.domain.utils.Resource
 import app.te.architecture.presentation.base.BaseFragment
@@ -18,33 +20,42 @@ import app.te.architecture.presentation.home.eventListener.HomeEventListener
 import app.te.architecture.presentation.home.ui_state.CategoriesUiItemState
 import app.te.architecture.presentation.home.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeEventListener {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), HomeEventListener {
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var menuAdapter: MenuAdapter
     private lateinit var popularAdapter: PopularAdapter
 
     override
-    fun getLayoutId() = R.layout.fragment_home
+    fun getLayoutId() = R.layout.fragment_search
 
     override
     fun setBindingVariables() {
-        binding.event=this
-        categoriesAdapter = CategoriesAdapter(this)
-        menuAdapter = MenuAdapter(this)
         popularAdapter = PopularAdapter(this)
 //        viewModel.getHomeData(1)
     }
-
     override fun setUpViews() {
-        checkNotificationsPermissions(requireActivity()) {}
+        viewLifecycleOwner.lifecycleScope.launch {
+//            binding.searchView.getQueryTextChangeStateFlow()
+//                .debounce(1000)
+//                .distinctUntilChanged()
+//                .flowOn(Dispatchers.Default)
+//                .collect { result ->
+//                    if (result.isNotEmpty()) {
+////                        viewModel.modelsAdapter.submitData(PagingData.empty())
+////                        viewModel.modelsAdapter.refresh()
+////                        viewModel.getModelsByBrand(
+////                            viewModel.brandAdapter.snapshot()[viewModel.brandAdapter.lastPosition]!!.id,
+////                            query = result
+////                        )
+//                    }
+//                }
+        }
     }
-
 
     override
     fun setupObservers() {
@@ -91,7 +102,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeEventListener {
     }
 
     override fun openSearch() {
-        navigateSafe(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
+
     }
 
     private fun updateCategories() {
@@ -141,15 +152,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeEventListener {
                 )
             )
         )
-
-        categoriesAdapter.differ.submitList(category)
-        binding.rcCategories.setUpAdapter(categoriesAdapter, "1", "2")
-
-        menuAdapter.differ.submitList(category)
-        binding.rcMenu.setUpAdapter(menuAdapter, "1", "2")
-
-        popularAdapter.differ.submitList(category)
-        binding.rcPopularItems.setUpAdapter(popularAdapter, "1", "2")
 
     }
 
