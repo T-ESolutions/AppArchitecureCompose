@@ -13,37 +13,11 @@
 
   <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/subscribe_background">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
-
-      <androidx.appcompat.widget.AppCompatImageView
-          android:id="@+id/ic_arrow_back"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/_12sdp"
-          android:layout_marginTop="@dimen/_50sdp"
-          android:background="?selectableItemBackground"
-          android:onClick="@{()-> eventListener.back()}"
-          android:src="@drawable/ic_arrow_back"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
-
-      <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/register"
-        style="@style/TextRegularFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="@string/language"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_arrow_back" />
 
       <RadioGroup
         android:id="@+id/lang_group"
@@ -51,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_26sdp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/register">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
           android:id="@+id/radio_ar"

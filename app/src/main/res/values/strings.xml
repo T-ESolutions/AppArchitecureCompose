@@ -24,7 +24,6 @@
     <string name="phone_hint">Mobile Number</string>
     <string name="password">Password</string>
     <string name="login_as_guest">Visitor</string>
-    <string name="forgot_your_password">Forgot your password?</string>
     <string name="forgot_header">Please enter your mobile Number to\nreceive a verification code.</string>
 
     <!-- Sign Up -->
@@ -36,10 +35,7 @@
     <!--  <string name="google_api_key">Continue as a guest</string>-->
 
     <string name="privacy">Privacy policy</string>
-    <string name="confirm_header_text">Confirm account</string>
     <string name="profile">Profile</string>
-    <string name="mom">Moms</string>
-    <string name="menu_more">Menu</string>
     <string name="not_match_password">The two passwords do not match</string>
     <string name="active">Activate the account</string>
     <string name="open_app">Start app</string>
@@ -48,7 +44,6 @@
     <string name="about">About the app</string>
     <string name="terms">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
-    <string name="language">Change language</string>
     <!--  Suggestions-->
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -75,11 +70,7 @@
     <string name="old_password">Old password</string>
     <string name="forget_password">Forget password?</string>
     <string name="send">Send</string>
-    <string name="back">Back</string>
-    <string name="non_parent_content">This section is for children and mothers only</string>
-    <string name="continue_open">Continue</string>
     <string name="cart">Cart</string>
-    <string name="email_hint">Email</string>
     <string name="choose_country">Choose country first</string>
     <string name="valid_egy_number">Number format is not valid</string>
     <string name="email_not_valid">Email not valid</string>

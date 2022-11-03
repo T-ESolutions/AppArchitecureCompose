@@ -21,7 +21,6 @@
     <string name="phone_hint">رقم الهاتف</string>
     <string name="password">كلمة المرور</string>
     <string name="login_as_guest">تسجيل كزائر؟</string>
-    <string name="forgot_your_password">نسيت كلمة المرور؟</string>
     <string name="forgot_header"> الرجاء إدخال رقم هاتفك المحمول إلى\nتلقي رمز التحقق.</string>
 
     <!-- Sign Up -->
@@ -32,10 +31,7 @@
     <string name="skip">تخطى</string>
 
     <string name="privacy">سياسة الخصوصية</string>
-    <string name="confirm_header_text">تأكيد الحساب</string>
     <string name="profile">بياناتي الشخصية</string>
-    <string name="mom">أمهات</string>
-    <string name="menu_more">المزيد</string>
     <string name="not_match_password">كلمتا المرور غير متطابقتان</string>
     <string name="active">تفعيل الحساب</string>
     <string name="open_app">ابدأ التطبيق</string>
@@ -44,7 +40,6 @@
     <string name="about">عن التطبيق</string>
     <string name="terms">الشروط والأحكام</string>
     <string name="contact_us">إتصل بنا</string>
-    <string name="language">اختر اللغة</string>
     <!--  Suggestions-->
     <string name="first_name">الاسم الاول</string>
     <string name="last_name">الكنية</string>
@@ -70,11 +65,7 @@
     <string name="old_password">كلمة المرور القديمة</string>
     <string name="forget_password">نسيت كلمه المرور؟</string>
     <string name="send">إرسال</string>
-    <string name="back">رجوع</string>
-    <string name="non_parent_content">هذا القسم للأطفال والأمهات فقط</string>
-    <string name="continue_open">استمرار</string>
     <string name="cart">عربة التسوق</string>
-    <string name="email_hint">البريد الالكترونى</string>
     <string name="choose_country">يرجى اختيار الدولة اولا</string>
     <string name="valid_egy_number">رقم هاتف غير صحيح</string>
     <string name="email_not_valid">بريد الكتروني غير صحيح</string>
