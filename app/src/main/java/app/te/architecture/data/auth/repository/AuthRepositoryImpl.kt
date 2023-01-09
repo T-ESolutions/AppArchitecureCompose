@@ -19,7 +19,16 @@ class AuthRepositoryImpl @Inject constructor(
     suspend fun logIn(request: LogInRequest): Resource<BaseResponse<UserResponse>> {
         val response = remoteDataSource.logIn(request)
         if (response is Resource.Success) {
-            appPreferences.userToken(response.value.data.jwt)
+            appPreferences.userToken(response.value.data.accessToken)
+            appPreferences.saveUser(response.value.data)
+        }
+        return response
+    }
+
+    override suspend fun signUp(request: RegisterRequest): Resource<BaseResponse<UserResponse>> {
+        val response = remoteDataSource.register(request)
+        if (response is Resource.Success) {
+            appPreferences.userToken(response.value.data.accessToken)
             appPreferences.saveUser(response.value.data)
         }
         return response
@@ -37,13 +46,11 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun resendCode(request: ForgetPasswordRequest) =
         remoteDataSource.resendCode(request)
 
-    override suspend fun register(request: RegisterRequest): Resource<BaseResponse<*>> =
-        remoteDataSource.register(request)
 
     override suspend fun verifyAccount(request: RegisterRequest): Resource<BaseResponse<UserResponse>> {
         val response = remoteDataSource.verifyAccount(request)
         if (response is Resource.Success) {
-            appPreferences.userToken(response.value.data.jwt)
+            appPreferences.userToken(response.value.data.accessToken)
             appPreferences.saveUser(response.value.data)
         }
         return response

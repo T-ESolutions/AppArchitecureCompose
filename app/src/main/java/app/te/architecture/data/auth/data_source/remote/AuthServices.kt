@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface AuthServices {
 
-    @POST("v1/auth/login")
+    @POST("V1/auth/log-in")
     suspend fun logIn(@Body request: LogInRequest): BaseResponse<UserResponse>
 
     @POST("v1/auth/forget-password")
@@ -29,7 +29,7 @@ interface AuthServices {
     @POST("v1/auth/change-password")
     suspend fun authChangePassword(@Body request: UpdatePassword): BaseResponse<*>
 
-    @POST("v1/auth/register")
-    suspend fun register(@Body request: RegisterRequest): BaseResponse<*>
+    @POST("V1/auth/sign-up")
+    suspend fun register(@Body request: RegisterRequest): BaseResponse<UserResponse>
 
 }

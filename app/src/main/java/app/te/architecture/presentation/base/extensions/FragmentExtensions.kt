@@ -2,155 +2,57 @@ package app.te.architecture.presentation.base.extensions
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
 import app.te.architecture.R
 import app.te.architecture.domain.utils.FailureStatus
 import app.te.architecture.domain.utils.Resource.Failure
-import app.te.architecture.presentation.auth.AuthActivity
+import app.te.architecture.presentation.base.custom_views.AlerterError
 import app.te.architecture.presentation.base.utils.*
 import app.te.architecture.presentation.base.utils.Constants.MY_PERMISSIONS_REQUEST_POST_NOTIFICATIONS
 
+fun Context.findActivity(): Activity {
+    var context = this
+    while (context is ContextWrapper) {
+        if (context is Activity) return context
+        context = context.baseContext
+    }
+    throw IllegalStateException("no activity")
+}
 
-fun Fragment.handleApiError(
+@Composable
+fun HandleApiError(
+    activity: Activity,
     failure: Failure,
-    retryAction: (() -> Unit)? = null,
-    noDataAction: (() -> Unit)? = null,
-    notActive: (() -> Unit)? = null,
-    notActiveAction: (() -> Unit)? = null,
-    noInternetAction: (() -> Unit)? = null
 ) {
     when (failure.failureStatus) {
         FailureStatus.EMPTY -> {
-            noDataAction?.invoke()
             failure.message?.let {
                 if (it == Constants.NOT_MATCH_PASSWORD.toString())
-                    showNoApiErrorAlert(
-                        requireActivity(), getString(R.string.not_match_password)
-                    )
+                    AlerterError(message = activity.getString(R.string.not_match_password))
                 else
-                    showNoApiErrorAlert(requireActivity(), it)
+                    AlerterError(message = it)
             }
         }
         FailureStatus.NO_INTERNET -> {
-            noInternetAction?.invoke()
-            showNoInternetAlert(requireActivity())
+            AlerterError(message = activity.getString(R.string.no_internet), icon = R.raw.wifi)
         }
-        FailureStatus.NOT_ACTIVE -> {
-            notActive?.invoke()
-            failure.message?.let {
-                showNoApiErrorAlertWithAction(
-                    requireActivity(),
-                    it,
-                    getString(R.string.active),
-                    notActiveAction
-                )
-            }
-        }
+
         FailureStatus.TOKEN_EXPIRED -> {
-            noDataAction?.invoke()
-            showNoApiErrorAlert(requireActivity(), getString(R.string.log_out))
-            openActivityAndClearStack(AuthActivity::class.java)
+            AlerterError(message = activity.getString(R.string.log_out))
         }
 
         else -> {
-            noDataAction?.invoke()
-            requireView().showSnackBar(
-                failure.message ?: resources.getString(R.string.some_error),
-                resources.getString(R.string.retry),
-                retryAction
-            )
+            AlerterError(message = activity.getString(R.string.some_error))
         }
     }
 }
-
-fun Fragment.hideKeyboard() = hideSoftInput(requireActivity())
-
-fun Fragment.showNoInternetAlert() = showNoInternetAlert(requireActivity())
-
-fun Fragment.showMessage(message: String?) = showMessage(requireContext(), message)
-
-fun Fragment.showError(
-    message: String,
-    retryActionName: String? = null,
-    action: (() -> Unit)? = null
-) =
-    requireView().showSnackBar(message, retryActionName, action)
-
-fun Fragment.getMyColor(@ColorRes id: Int) = ContextCompat.getColor(requireContext(), id)
-
-fun Fragment.getMyDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(requireContext(), id)!!
-fun Fragment.getMyDrawableVector(@DrawableRes id: Int) =
-    ContextCompat.getDrawable(requireContext(), id)!!
-
-fun Fragment.getMyString(id: Int) = resources.getString(id)
-
-fun <A : Activity> Fragment.openActivityAndClearStack(activity: Class<A>) {
-    requireActivity().openActivityAndClearStack(activity)
-}
-
-fun <A : Activity> Fragment.openActivity(activity: Class<A>) {
-    requireActivity().openActivity(activity)
-}
-
-fun <A : Activity> Fragment.openIntentActivity(activity: Class<A>, extra: Int) {
-    requireActivity().openIntentActivity(activity, extra)
-}
-
-fun <T> Fragment.getNavigationResultLiveData(key: String = "result") =
-    findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<T>(key)
-
-fun <T> Fragment.removeNavigationResultObserver(key: String = "result") =
-    findNavController().currentBackStackEntry?.savedStateHandle?.remove<T>(key)
-
-fun <T> Fragment.setNavigationResult(result: MutableLiveData<T>, key: String = "result") {
-    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result.value)
-    backToPreviousScreen()
-}
-
-fun Fragment.onBackPressedCustomAction(action: () -> Unit) {
-    requireActivity().onBackPressedDispatcher.addCallback(
-        viewLifecycleOwner,
-        object : OnBackPressedCallback(true) {
-            override
-            fun handleOnBackPressed() {
-                action()
-            }
-        }
-    )
-}
-
-fun Fragment.navigateSafe(directions: NavDirections, navOptions: NavOptions? = null) {
-    findNavController().navigate(directions, navOptions)
-}
-
-fun Fragment.backToPreviousScreen() {
-    findNavController().navigateUp()
-}
-
-fun makeActionSound(context: Context) {
-    val defaultSoundUri: Uri = Uri.parse(
-        ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.packageName + "/" + R.raw.like
-    )
-    val r = RingtoneManager.getRingtone(context, defaultSoundUri)
-    r.play()
-}
-
 
 fun checkNotificationsPermissions(activity: Activity, operation: () -> Unit) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

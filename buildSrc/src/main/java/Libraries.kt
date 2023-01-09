@@ -14,6 +14,7 @@ object Libraries {
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val viewModelState =
         "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
+    const val paging_compose = "androidx.paging:paging-compose:${Versions.paging_compose}"
     const val paging_version = "androidx.paging:paging-runtime:${Versions.paging_version}"
     const val paging_version_ktx = "androidx.paging:paging-common-ktx:${Versions.paging_version}"
     const val roomVersion = "androidx.room:room-runtime:${Versions.roomVersion}"
@@ -35,7 +36,7 @@ object Libraries {
     const val datastore_core = "androidx.datastore:datastore-core:${Versions.datastore_core}"
     const val datastore_protobuf =
         "com.google.protobuf:protobuf-javalite:${Versions.datastore_protobuf}"
-const val datastore_protoc =
+    const val datastore_protoc =
         "com.google.protobuf:protoc:${Versions.datastore_protoc}"
 
     // Networking
@@ -50,9 +51,14 @@ const val datastore_protoc =
     const val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Versions.androidNavigation}"
     const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.androidNavigation}"
-    const val loadingAnimations = "com.airbnb.android:lottie:${Versions.loadingAnimations}"
+    const val navigationHiltCompose =
+        "androidx.hilt:hilt-navigation-compose:${Versions.navigationHiltCompose}"
+    const val navigationCompose =
+        "androidx.navigation:navigation-compose:${Versions.androidNavigation}"
+    const val navigationComposeAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.navigationComposeAnimation}"
+    const val loadingAnimations = "com.airbnb.android:lottie-compose:${Versions.loadingAnimations}"
     const val alerter = "com.github.tapadoo:alerter:${Versions.alerter}"
-    const val coil = "io.coil-kt:coil:${Versions.coil}"
+    const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
     const val ssp = "com.intuit.ssp:ssp-android:${Versions.ssp}"
     const val ssdp = "com.intuit.sdp:sdp-android:${Versions.ssp}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
@@ -77,18 +83,31 @@ const val datastore_protoc =
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     const val hiltDaggerCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
 
+    // Hilt compose
+    const val hilt_compose_compiler =
+        "androidx.hilt:hilt-compiler:${Versions.hilt_compose_compiler}"
+
     // Map
-    const val map = "com.google.android.gms:play-services-maps:${Versions.map}"
-    const val playServicesLocation =
-        "com.google.android.gms:play-services-location:${Versions.playServicesLocation}"
-    const val rx = "io.reactivex.rxjava2:rxjava:${Versions.rx}"
+    const val compose_material_icon = "androidx.compose.material:material-icons-extended:${Versions.compose_material_icon}"
+    const val compose_run_time = "androidx.compose.runtime:runtime-livedata:${Versions.compose_ui}"
+    const val compose_ui = "androidx.compose.ui:ui:${Versions.compose_ui}"
+    const val compose_ui_tooling =
+        "androidx.compose.ui:ui-tooling:${Versions.compose_ui}"
+    const val compose_ui_preview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose_ui}"
+    const val compose_foundation = "androidx.compose.foundation:foundation:${Versions.compose_foundation}"
+    const val compose_material = "androidx.compose.material3:material3:${Versions.compose_material}"
+    const val compose_material_window_size = "androidx.compose.material3:material3-window-size-class:${Versions.compose_material}"
+    const val compose_activity = "androidx.activity:activity-compose:${Versions.compose_activity}"
+    const val compose_constraint_layout = "androidx.constraintlayout:constraintlayout-compose:${Versions.compose_constraint_layout}"
+    const val compose_pager = "com.google.accompanist:accompanist-pager:${Versions.compose_pager}"
 
     //FireBase
     const val firebase_platform = "com.google.firebase:firebase-bom:${Versions.firebase}"
     const val firebase_messaging = "com.google.firebase:firebase-messaging-ktx"
     const val hms_push = "com.huawei.hms:push:${Versions.hms_push}"
     const val hms_core = "com.huawei.agconnect:agconnect-core:${Versions.hms_core}"
-    const val hms_remote_config = "com.huawei.agconnect:agconnect-remoteconfig:${Versions.hms_remote_config}"
+    const val hms_remote_config =
+        "com.huawei.agconnect:agconnect-remoteconfig:${Versions.hms_remote_config}"
 
     //pin code
     const val pin_code = "io.github.chaosleung:pinview:${Versions.pin_code}"

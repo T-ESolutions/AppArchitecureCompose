@@ -12,6 +12,7 @@ plugins {
 //    id(Config.Plugins.google_services)
 //    id(Config.Plugins.huawei_services)
     id(Config.Plugins.checkDependencyUpdates) version "1.5.0"
+    id("org.jetbrains.kotlin.android")
 
 //    id(Config.Plugins.appsweep) version "latest.release"
 }
@@ -90,11 +91,13 @@ android {
     }
 
     compileOptions {
-
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
+    }
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -110,6 +113,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 //    appsweep {
 //        apiKey = Libraries.appsweep_key
@@ -117,6 +121,11 @@ android {
     externalNativeBuild {
         cmake {
             path = file("CMakeLists.txt")
+        }
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
     bundle {
@@ -128,6 +137,19 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+    //========== Compose================
+    implementation(Libraries.compose_material_icon)
+    implementation(Libraries.compose_run_time)
+    implementation(Libraries.compose_ui)
+    implementation(Libraries.compose_ui_tooling)
+    implementation(Libraries.compose_ui_preview)
+    implementation(Libraries.compose_foundation)
+    implementation(Libraries.compose_material)
+    implementation(Libraries.compose_material_window_size)
+    implementation(Libraries.compose_activity)
+    implementation(Libraries.compose_constraint_layout)
+    implementation(Libraries.compose_pager)
     //Room
     implementation(Libraries.roomVersion)
     kapt(Libraries.roomCompiler)
@@ -150,11 +172,15 @@ dependencies {
     implementation(Libraries.permissions)
     implementation(Libraries.gson)
 // paging
+    implementation(Libraries.paging_compose)
     implementation(Libraries.paging_version)
     implementation(Libraries.paging_version_ktx)
 
     // Hilt
     implementation(Libraries.hilt)
+    kapt(Libraries.hiltDaggerCompiler)
+    kapt(Libraries.hilt_compose_compiler)
+
     // Firebase
     implementation(platform(Libraries.firebase_platform))
     implementation(Libraries.firebase_messaging)
@@ -162,7 +188,7 @@ dependencies {
     implementation(Libraries.hms_push)
     implementation(Libraries.hms_remote_config)
 
-    kapt(Libraries.hiltDaggerCompiler)
+
     // Support
     implementation(Libraries.appCompat)
     implementation(Libraries.coreKtx)
@@ -181,6 +207,11 @@ dependencies {
     implementation(Libraries.datastore_preferences)
     implementation(Libraries.datastore_core)
     implementation(Libraries.datastore_protobuf)
+
+    // =========Nav compose============
+    implementation(Libraries.navigationHiltCompose)
+    implementation(Libraries.navigationCompose)
+    implementation(Libraries.navigationComposeAnimation)
 
     // UI
     implementation(Libraries.materialDesign)

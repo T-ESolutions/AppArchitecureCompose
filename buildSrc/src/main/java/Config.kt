@@ -11,6 +11,7 @@ object Config {
     }
 
     object Dependencies {
+        const val snapshots = "https://oss.sonatype.org/content/repositories/snapshots/"
         const val jitPackURL = "https://jitpack.io"
         const val huwawiPackUrl = "https://developer.huawei.com/repo/"
         const val gradleVersion = "com.android.tools.build:gradle:${Versions.gradleVersion}"

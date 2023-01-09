@@ -99,10 +99,9 @@ class AppPreferences @Inject constructor(private val context: Context) {
                 .setName(user.name)
                 .setImage(user.image ?: "")
                 .setPhone(user.phone)
-                .setJwt(user.jwt)
-                .setSubscriber(user.subscriber)
-                .setCityId(user.city_id)
-                .setCityName(user.city_name)
+                .setJwt(user.accessToken)
+                .setCityId(user.city.id)
+                .setCityName(user.city.name)
                 .build()
         }
     }

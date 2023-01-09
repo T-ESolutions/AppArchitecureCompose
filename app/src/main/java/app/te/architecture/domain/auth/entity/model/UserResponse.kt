@@ -1,40 +1,33 @@
 package app.te.architecture.domain.auth.entity.model
 
 import androidx.annotation.Keep
+import app.te.architecture.data.general.data_source.dto.countries.CityModel
 import com.google.gson.annotations.SerializedName
 
 @Keep
 data class UserResponse(
-  @SerializedName("suspend")
-  var suspend: String = "",
+    @SerializedName("address")
+  var address: String = "",
 
-  @SerializedName("image")
+    @SerializedName("image")
   val image: String = "",
 
-  @SerializedName("token_api")
-  val jwt: String = "",
+    @SerializedName("access_token")
+  val accessToken: String = "",
 
-  @SerializedName("subscriber")
-  val subscriber: Int = 0,
-  @SerializedName("subscription_ended_at")
-  val subscription_ended_at: String = "",
+    @SerializedName("city")
+  val city: CityModel = CityModel(),
 
-  @SerializedName("city_id")
-  val city_id: Int = 0,
-
-  @SerializedName("city_name")
-  val city_name: String = "",
-
-  @SerializedName("phone")
+    @SerializedName("phone")
   val phone: String = "",
 
-  @SerializedName("name")
+    @SerializedName("name")
   val name: String = "",
 
-  @SerializedName("id")
+    @SerializedName("id")
   val id: Int = 0,
 
-  @SerializedName("email")
+    @SerializedName("email")
   val email: String = "",
 
-  )
+    )

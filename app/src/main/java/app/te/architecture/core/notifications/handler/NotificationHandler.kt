@@ -10,11 +10,11 @@ import android.media.AudioAttributes
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import app.te.architecture.R
+import app.te.architecture.presentation.auth.AuthComposeActivity
 import app.te.architecture.core.notifications.app_notification_model.LimaRemoteMessages
 import app.te.architecture.core.notifications.notification_manager.SoundUtils
 import app.te.architecture.core.notifications.notification_manager.showNotification
 import app.te.architecture.presentation.base.utils.Constants
-import app.te.architecture.presentation.home.HomeActivity
 import kotlin.random.Random
 
 class NotificationHandler(private val context: Context) {
@@ -26,7 +26,7 @@ class NotificationHandler(private val context: Context) {
     }
 
     fun sendNotification(messageBody: LimaRemoteMessages) {
-        val intent = Intent(context, HomeActivity::class.java)
+        val intent = Intent(context, AuthComposeActivity::class.java)
         intent.putExtra(Constants.NOTIFICATION, true)
         // Set the Activity to start in a new, empty task
         val pendingIntent = PendingIntent.getActivity(
@@ -94,7 +94,7 @@ class NotificationHandler(private val context: Context) {
     private fun createDefaultNotificationIntent(
         context: Context,
     ): Intent {
-        return Intent(context, HomeActivity::class.java).apply {
+        return Intent(context, AuthComposeActivity::class.java).apply {
             try {
                 putExtra(Constants.NOTIFICATION, true)
             } catch (e: Exception) {

@@ -17,7 +17,6 @@ class IntroUseCase @Inject constructor(
 
   operator fun invoke(): Flow<Resource<BaseResponse<List<AppTutorialModel>>>> = flow {
     emit(Resource.Loading)
-    val result = introRepository.intro()
-    emit(result)
+    emit(introRepository.intro())
   }.flowOn(Dispatchers.IO)
 }

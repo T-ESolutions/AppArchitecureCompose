@@ -6,9 +6,12 @@ import javax.inject.Inject
 
 class GeneralRemoteDataSource @Inject constructor(private val apiService: GeneralServices) :
     BaseRemoteDataSource() {
+    suspend fun getCities(govId: String, pageIndex: Int) = safeApiCall {
+        apiService.getCities(pageIndex, govId)
+    }
 
-    suspend fun getCities() = safeApiCall {
-        apiService.getCities()
+    suspend fun getGovern(pageIndex: Int) = safeApiCall {
+        apiService.getGovern(pageIndex)
     }
 
     suspend fun updateFirebaseToken(updateFirebaseTokenRequest: UpdateFirebaseTokenRequest) =

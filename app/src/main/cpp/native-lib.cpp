@@ -7,13 +7,13 @@
 
 extern "C" jstring
 Java_app_te_architecture_data_remote_Keys_debugBaseUrl(JNIEnv *env, jobject thiz) {
-    std::string debugBaseUrl = "https://sublima.limazola.com/api/";
+    std::string debugBaseUrl = "https://stolen-phones.com/api/";
     return env->NewStringUTF(debugBaseUrl.c_str());
 }
 
 extern "C" jstring
 Java_app_te_architecture_data_remote_Keys_releaseBaseUrl(JNIEnv *env, jobject thiz) {
-    std::string releaseBaseUrl = "https://limazola.com/api/";
+    std::string releaseBaseUrl = "https://stolen-phones.com/api/";
     return env->NewStringUTF(releaseBaseUrl.c_str());
 }
 extern "C" jstring

@@ -17,6 +17,8 @@
     <string name="design_program">تصميم وبرمجة</string>
 
     <!-- Log In -->
+    <string name="welcome_to_stolen_phone">مرحبا بك في الموبايلات المسروقه</string>
+    <string name="find_your_phone">ابحث عن هاتفك</string>
     <string name="login">تسجيل الدخول </string>
     <string name="phone_hint">رقم الهاتف</string>
     <string name="password">كلمة المرور</string>
@@ -41,13 +43,13 @@
     <string name="terms">الشروط والأحكام</string>
     <string name="contact_us">إتصل بنا</string>
     <!--  Suggestions-->
-    <string name="first_name">الاسم الاول</string>
+    <string name="first_name">الاسم </string>
     <string name="last_name">الكنية</string>
     <!--Countries-->
     <string name="country_hint">اختر الدولة</string>
     <string name="login_btn">تسجيل الدخول</string>
     <string name="new_account">التسجيل</string>
-    <string name="create_an_account">انشئ حساب ؟</string>
+    <string name="create_an_account">انشئ حساب؟</string>
 
     <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
     <string name="favorite">المفضلة</string>
@@ -85,5 +87,9 @@
     <string name="quick_view">نظره سريعه</string>
     <string name="latest_items">الاحدث</string>
     <string name="search">Search</string>
+    <string name="password_length_warning">Password needs 8 characters at least</string>
+    <string name="govern">المحافظة</string>
+    <string name="city">المدينة</string>
+    <string name="address">العنوان</string>
 
 </resources>

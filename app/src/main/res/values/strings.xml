@@ -20,6 +20,8 @@
     <string name="design_program">Design and program</string>
 
     <!-- Log In -->
+    <string name="welcome_to_stolen_phone">Welcome to stolen phones</string>
+    <string name="find_your_phone">Find your phone</string>
     <string name="login">Login</string>
     <string name="phone_hint">Mobile Number</string>
     <string name="password">Password</string>
@@ -38,21 +40,21 @@
     <string name="profile">Profile</string>
     <string name="not_match_password">The two passwords do not match</string>
     <string name="active">Activate the account</string>
-    <string name="open_app">Start app</string>
+    <string name="open_app">Get started</string>
     <string name="confirm">Verify Phone</string>
     <!--  Side Menu-->
     <string name="about">About the app</string>
     <string name="terms">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
     <!--  Suggestions-->
-    <string name="first_name">First Name</string>
+    <string name="first_name">Name</string>
     <string name="last_name">Last Name</string>
     <!--Contact Us-->
     <!--Countries-->
     <string name="country_hint">Choose the country</string>
     <string name="login_btn">Login</string>
     <string name="new_account">SignUp</string>
-    <string name="create_an_account">Create an account ?</string>
+    <string name="create_an_account">Create an account?</string>
 
     <string name="log_out_hint">Are you sure you want to log out?</string>
     <string name="favorite">Favorite</string>
@@ -91,5 +93,9 @@
     <string name="quick_view">Quick view</string>
     <string name="latest_items">Latest items</string>
     <string name="search">Search</string>
+    <string name="password_length_warning">Password needs 8 characters at least</string>
+    <string name="govern">Government</string>
+    <string name="city">City</string>
+    <string name="address">Address</string>
 
 </resources>

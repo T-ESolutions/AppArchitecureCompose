@@ -19,10 +19,10 @@ class VerifyAccountUseCase @Inject constructor(
 
     operator fun invoke(request: RegisterRequest): Flow<Resource<BaseResponse<UserResponse>>> =
         flow {
-            if (request.otp.isNotEmpty()) {
+//            if (request.otp.isNotEmpty()) {
                 emit(Resource.Loading)
                 emit(authRepository.verifyAccount(request))
-            }
+//            }
         }.flowOn(Dispatchers.IO)
 
     operator fun invoke(request: ForgetPasswordRequest): Flow<Resource<BaseResponse<*>>> =
