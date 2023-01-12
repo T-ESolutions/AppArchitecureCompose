@@ -38,6 +38,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.home.HomeComposeActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

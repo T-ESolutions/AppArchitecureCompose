@@ -97,5 +97,6 @@
     <string name="govern">Government</string>
     <string name="city">City</string>
     <string name="address">Address</string>
+    <string name="more">More</string>
 
 </resources>

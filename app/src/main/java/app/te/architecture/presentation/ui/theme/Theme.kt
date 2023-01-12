@@ -1,4 +1,4 @@
-package app.te.architecture.presentation.auth.ui.theme
+package app.te.architecture.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
@@ -6,16 +6,18 @@ import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColorScheme(
     primary = colorPrimaryDark,
-    secondary = colorPrimary,
-    primaryContainer = colorPrimaryDark,
-    outline = outline
+    secondary = secondaryDark,
+    primaryContainer = primaryContainer,
+    outline = outline,
+    onPrimary = onPrimary
 )
 
 private val LightColorPalette = lightColorScheme(
-    primary = colorPrimaryDark,
-    secondary = colorPrimary,
-    primaryContainer = colorPrimaryDark,
-    outline = outline
+    primary = colorPrimaryLight,
+    secondary = secondaryLight,
+    primaryContainer = primaryContainer,
+    outline = outline,
+    onPrimary = onPrimary
 
     /* Other default colors to override
     background = Color.White,

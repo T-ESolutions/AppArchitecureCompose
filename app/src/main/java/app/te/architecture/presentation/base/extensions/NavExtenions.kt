@@ -10,7 +10,8 @@ fun NavController.navigateSafe(
     destination: String,
     launchSingleTop: Boolean = true,
     restoreState: Boolean = true,
-    popUpTo: String? = null
+    popUpTo: String? = null,
+    popUpToId: Int? = null,
 ) {
     navigate(destination) {
         this.launchSingleTop = launchSingleTop
@@ -20,6 +21,9 @@ fun NavController.navigateSafe(
             popUpTo(popUpTo) {
                 inclusive = true
             }
+        if (popUpToId != null)
+            popUpTo(popUpToId)
+
     }
 }
 

@@ -1,5 +1,6 @@
 package app.te.architecture.presentation.auth.splash
 
+import android.app.Activity
 import android.util.Log
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -25,10 +26,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalContext
 import app.te.architecture.presentation.auth.nav_graph.AuthScreens
 import app.te.architecture.presentation.base.extensions.navigateSafe
 import kotlinx.coroutines.delay
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.te.architecture.presentation.base.extensions.findActivity
+import app.te.architecture.presentation.base.extensions.openActivityAndClearStack
+import app.te.architecture.presentation.home.HomeComposeActivity
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -37,7 +42,7 @@ fun SplashScreenPage(
     viewModel: SplashViewModel = viewModel()
 ) {
     val splashState = viewModel.splashState.collectAsState()
-
+    val activity = LocalContext.current.findActivity()
     val scale = remember {
         Animatable(0f)
     }
@@ -56,11 +61,11 @@ fun SplashScreenPage(
         )
 
         delay(3000L)
-        Log.e("SplashScreenPage", "SplashScreenPage: "+splashState.value.openTutorialScreen)
+        Log.e("SplashScreenPage", "SplashScreenPage: " + splashState.value.openTutorialScreen)
         if (splashState.value.openTutorialScreen)
             openTutorialScreen(navHostController)
         else
-            openLoginScreen(navHostController)
+            openHomeActivity(activity)
     }
     Box(
         modifier = Modifier
@@ -87,11 +92,12 @@ fun SplashScreenPage(
     }
 }
 
-fun openLoginScreen(navHostController: NavHostController) {
-    navHostController.navigateSafe(
-        AuthScreens.LoginScreen.route,
-        popUpTo = AuthScreens.SplashScreen.route
-    )
+fun openHomeActivity(activity: Activity) {
+//    navHostController.navigateSafe(
+//        AuthScreens.LoginScreen.route,
+//        popUpTo = AuthScreens.SplashScreen.route
+//    )
+    activity.openActivityAndClearStack(HomeComposeActivity::class.java)
 }
 
 fun openTutorialScreen(navHostController: NavHostController) {

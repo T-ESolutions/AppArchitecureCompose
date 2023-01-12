@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.*
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
@@ -57,7 +59,7 @@ fun LoginScreen(
 ) {
     val validateState = viewModel.state
     val loginState = viewModel.loginState.collectAsState()
-
+    val activity = LocalContext.current.findActivity()
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -70,7 +72,16 @@ fun LoginScreen(
                         style = MaterialTheme.typography.titleLarge,
                     )
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
+                navigationIcon = {
+                    IconButton(onClick = { activity.finish() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "back",
+                            tint = Color.White
+                        )
+                    }
+                }
             )
         }, content = {
 

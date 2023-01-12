@@ -18,10 +18,13 @@ import app.te.architecture.presentation.auth.splash.SplashViewModel
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.authNavGraph(navHostController: NavHostController) {
+fun NavGraphBuilder.authNavGraph(
+    navHostController: NavHostController,
+    startDestination: String
+) {
     navigation(
         route = AUTH_GRAPH_ROUTE,
-        startDestination = AuthScreens.SplashScreen.route
+        startDestination = startDestination
     ) {
         composable(
             AuthScreens.SplashScreen.route,
