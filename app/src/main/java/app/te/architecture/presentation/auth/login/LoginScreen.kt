@@ -96,8 +96,8 @@ fun LoginScreen(
             }
 
             if (loginState.value.data != null) {
+                activity.finish()
             }
-            // open Home activity
 
 
             Column(

@@ -13,7 +13,6 @@ class LogOutUseCase @Inject constructor(private val accountRepository: AccountRe
 
     operator fun invoke(): Flow<Resource<BaseResponse<*>>> = flow {
         accountRepository.clearPreferences()
-        val result = accountRepository.logOut()
-        emit(result)
+        emit(accountRepository.logOut())
     }.flowOn(Dispatchers.IO)
 }

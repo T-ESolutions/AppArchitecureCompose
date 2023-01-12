@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 data class AboutData(
-  @SerializedName("title")
+  @SerializedName("body")
   val title: String = "",
 
   @SerializedName("image")

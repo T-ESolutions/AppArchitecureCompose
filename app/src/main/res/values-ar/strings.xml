@@ -92,5 +92,6 @@
     <string name="city">المدينة</string>
     <string name="address">العنوان</string>
     <string name="more">More</string>
+    <string name="done">Done</string>
 
 </resources>

@@ -1,9 +1,13 @@
 package app.te.architecture.presentation.account
 
 import app.te.architecture.R
+import app.te.architecture.domain.utils.Resource
 import com.structure.base_mvvm.User
 
 class AccountUiState {
+    val isLoading: Boolean = false
+    val failureStatus: Resource.Failure? = null
+
     var user: User = User.getDefaultInstance()
     fun updateUi(user: User) {
         this.user = user

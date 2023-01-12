@@ -8,9 +8,7 @@ import androidx.compose.material.icons.outlined.Logout
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,8 +24,8 @@ import androidx.navigation.compose.rememberNavController
 import app.te.architecture.R
 import app.te.architecture.presentation.auth.AuthComposeActivity
 import app.te.architecture.presentation.auth.nav_graph.LOGIN_ROUTE
+import app.te.architecture.presentation.base.custom_views.dialogs.CustomAlertDialog
 import app.te.architecture.presentation.base.extensions.findActivity
-import app.te.architecture.presentation.base.extensions.openActivity
 import app.te.architecture.presentation.base.extensions.openIntentActivity
 
 @Composable
@@ -38,6 +36,7 @@ fun AccountScreen(
 ) {
     val accountState = viewModel.userData.collectAsState()
     val activity = LocalContext.current.findActivity()
+    val openDialog = remember { mutableStateOf(false) }
 
     ConstraintLayout(
         modifier = Modifier
@@ -47,6 +46,7 @@ fun AccountScreen(
         LaunchedEffect(key1 = true) {
             viewModel.getUserFromLocal()
         }
+
         val (ic_logo, ic_login_logout) = createRefs()
         Image(
             painter = painterResource(id = R.drawable.logo),
@@ -90,13 +90,26 @@ fun AccountScreen(
                                     LOGIN_ROUTE
                                 )
                             }, onLoginOutAction = {
-
+                                openDialog.value = true
                             }
                         )
                     }
             )
         }
 
-
+    }
+    if (openDialog.value) {
+        CustomAlertDialog(
+            title = R.string.log_out,
+            body = R.string.log_out_hint,
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false,
+            onDismiss = {
+                openDialog.value = false
+            }
+        ) {
+            openDialog.value = false
+            viewModel.logOut()
+        }
     }
 }

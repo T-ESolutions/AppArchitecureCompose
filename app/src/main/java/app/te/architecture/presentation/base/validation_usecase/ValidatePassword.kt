@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class ValidatePassword @Inject constructor(@ApplicationContext val context: Context) {
     operator fun invoke(password: String): ValidationResult {
-        if (password.length < 8)
+        if (password.length < 6)
             return ValidationResult(
                 successful = false,
                 errorMessage = context.getString(R.string.password_length_warning)

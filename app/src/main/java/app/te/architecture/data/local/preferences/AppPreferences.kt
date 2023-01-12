@@ -101,7 +101,7 @@ class AppPreferences @Inject constructor(private val context: Context) {
                 .setPhone(user.phone)
                 .setJwt(user.accessToken)
                 .setCityId(user.city.id)
-                .setCityName(user.city.name)
+                .setCityName(user.city.name ?: "")
                 .build()
         }
     }

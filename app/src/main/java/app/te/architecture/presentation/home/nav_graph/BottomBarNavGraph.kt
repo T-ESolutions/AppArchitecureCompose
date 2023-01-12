@@ -10,6 +10,8 @@ import app.te.architecture.presentation.home.HomeScreen
 import app.te.architecture.presentation.home.bottom_bar.BOTTOM_BAR_GRAPH_ROUTE
 import app.te.architecture.presentation.home.bottom_bar.BottomBarScreen
 import app.te.architecture.presentation.more.MoreScreen
+import app.te.architecture.presentation.more.MoreViewModel
+import app.te.architecture.presentation.more.nav_graph.moreNavGraph
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -26,7 +28,10 @@ fun NavGraphBuilder.bottomBarNavGraph(navHostController: NavHostController) {
             AccountScreen(navHostController = navHostController, viewModel)
         }
         composable(route = BottomBarScreen.More.route) {
-            MoreScreen(navHostController = navHostController)
+            val viewModel = hiltViewModel<MoreViewModel>()
+            MoreScreen(viewModel = viewModel, navHostController = navHostController)
         }
+
+        moreNavGraph(navHostController)
     }
 }
