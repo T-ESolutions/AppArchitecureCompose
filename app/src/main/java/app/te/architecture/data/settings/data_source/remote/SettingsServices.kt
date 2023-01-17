@@ -13,7 +13,7 @@ interface SettingsServices {
   @GET("V1/app/teams")
   suspend fun teams(): BaseResponse<List<Teams>>
 
-  @GET("V1/app/links")
+  @GET("V1/app/settings")
   suspend fun getContacts(): BaseResponse<List<ContactUs>>
 
 

@@ -18,7 +18,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import app.te.architecture.presentation.base.extensions.adjustFontScale
 import app.te.architecture.presentation.base.extensions.navigateSafe
 import app.te.architecture.presentation.ui.theme.AppArchitectureTheme
-import app.te.architecture.presentation.home.bottom_bar.BottomBarScreen
+import app.te.architecture.presentation.home.nav_graph.BottomBarScreen
 import app.te.architecture.presentation.home.nav_graph.SetupNavGraph
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint

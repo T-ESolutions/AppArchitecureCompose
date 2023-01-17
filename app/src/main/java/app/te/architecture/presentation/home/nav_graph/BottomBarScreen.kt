@@ -1,4 +1,4 @@
-package app.te.architecture.presentation.home.bottom_bar
+package app.te.architecture.presentation.home.nav_graph
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

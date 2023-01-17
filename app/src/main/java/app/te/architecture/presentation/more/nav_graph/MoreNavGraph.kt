@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import app.te.architecture.presentation.about_app.AboutAppScreen
 import app.te.architecture.presentation.contact_us.ContactUsScreen
+import app.te.architecture.presentation.contact_us.ContactUsViewModel
 import app.te.architecture.presentation.more.MoreViewModel
 import app.te.architecture.presentation.settings.SettingsViewModel
 import app.te.architecture.presentation.terms_privacy.TermsAndPrivacyScreen
@@ -72,8 +73,8 @@ fun NavGraphBuilder.moreNavGraph(navHostController: NavHostController) {
             )
         }
     ) {
-        val viewModel = hiltViewModel<SettingsViewModel>()
-        ContactUsScreen(navHostController)
+        val viewModel = hiltViewModel<ContactUsViewModel>()
+        ContactUsScreen(navHostController,viewModel)
     }
 
     composable(

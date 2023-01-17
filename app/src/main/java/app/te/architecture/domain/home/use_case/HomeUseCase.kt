@@ -11,10 +11,9 @@ import javax.inject.Inject
 class HomeUseCase @Inject constructor(
   private val homeRepository: HomeRepository
 ) {
-  fun homeService(cat_id: Int) = flow {
+  fun searchForStolen(serial: String) = flow {
     emit(Resource.Loading)
-    val result = homeRepository.getHome(cat_id)
-    emit(result)
+    emit(homeRepository.searchForPhone(serial))
   }.flowOn(Dispatchers.IO)
 
 }

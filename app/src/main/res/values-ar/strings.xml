@@ -78,7 +78,7 @@
     <string name="enter_password_to_create">أدخل  كلمه المرور لانشاء\n واحده جديده</string>
     <string name="already_have_account">لديك حساب بالفعل ؟</string>
     <string name="forget_password_title">نسيت كلمة المرور</string>
-    <string name="home_search_hint">ابحث عن المنتجات هنا…</string>
+    <string name="home_search_hint">ابحث عن الموبايلات المسروقه…</string>
     <string name="all_categories">جميع الفئات</string>
     <string name="menu"> القائمة</string>
     <string name="view_all">مشاهدة الكل</string>
@@ -93,5 +93,10 @@
     <string name="address">العنوان</string>
     <string name="more">More</string>
     <string name="done">Done</string>
+    <string name="no_stolen_phones">لا يوجد هاتف مسروق ، حاول البحث أو إضافة هاتف جديد للعثور عليه</string>
+    <string name="serial_number">سيريال الجهاز ( imei1 )</string>
+    <string name="model">الموديل</string>
+    <string name="brand">الماركة</string>
+    <string name="phone_call">اتصال</string>
 
 </resources>

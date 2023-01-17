@@ -1,11 +1,15 @@
 package app.te.architecture.presentation.base.extensions
 
 import androidx.appcompat.widget.SearchView
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import app.te.architecture.R
+import app.te.architecture.presentation.base.custom_views.dialogs.CustomAlertDialog
+import app.te.architecture.presentation.base.custom_views.dialogs.PreviewImageDialog
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
@@ -16,8 +20,9 @@ import kotlin.math.abs
 
 @Composable
 fun LoadAsyncImage(
-    url: String = "",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.None,
+    url: String = ""
 ) {
     SubcomposeAsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -27,6 +32,7 @@ fun LoadAsyncImage(
             .crossfade(true)
             .build(),
         contentDescription = "Image1",
+        contentScale = contentScale,
         modifier = modifier
     ) {
         when (painter.state) {

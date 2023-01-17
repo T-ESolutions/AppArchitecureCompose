@@ -6,8 +6,6 @@ import app.te.architecture.data.auth.data_source.remote.AuthRemoteDataSource
 import app.te.architecture.data.auth.repository.AuthRepositoryImpl
 import app.te.architecture.data.general.data_source.remote.GeneralRemoteDataSource
 import app.te.architecture.data.general.repository.GeneralRepositoryImpl
-import app.te.architecture.data.home.data_source.local.HomeLocalRemoteDataSource
-import app.te.architecture.data.home.repository.local.HomeLocalRepositoryImpl
 import app.te.architecture.data.home.data_source.remote.HomeRemoteDataSource
 import app.te.architecture.data.home.repository.HomeRepositoryImpl
 import app.te.architecture.data.intro.data_source.IntroRemoteDataSource
@@ -21,7 +19,6 @@ import app.te.architecture.domain.account.repository.AccountRepository
 import app.te.architecture.domain.auth.repository.AuthRepository
 import app.te.architecture.domain.general.repository.GeneralRepository
 import app.te.architecture.domain.home.repository.HomeRepository
-import app.te.architecture.domain.home.repository.local.HomeLocalRepository
 import app.te.architecture.domain.intro.repository.IntroRepository
 import app.te.architecture.domain.profile.repository.ProfileRepository
 import app.te.architecture.domain.settings.repository.SettingsRepository
@@ -64,11 +61,6 @@ class RepositoryModule {
         remoteDataSource: HomeRemoteDataSource
     ): HomeRepository = HomeRepositoryImpl(remoteDataSource)
 
-    @Provides
-    @Singleton
-    fun provideHomeLocalRepository(
-        homeLocalRemoteDataSource: HomeLocalRemoteDataSource
-    ): HomeLocalRepository = HomeLocalRepositoryImpl(homeLocalRemoteDataSource)
 
     @Provides
     @Singleton
