@@ -1,15 +1,24 @@
 package app.te.architecture.presentation.base.extensions
 
 import androidx.appcompat.widget.SearchView
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import app.te.architecture.R
 import app.te.architecture.presentation.base.custom_views.dialogs.CustomAlertDialog
 import app.te.architecture.presentation.base.custom_views.dialogs.PreviewImageDialog
+import app.te.architecture.presentation.base.utils.animatedShimmer
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
@@ -37,7 +46,7 @@ fun LoadAsyncImage(
     ) {
         when (painter.state) {
             is AsyncImagePainter.State.Loading -> {
-                CircularProgressIndicator()
+                ShimmerImageLoader()
             }
             else -> {
                 SubcomposeAsyncImageContent()
@@ -46,6 +55,20 @@ fun LoadAsyncImage(
 
     }
 }
+
+@Composable
+fun ShimmerImageLoader() {
+    val animatedShimmer = animatedShimmer()
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(animatedShimmer)
+        )
+    }
+}
+
 
 fun String.isNumeric(toCheck: String): Boolean {
     val regex = "-?[0-9]+(\\.[0-9]+)?".toRegex()

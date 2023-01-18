@@ -104,5 +104,6 @@
     <string name="model">الموديل</string>
     <string name="brand">الماركة</string>
     <string name="phone_call">اتصال</string>
+    <string name="add_new_stolen_phone">Add stolen phone</string>
 
 </resources>

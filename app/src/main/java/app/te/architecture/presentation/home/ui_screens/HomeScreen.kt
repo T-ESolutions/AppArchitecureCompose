@@ -1,6 +1,7 @@
 package app.te.architecture.presentation.home.ui_screens
 
 import android.content.Context
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -20,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -62,9 +65,8 @@ fun HomeScreen(
                     )
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
-
-                )
-        }, content = { paddingValues ->
+            )
+        }, floatingActionButtonPosition = FabPosition.Center, content = { paddingValues ->
 
             Column(
                 modifier = Modifier
@@ -118,7 +120,7 @@ fun ResultSection(data: List<StolenUiItemState>?, context: Context) {
 @Composable
 fun EmptyContent() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -201,5 +203,33 @@ fun SearchSection(state: SearchState, viewModel: HomeViewModel) {
                 textColor = MaterialTheme.colorScheme.background
             )
         )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun AddFloatingActionButton() {
+
+    ExtendedFloatingActionButton(
+        onClick = {},
+        containerColor = MaterialTheme.colorScheme.primary,
+
+        ) {
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Add,
+                contentDescription = "plus",
+                tint = MaterialTheme.colorScheme.background
+            )
+            Text(
+                text = stringResource(id = R.string.add_new_stolen_phone),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.background
+            )
+        }
+
     }
 }
