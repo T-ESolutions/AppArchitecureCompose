@@ -43,6 +43,7 @@ import app.te.architecture.presentation.auth.login.view_model.LogInViewModel
 import app.te.architecture.presentation.auth.nav_graph.AuthScreens
 import app.te.architecture.presentation.base.extensions.navigateSafe
 import app.te.architecture.presentation.base.ShowLottieLoading
+import app.te.architecture.presentation.base.extensions.CenterAlignedTopAppBarCustom
 import app.te.architecture.presentation.base.extensions.HandleApiError
 import app.te.architecture.presentation.base.extensions.findActivity
 import com.airbnb.lottie.compose.LottieAnimation
@@ -64,25 +65,11 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.login),
-                        color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
-                navigationIcon = {
-                    IconButton(onClick = { activity.finish() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "back",
-                            tint = Color.White
-                        )
-                    }
-                }
-            )
+            CenterAlignedTopAppBarCustom(
+                title = R.string.login
+            ) {
+                activity.finish()
+            }
         }, content = {
 
             if (loginState.value.isLoading)

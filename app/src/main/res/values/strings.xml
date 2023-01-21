@@ -1,11 +1,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">Lima Zola</string>
+    <string name="app_name_debug" translatable="false">Lima Zola Test</string>
     <string name="empty_warning">This field is required</string>
 
     <!-- General Strings -->
-    <string name="connection_error">Connection Error</string>
     <string name="no_internet">No internet connection please try again later</string>
-    <string name="retry">Retry</string>
     <string name="cancel">Cancel</string>
     <string name="some_error">Some error occurred, Please try again later</string>
 
@@ -14,10 +13,7 @@
     <string name="account">Account</string>
 
     <!-- Tutorial -->
-    <string name="dot" translatable="false">•</string>
-    <string name="next">Next</string>
     <!-- Intro -->
-    <string name="design_program">Design and program</string>
 
     <!-- Log In -->
     <string name="welcome_to_stolen_phone">Welcome to stolen phones</string>
@@ -25,8 +21,9 @@
     <string name="login">Login</string>
     <string name="phone_hint">Mobile Number</string>
     <string name="password">Password</string>
-    <string name="login_as_guest">Visitor</string>
-    <string name="forgot_header">Please enter your mobile Number to\nreceive a verification code.</string>
+    <string name="help_to_find">"Help us By adding your stolen phone data  "</string>
+    <string name="notes">add your description of your phone or thieve</string>
+    <string name="add_new_stolen_phone_warning">في حاله الابلاغ فا انت موافق انك تدي  اللي يبلغك بمكان التليفون ١٠%من قيمه التليفون كهديه</string>
 
     <!-- Sign Up -->
     <string name="sign_up">Sign up</string>
@@ -37,62 +34,25 @@
     <!--  <string name="google_api_key">Continue as a guest</string>-->
 
     <string name="privacy">Privacy policy</string>
-    <string name="profile">Profile</string>
     <string name="not_match_password">The two passwords do not match</string>
-    <string name="active">Activate the account</string>
     <string name="open_app">Get started</string>
-    <string name="confirm">Verify Phone</string>
     <!--  Side Menu-->
     <string name="about">About the app</string>
     <string name="terms">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
     <!--  Suggestions-->
     <string name="first_name">Name</string>
-    <string name="last_name">Last Name</string>
     <!--Contact Us-->
     <!--Countries-->
-    <string name="country_hint">Choose the country</string>
-    <string name="login_btn">Login</string>
     <string name="new_account">SignUp</string>
     <string name="create_an_account">Create an account?</string>
 
     <string name="log_out_hint">Are you sure you want to log out?</string>
-    <string name="favorite">Favorite</string>
-    <string name="subscribe_account">Subscribe now</string>
-    <string name="change_language">Change language</string>
-    <string name="about_80">About 80 Fekra</string>
-    <string name="team">Team</string>
-    <string name="version_name">Version</string>
-    <string name="ar">اللغة العربية</string>
-    <string name="en">English</string>
-    <string name="save">Save</string>
-    <string name="create_account">Create Account</string>
-    <string name="change_password">Change password</string>
-    <string name="password_hint_confirm">Confirm password</string>
-    <string name="old_password">Old password</string>
-    <string name="forget_password">Forget password?</string>
     <string name="send">Send</string>
-    <string name="cart">Cart</string>
-    <string name="choose_country">Choose country first</string>
-    <string name="valid_egy_number">Number format is not valid</string>
     <string name="email_not_valid">Email not valid</string>
-    <string name="confirm_resend"><u>Resend</u></string>
     <string name="default_notification_channel_id" translatable="false">lima_app_notification_channel_id</string>
     <string name="permission_dialog_content1">Allow permission to receive notification</string>
-    <string name="please_enter_4_digit_code">Please enter the 4 digit code send to</string>
-    <string name="verify">Verify</string>
-    <string name="enter_password_to_create">Enter password to create your \nnew password</string>
-    <string name="already_have_account">Already have an account ?</string>
-    <string name="forget_password_title">Forget password</string>
     <string name="home_search_hint">Search for stolen phones…</string>
-    <string name="all_categories">All Categories</string>
-    <string name="menu">Menu</string>
-    <string name="view_all">View All</string>
-    <string name="banner">Banner</string>
-    <string name="popular_items">Popular Items</string>
-    <string name="quick_view">Quick view</string>
-    <string name="latest_items">Latest items</string>
-    <string name="search">Search</string>
     <string name="password_length_warning">Password needs 8 characters at least</string>
     <string name="govern">Government</string>
     <string name="city">City</string>
@@ -105,5 +65,9 @@
     <string name="brand">الماركة</string>
     <string name="phone_call">اتصال</string>
     <string name="add_new_stolen_phone">Add stolen phone</string>
+    <string name="choose_image">Choose your image</string>
+    <string name="image_selected">Image selected successfully</string>
+    <string name="please_accept_terms">من فضلك وافق على شروط الخدمة اولا</string>
+    <string name="successfully_sent">"Your request sent successfully "</string>
 
 </resources>

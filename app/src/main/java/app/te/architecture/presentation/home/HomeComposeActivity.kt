@@ -1,22 +1,14 @@
 package app.te.architecture.presentation.home
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.annotation.SuppressLint
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.hoverable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
@@ -24,6 +16,8 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import app.te.architecture.filepicker.core.FilePicker
+import app.te.architecture.presentation.base.BaseActivity
 import app.te.architecture.presentation.base.extensions.adjustFontScale
 import app.te.architecture.presentation.base.extensions.navigateSafe
 import app.te.architecture.presentation.ui.theme.AppArchitectureTheme
@@ -32,13 +26,14 @@ import app.te.architecture.presentation.home.nav_graph.SetupNavGraph
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
-class HomeComposeActivity : ComponentActivity() {
+class HomeComposeActivity : BaseActivity() {
     private lateinit var navHostController: NavHostController
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    lateinit var filePicker: FilePicker
+    override fun setUpContent() {
+        filePicker = FilePicker.getInstance(this)
         setContent {
             val showFloatingButton = remember { mutableStateOf(true) }
             val showBottomBar = remember { mutableStateOf(true) }
@@ -49,13 +44,8 @@ class HomeComposeActivity : ComponentActivity() {
                     bottomBar = {
                         if (showBottomBar.value)
                             BottomBar(navHostController = navHostController)
-                    },
-                    floatingActionButton = {
-                        if (showFloatingButton.value)
-                            AddNewButton()
                     }
-                ) { paddingValues ->
-                    paddingValues
+                ) {
                     SetupNavGraph(navHostController = navHostController)
                 }
             }
@@ -78,33 +68,6 @@ class HomeComposeActivity : ComponentActivity() {
 
 
 }
-
-@Composable
-private fun AddNewButton() {
-    ExtendedFloatingActionButton(
-        onClick = {},
-        containerColor = MaterialTheme.colorScheme.primary,
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "plus",
-                tint = MaterialTheme.colorScheme.background
-            )
-            Text(
-                text = stringResource(id = app.te.architecture.R.string.add_new_stolen_phone),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.background
-            )
-        }
-
-    }
-
-}
-
 
 @Composable
 fun BottomBar(navHostController: NavHostController) {

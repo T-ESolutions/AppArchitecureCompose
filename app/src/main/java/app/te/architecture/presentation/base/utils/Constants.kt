@@ -1,7 +1,7 @@
 package app.te.architecture.presentation.base.utils
 
 object Constants {
-    const val EGYPT_ID: String = "1"
+    const val IMAGE: String = "image"
     const val PAYMENT_SUCCESS: String = "https://limazola.com/api/v1/pay/success"
     const val FREE: Int = 0
     const val NOT_MATCH_PASSWORD: Int = 20

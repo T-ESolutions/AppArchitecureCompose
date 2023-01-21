@@ -1,7 +1,9 @@
 package app.te.architecture.core.di.module
 
 import app.te.architecture.data.account.data_source.remote.AccountServices
+import app.te.architecture.data.add_stolen_phone.data_source.AddStolenServices
 import app.te.architecture.data.auth.data_source.remote.AuthServices
+import app.te.architecture.data.brand_model.data_source.BrandModelServices
 import app.te.architecture.data.general.data_source.remote.GeneralServices
 import app.te.architecture.data.home.data_source.remote.HomeServices
 import app.te.architecture.data.intro.data_source.IntroServices
@@ -53,4 +55,15 @@ object NetworkServicesModule {
     @Singleton
     fun provideSettingsServices(retrofit: Retrofit): SettingsServices =
         retrofit.create(SettingsServices::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAddStolenServices(retrofit: Retrofit): AddStolenServices =
+        retrofit.create(AddStolenServices::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBrandModelServices(retrofit: Retrofit): BrandModelServices =
+        retrofit.create(BrandModelServices::class.java)
+
 }

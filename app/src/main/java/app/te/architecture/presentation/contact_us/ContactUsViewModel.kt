@@ -52,7 +52,7 @@ class ContactUsViewModel @Inject constructor(
         val contactData: MutableList<ContactUsUiState> = mutableListOf()
         data.forEach { item ->
             if (item.key == "whatsapp" || item.key == "facebook" || item.key == "youtube")
-                contactData.add(ContactUsUiState(link = item.value, image = item.image, item.id))
+                contactData.add(ContactUsUiState(link = item.value?:"", image = item.image, item.id))
         }
         return contactData
     }

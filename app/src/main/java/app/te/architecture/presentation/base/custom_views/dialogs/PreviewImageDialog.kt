@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -50,7 +49,7 @@ fun PreviewImageDialog(
             modifier = Modifier
                 .clip(RectangleShape) // Clip the box content
                 .fillMaxSize() // Give the size you want...
-                .background(Color.Black)
+                .background(MaterialTheme.colorScheme.primary)
                 .pointerInput(Unit) {
                     detectTransformGestures { centroid, pan, zoom, rotation ->
                         scale.value *= zoom

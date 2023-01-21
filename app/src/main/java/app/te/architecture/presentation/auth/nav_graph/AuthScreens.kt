@@ -6,8 +6,6 @@ const val SPLASH_ROUTE = "splash_screen"
 const val BOARDING_ROUTE = "boarding_screen"
 const val LOGIN_ROUTE = "login_screen"
 const val SIGNUP_ROUTE = "sign_up_screen"
-const val GOVERNMENT_ROUTE = "government_screen"
-const val CITIES_ROUTE = "cities_screen"
 
 //Const of arguments names
 const val GOV_ID = "gov_id"
@@ -17,8 +15,4 @@ sealed class AuthScreens(val route: String) {
     object OnBoardingScreen : AuthScreens(route = BOARDING_ROUTE)
     object LoginScreen : AuthScreens(route = LOGIN_ROUTE)
     object SignUpScreen : AuthScreens(route = SIGNUP_ROUTE)
-    object GovernmentScreen : AuthScreens(route = GOVERNMENT_ROUTE)
-    object CitiesScreen : AuthScreens(route = "$CITIES_ROUTE/{$GOV_ID}") {
-        fun passGovId(govId: String): String = "$CITIES_ROUTE/$govId"
-    }
 }

@@ -34,9 +34,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import app.te.architecture.R
-import app.te.architecture.presentation.auth.nav_graph.AuthScreens
-import app.te.architecture.presentation.auth.nav_graph.CITIES_ROUTE
-import app.te.architecture.presentation.auth.nav_graph.GOVERNMENT_ROUTE
 import app.te.architecture.presentation.auth.sign_up.events.SignUpFormEvent
 import app.te.architecture.presentation.auth.sign_up.state.SignUpFormState
 import app.te.architecture.presentation.auth.sign_up.view_model.SignUpViewModel
@@ -45,11 +42,11 @@ import app.te.architecture.data.general.data_source.dto.countries.Government
 import app.te.architecture.presentation.base.ShowLottieLoading
 import app.te.architecture.presentation.base.custom_views.AlerterPosition
 import app.te.architecture.presentation.base.custom_views.AlerterSuccess
-import app.te.architecture.presentation.base.extensions.GetOnceResult
-import app.te.architecture.presentation.base.extensions.HandleApiError
-import app.te.architecture.presentation.base.extensions.findActivity
-import app.te.architecture.presentation.base.extensions.navigateSafe
+import app.te.architecture.presentation.base.extensions.*
 import app.te.architecture.presentation.base.utils.textFieldInteractionSource
+import app.te.architecture.presentation.general.screens.CITIES_ROUTE
+import app.te.architecture.presentation.general.screens.GOVERNMENT_ROUTE
+import app.te.architecture.presentation.general.screens.LocationsScreens
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
@@ -77,24 +74,9 @@ fun SignUpScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.sign_up),
-                        color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "back",
-                            tint = Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+            CenterAlignedTopAppBarCustom(
+                navHostController = navHostController,
+                title = R.string.sign_up
             )
         }, content = {
 
@@ -195,7 +177,7 @@ fun InputSection(
             )
         },
         interactionSource = textFieldInteractionSource {
-            navHostController.navigateSafe(AuthScreens.GovernmentScreen.route)
+            navHostController.navigateSafe(LocationsScreens.GovernmentScreen.route)
         }
     )
     // Showing error for email
@@ -246,7 +228,7 @@ fun InputSection(
         interactionSource = textFieldInteractionSource {
             if (viewModel.state.governId.isNotEmpty())
                 navHostController.navigateSafe(
-                    destination = AuthScreens.CitiesScreen.passGovId(
+                    destination = LocationsScreens.CitiesScreen.passGovId(
                         viewModel.state.governId
                     )
                 )

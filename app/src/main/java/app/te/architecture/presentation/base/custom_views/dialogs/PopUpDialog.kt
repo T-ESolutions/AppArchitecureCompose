@@ -22,10 +22,11 @@ import app.te.architecture.R
 
 @Composable
 fun CustomAlertDialog(
-    executeButtonText: Int = R.string.done,
+    executeButtonText: Int? = null,
     image: Int? = null,
     title: Int? = null,
     body: Int? = null,
+    cancelText: Int? = null,
     onDoneColor: Color = MaterialTheme.colorScheme.background,
     dismissOnBackPress: Boolean = true,
     dismissOnClickOutside: Boolean = true,
@@ -93,31 +94,32 @@ fun CustomAlertDialog(
                     )
 
                 Row(Modifier.padding(top = 10.dp)) {
-                    OutlinedButton(
-                        onClick = { onDismiss() },
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                            .weight(1F),
-                        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.error)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.cancel),
-                            color = MaterialTheme.colorScheme.error
-                        )
-                    }
+                    if (cancelText != null)
+                        OutlinedButton(
+                            onClick = { onDismiss() },
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp)
+                                .weight(1F),
+                            border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.error)
+                        ) {
+                            Text(
+                                text = stringResource(id = cancelText),
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
 
-
-                    Button(
-                        onClick = { onDone() },
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                            .weight(1F),
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    ) {
-                        Text(text = stringResource(id = executeButtonText), color = onDoneColor)
-                    }
+                    if (executeButtonText != null)
+                        Button(
+                            onClick = { onDone() },
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp)
+                                .weight(1F),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        ) {
+                            Text(text = stringResource(id = executeButtonText), color = onDoneColor)
+                        }
                 }
 
 
@@ -133,6 +135,8 @@ fun CustomAlertDialogPreview() {
         image = R.drawable.logo,
         title = R.string.log_out,
         body = R.string.log_out_hint,
+        cancelText = R.string.cancel,
+        executeButtonText = R.string.done,
         dismissOnBackPress = true,
         dismissOnClickOutside = true,
         onDismiss = { /**/ },

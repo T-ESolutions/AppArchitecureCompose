@@ -40,6 +40,7 @@ object Versions {
     // UI
     const val materialDesign = "1.7.0-alpha01"
     const val navigationComposeAnimation = "0.28.0"
+    const val accompanist_permissions = "0.29.0-alpha"
     const val androidNavigation = "2.5.3"
     const val navigationHiltCompose = "1.0.0"
     const val loadingAnimations = "5.2.0"

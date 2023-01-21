@@ -4,14 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -21,10 +17,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import app.te.architecture.R
 import app.te.architecture.presentation.auth.locations.view_model.LocationsViewModel
-import app.te.architecture.presentation.auth.nav_graph.CITIES_ROUTE
 import app.te.architecture.presentation.auth.nav_graph.GOV_ID
 import app.te.architecture.data.general.data_source.dto.countries.CityModel
+import app.te.architecture.presentation.base.extensions.CenterAlignedTopAppBarCustom
 import app.te.architecture.presentation.base.extensions.navigateUpWithResult
+import app.te.architecture.presentation.general.screens.CITIES_ROUTE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,24 +36,9 @@ fun CityScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.city),
-                        color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "back",
-                            tint = Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+            CenterAlignedTopAppBarCustom(
+                navHostController = navHostController,
+                title = R.string.city
             )
         }, content = {
             LaunchedEffect(key1 = true) {

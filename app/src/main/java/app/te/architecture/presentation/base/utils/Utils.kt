@@ -1,19 +1,14 @@
 package app.te.architecture.presentation.base.utils
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.provider.Settings.Secure
 import android.widget.Toast
 import app.te.architecture.R
-import com.tapadoo.alerter.Alerter
 
 fun showMessage(context: Context, message: String?) {
   Toast.makeText(
@@ -24,56 +19,6 @@ fun showMessage(context: Context, message: String?) {
     .show()
 }
 
-fun showNoInternetAlert(activity: Activity) {
-  Alerter.create(activity)
-    .setTitle(activity.resources.getString(R.string.connection_error))
-    .setText(activity.resources.getString(R.string.no_internet))
-    .setIcon(R.drawable.ic_no_internet)
-    .setBackgroundColorRes(R.color.red)
-    .enableClickAnimation(true)
-    .enableSwipeToDismiss()
-    .show()
-}
-
-fun showNoApiErrorAlert(activity: Activity, message: String) {
-  Alerter.create(activity)
-    .setText(message)
-    .setIcon(R.drawable.ic_api_warning)
-    .setBackgroundColorRes(R.color.red)
-    .enableClickAnimation(true)
-    .enableSwipeToDismiss()
-    .show()
-}
-
-fun showSuccessAlert(activity: Activity, message: String) {
-  Alerter.create(activity)
-    .setText(message)
-    .setIcon(R.drawable.ic_success)
-    .setBackgroundColorRes(R.color.green)
-    .enableClickAnimation(true)
-    .enableSwipeToDismiss()
-    .show()
-}
-
-fun showNoApiErrorAlertWithAction(
-  activity: Activity,
-  message: String,
-  positiveButtonText: String,
-  action: (() -> Unit)? = null
-) {
-  Alerter.create(activity)
-    .setText(message)
-    .setIcon(R.drawable.ic_api_warning)
-    .setBackgroundColorRes(R.color.red)
-    .enableClickAnimation(true)
-    .enableSwipeToDismiss()
-    .addButton(positiveButtonText, R.style.AlertButton) {
-      action?.let {
-        it()
-      }
-    }
-    .show()
-}
 
 @SuppressLint("HardwareIds")
 fun getDeviceId(context: Context): String {

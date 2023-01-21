@@ -1,9 +1,5 @@
 object Libraries {
 
-    // Support
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
-    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-    const val androidSupport = "androidx.legacy:legacy-support-v4:${Versions.supportVersion}"
 
     // Kotlin
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
@@ -47,10 +43,6 @@ object Libraries {
     const val chuckLogging = "com.github.chuckerteam.chucker:library:${Versions.chuckLogging}"
 
     // UI
-    const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
-    const val navigationFragment =
-        "androidx.navigation:navigation-fragment-ktx:${Versions.androidNavigation}"
-    const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.androidNavigation}"
     const val navigationHiltCompose =
         "androidx.hilt:hilt-navigation-compose:${Versions.navigationHiltCompose}"
     const val navigationCompose =
@@ -77,7 +69,6 @@ object Libraries {
     const val localization =
         "com.zeugmasolutions.localehelper:locale-helper-android:${Versions.localization}"
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
-    const val permissions = "com.afollestad.assent:core:${Versions.permissions}"
 
     // Hilt
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
@@ -116,4 +107,5 @@ object Libraries {
         "com.github.delight-im:Android-AdvancedWebView:${Versions.AdvancedWebView}"
 
     const val appsweep_key = "gs_appsweep_IDv9AgD_JEkqGn8O46tmbwExhDdTZLCJlBYj1kaq"
+
 }

@@ -83,7 +83,7 @@ fun AlerterCustom(
 fun AlerterError(
     modifier: Modifier = Modifier,
     message: String,
-    position: AlerterPosition = AlerterPosition.Bottom,
+    position: AlerterPosition = AlerterPosition.Float,
     duration: Long = 3000L,
     icon: Int = R.raw.error
 ) {
@@ -201,9 +201,9 @@ internal fun AlerterComponent(
                 }
             ),
         verticalArrangement = when (position) {
-            is AlerterPosition.Top -> Arrangement.Top
-            is AlerterPosition.Bottom -> Arrangement.Bottom
-            is AlerterPosition.Float -> Arrangement.Bottom
+            is AlerterPosition.Top -> Arrangement.Center
+            is AlerterPosition.Bottom -> Arrangement.Center
+            is AlerterPosition.Float -> Arrangement.Center
         },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

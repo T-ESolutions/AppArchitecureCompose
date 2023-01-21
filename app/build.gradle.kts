@@ -47,7 +47,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = Config.AppConfig.testRunner
-
+        resourceConfigurations.apply {
+            add("ar")
+            add("en")
+        }
     }
 
     buildTypes {
@@ -70,10 +73,10 @@ android {
 //            signingConfig = signingConfigs.getByName("debugConfig")
 
             isDebuggable = true
-            manifestPlaceholders["appName"] = "@string/app_name"
+            manifestPlaceholders["appName"] = "@string/app_name_debug"
             manifestPlaceholders["appIcon"] = "@mipmap/ic_launcher"
             manifestPlaceholders["appRoundIcon"] = "@mipmap/ic_launcher_round"
-
+            applicationIdSuffix = ".debug"
         }
 
 
@@ -169,7 +172,6 @@ dependencies {
     implementation(Libraries.playServices)
     implementation(Libraries.localization)
     implementation(Libraries.multidex)
-    implementation(Libraries.permissions)
     implementation(Libraries.gson)
 // paging
     implementation(Libraries.paging_compose)
@@ -188,11 +190,6 @@ dependencies {
     implementation(Libraries.hms_push)
     implementation(Libraries.hms_remote_config)
 
-
-    // Support
-    implementation(Libraries.appCompat)
-    implementation(Libraries.coreKtx)
-    implementation(Libraries.androidSupport)
 
     // Arch Components
     implementation(Libraries.viewModel)
@@ -214,28 +211,13 @@ dependencies {
     implementation(Libraries.navigationComposeAnimation)
 
     // UI
-    implementation(Libraries.materialDesign)
-    implementation(Libraries.navigationFragment)
-    implementation(Libraries.navigationUI)
     implementation(Libraries.loadingAnimations)
-    implementation(Libraries.alerter)
     implementation(Libraries.coil)
-    implementation(Libraries.ssp)
-    implementation(Libraries.ssdp)
     implementation(Libraries.shimmer)
     implementation(Libraries.splash_screen)
-    //EXO PLAYER
-    implementation(Libraries.exoplayer)
-    implementation(Libraries.exoplayer_core)
-    implementation(Libraries.exoplayer_dash)
-    implementation(Libraries.exoplayer_ui)
-    implementation(Libraries.exoplayer_smooth_streaming)
     //Pin code
     implementation(Libraries.pin_code)
     //AdvancedWebView
     implementation(Libraries.AdvancedWebView)
-
-    // Project Modules
-    implementation(project(Config.Modules.prettyPopUp))
 
 }

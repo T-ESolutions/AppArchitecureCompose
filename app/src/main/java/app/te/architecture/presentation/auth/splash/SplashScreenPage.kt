@@ -31,9 +31,11 @@ import app.te.architecture.presentation.auth.nav_graph.AuthScreens
 import app.te.architecture.presentation.base.extensions.navigateSafe
 import kotlinx.coroutines.delay
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.te.architecture.presentation.base.BaseActivity
 import app.te.architecture.presentation.base.extensions.findActivity
 import app.te.architecture.presentation.base.extensions.openActivityAndClearStack
 import app.te.architecture.presentation.home.HomeComposeActivity
+import java.util.Locale
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -61,9 +63,8 @@ fun SplashScreenPage(
         )
 
         delay(3000L)
-        Log.e("SplashScreenPage", "SplashScreenPage: " + splashState.value.openTutorialScreen)
         if (splashState.value.openTutorialScreen)
-            openTutorialScreen(navHostController)
+            openTutorialScreen(navHostController,activity)
         else
             openHomeActivity(activity)
     }
@@ -93,14 +94,12 @@ fun SplashScreenPage(
 }
 
 fun openHomeActivity(activity: Activity) {
-//    navHostController.navigateSafe(
-//        AuthScreens.LoginScreen.route,
-//        popUpTo = AuthScreens.SplashScreen.route
-//    )
+    (activity as BaseActivity).updateLocale("ar")
     activity.openActivityAndClearStack(HomeComposeActivity::class.java)
 }
 
-fun openTutorialScreen(navHostController: NavHostController) {
+fun openTutorialScreen(navHostController: NavHostController,activity: Activity) {
+    (activity as BaseActivity).updateLocale("ar")
     navHostController.navigateSafe(
         AuthScreens.OnBoardingScreen.route,
         popUpTo = AuthScreens.SplashScreen.route

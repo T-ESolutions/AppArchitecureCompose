@@ -2,8 +2,12 @@ package app.te.architecture.core.di.module
 
 import app.te.architecture.data.account.data_source.remote.AccountRemoteDataSource
 import app.te.architecture.data.account.repository.AccountRepositoryImpl
+import app.te.architecture.data.add_stolen_phone.data_source.AddStolenRemoteDataSource
+import app.te.architecture.data.add_stolen_phone.repository.AddStolenRepositoryImpl
 import app.te.architecture.data.auth.data_source.remote.AuthRemoteDataSource
 import app.te.architecture.data.auth.repository.AuthRepositoryImpl
+import app.te.architecture.data.brand_model.data_source.BrandsRemoteDataSource
+import app.te.architecture.data.brand_model.repository.BrandModelRepositoryImpl
 import app.te.architecture.data.general.data_source.remote.GeneralRemoteDataSource
 import app.te.architecture.data.general.repository.GeneralRepositoryImpl
 import app.te.architecture.data.home.data_source.remote.HomeRemoteDataSource
@@ -16,7 +20,9 @@ import app.te.architecture.data.profile.repository.ProfileRepositoryImpl
 import app.te.architecture.data.settings.data_source.remote.SettingsRemoteDataSource
 import app.te.architecture.data.settings.repository.SettingsRepositoryImpl
 import app.te.architecture.domain.account.repository.AccountRepository
+import app.te.architecture.domain.add_stolen_phone.repository.AddStolenRepository
 import app.te.architecture.domain.auth.repository.AuthRepository
+import app.te.architecture.domain.brand_models.repository.BrandModelRepository
 import app.te.architecture.domain.general.repository.GeneralRepository
 import app.te.architecture.domain.home.repository.HomeRepository
 import app.te.architecture.domain.intro.repository.IntroRepository
@@ -80,5 +86,17 @@ class RepositoryModule {
         remoteDataSource: ProfileDataSource,
         appPreferences: AppPreferences
     ): ProfileRepository = ProfileRepositoryImpl(remoteDataSource,appPreferences)
+
+    @Provides
+    @Singleton
+    fun provideAddStolenRepository(
+        remoteDataSource: AddStolenRemoteDataSource
+    ): AddStolenRepository = AddStolenRepositoryImpl(remoteDataSource)
+
+    @Provides
+    @Singleton
+    fun provideBrandModelRepository(
+        remoteDataSource: BrandsRemoteDataSource
+    ): BrandModelRepository = BrandModelRepositoryImpl(remoteDataSource)
 
 }

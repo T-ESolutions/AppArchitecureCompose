@@ -1,30 +1,17 @@
 package app.te.architecture.presentation.base.extensions
 
-import androidx.appcompat.widget.SearchView
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import app.te.architecture.R
-import app.te.architecture.presentation.base.custom_views.dialogs.CustomAlertDialog
-import app.te.architecture.presentation.base.custom_views.dialogs.PreviewImageDialog
 import app.te.architecture.presentation.base.utils.animatedShimmer
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.abs
 
 @Composable
@@ -86,21 +73,3 @@ fun Long.toStringMatch(): String {
     }
 }
 
-fun SearchView.getQueryTextChangeStateFlow(): StateFlow<String> {
-
-    val query = MutableStateFlow("")
-
-    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?): Boolean {
-            return true
-        }
-
-        override fun onQueryTextChange(newText: String): Boolean {
-            query.value = newText
-            return true
-        }
-    })
-
-    return query
-
-}

@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class ContactUs(
-    val value: String = "",
+    val value: String? = null,
     val key: String = "",
     val image: String = "",
     val id: Int = 0,

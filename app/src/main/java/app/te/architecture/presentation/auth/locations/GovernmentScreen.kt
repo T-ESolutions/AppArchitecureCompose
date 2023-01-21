@@ -24,10 +24,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import app.te.architecture.R
 import app.te.architecture.presentation.auth.locations.view_model.LocationsViewModel
-import app.te.architecture.presentation.auth.nav_graph.GOVERNMENT_ROUTE
 import app.te.architecture.data.general.data_source.dto.countries.Government
+import app.te.architecture.presentation.base.extensions.CenterAlignedTopAppBarCustom
 import app.te.architecture.presentation.base.extensions.navigateUpWithResult
 import app.te.architecture.presentation.base.utils.animatedShimmer
+import app.te.architecture.presentation.general.screens.GOVERNMENT_ROUTE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,24 +43,9 @@ fun GovernmentScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.govern),
-                        color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "back",
-                            tint = Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+            CenterAlignedTopAppBarCustom(
+                navHostController = navHostController,
+                title = R.string.govern
             )
         }, content = {
             LaunchedEffect(key1 = true) {

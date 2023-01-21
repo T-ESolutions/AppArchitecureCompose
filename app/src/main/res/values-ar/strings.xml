@@ -1,20 +1,16 @@
 <resources>
     <string name="empty_warning">هذا الحقل مطلوب </string>
     <!-- General Strings -->
-    <string name="connection_error">خطأ في الاتصال</string>
     <string name="no_internet">لا يوجد اتصال بالإنترنت، برجاء المحاولة فى وقت لاحق</string>
-    <string name="retry">إعادة المحاولة</string>
     <string name="cancel">إلغاء</string>
     <string name="some_error">حدث خطأ ما، برجاء المحاولة فى وقت لاحق</string>
 
     <!-- Home -->
-    <string name="home">أطفال</string>
+    <string name="home">الرئيسية</string>
     <string name="account">حسابى</string>
 
     <!-- Tutorial -->
-    <string name="next">التالي</string>
     <!-- Intro -->
-    <string name="design_program">تصميم وبرمجة</string>
 
     <!-- Log In -->
     <string name="welcome_to_stolen_phone">مرحبا بك في الموبايلات المسروقه</string>
@@ -22,8 +18,9 @@
     <string name="login">تسجيل الدخول </string>
     <string name="phone_hint">رقم الهاتف</string>
     <string name="password">كلمة المرور</string>
-    <string name="login_as_guest">تسجيل كزائر؟</string>
-    <string name="forgot_header"> الرجاء إدخال رقم هاتفك المحمول إلى\nتلقي رمز التحقق.</string>
+    <string name="help_to_find">ساعدنا بإضافة بيانات هاتفك المسروق</string>
+    <string name="notes">أضف وصفك لهاتفك أو الحرامي</string>
+    <string name="add_new_stolen_phone_warning">في حاله الابلاغ فا انت موافق انك تدي  اللي يبلغك بمكان التليفون ١٠%من قيمه التليفون كهديه</string>
 
     <!-- Sign Up -->
     <string name="sign_up">إنشاء حساب</string>
@@ -33,71 +30,38 @@
     <string name="skip">تخطى</string>
 
     <string name="privacy">سياسة الخصوصية</string>
-    <string name="profile">بياناتي الشخصية</string>
     <string name="not_match_password">كلمتا المرور غير متطابقتان</string>
-    <string name="active">تفعيل الحساب</string>
     <string name="open_app">ابدأ التطبيق</string>
-    <string name="confirm">تأكيد</string>
     <!--  Side Menu-->
     <string name="about">عن التطبيق</string>
     <string name="terms">الشروط والأحكام</string>
     <string name="contact_us">إتصل بنا</string>
     <!--  Suggestions-->
     <string name="first_name">الاسم </string>
-    <string name="last_name">الكنية</string>
     <!--Countries-->
-    <string name="country_hint">اختر الدولة</string>
-    <string name="login_btn">تسجيل الدخول</string>
     <string name="new_account">التسجيل</string>
     <string name="create_an_account">انشئ حساب؟</string>
 
     <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
-    <string name="favorite">المفضلة</string>
-    <string name="subscribe_account">اشترك الآن</string>
-    <string name="change_language">تغيير اللغة</string>
-    <string name="about_80">عن 80 فكرة</string>
-    <string name="team">فريق العمل</string>
-    <string name="version_name">النسخة</string>
-    <string name="ar">اللغة العربية</string>
-    <string name="en">اللغة الإنجليزية</string>
-    <string name="save">حفظ</string>
-    <string name="create_account">إنشاء حساب</string>
-    <string name="change_password">تغيير كلمة المرور</string>
-    <string name="password_hint_confirm">تأكيد كلمة المرور</string>
-    <string name="old_password">كلمة المرور القديمة</string>
-    <string name="forget_password">نسيت كلمه المرور؟</string>
     <string name="send">إرسال</string>
-    <string name="cart">عربة التسوق</string>
-    <string name="choose_country">يرجى اختيار الدولة اولا</string>
-    <string name="valid_egy_number">رقم هاتف غير صحيح</string>
     <string name="email_not_valid">بريد الكتروني غير صحيح</string>
-    <string name="confirm_resend"><u>اعادة ارسال</u></string>
     <string name="permission_dialog_content1">Allow permission to receive notification</string>
-    <string name="please_enter_4_digit_code">الرجاء إدخال الرمز المكون من 4 أرقام المرسل إلى</string>
-    <string name="verify">تحقق</string>
-    <string name="enter_password_to_create">أدخل  كلمه المرور لانشاء\n واحده جديده</string>
-    <string name="already_have_account">لديك حساب بالفعل ؟</string>
-    <string name="forget_password_title">نسيت كلمة المرور</string>
     <string name="home_search_hint">ابحث عن الموبايلات المسروقه…</string>
-    <string name="all_categories">جميع الفئات</string>
-    <string name="menu"> القائمة</string>
-    <string name="view_all">مشاهدة الكل</string>
-    <string name="banner">لافتة</string>
-    <string name="popular_items">العناصر المشهوره</string>
-    <string name="quick_view">نظره سريعه</string>
-    <string name="latest_items">الاحدث</string>
-    <string name="search">Search</string>
     <string name="password_length_warning">Password needs 8 characters at least</string>
     <string name="govern">المحافظة</string>
     <string name="city">المدينة</string>
     <string name="address">العنوان</string>
-    <string name="more">More</string>
-    <string name="done">Done</string>
+    <string name="more">المزيد</string>
+    <string name="done">تم</string>
     <string name="no_stolen_phones">لا يوجد هاتف مسروق ، حاول البحث أو إضافة هاتف جديد للعثور عليه</string>
     <string name="serial_number">سيريال الجهاز ( imei1 )</string>
     <string name="model">الموديل</string>
     <string name="brand">الماركة</string>
     <string name="phone_call">اتصال</string>
     <string name="add_new_stolen_phone">أضف هاتف مسروق</string>
+    <string name="choose_image">صوره للسريال من كرتونه التليفون</string>
+    <string name="image_selected">تم اختيار الصوره بنجاح</string>
+    <string name="please_accept_terms">من فضلك وافق على شروط الخدمة اولا</string>
+    <string name="successfully_sent">تم إرسال طلبك بنجاح</string>
 
 </resources>

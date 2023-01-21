@@ -7,5 +7,5 @@ data class SignUpResultState(
     val data: UserResponse? = null,
     val isLoading: Boolean = false,
     val failureStatus: Resource.Failure? = null,
-    val msg: String = ""
+    val msg: String = "",
 )

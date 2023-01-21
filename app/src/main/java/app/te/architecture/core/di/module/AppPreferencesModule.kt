@@ -3,6 +3,7 @@ package app.te.architecture.core.di.module
 import android.content.Context
 import app.te.architecture.core.notifications.handler.NotificationHandler
 import app.te.architecture.data.local.preferences.AppPreferences
+import app.te.architecture.presentation.base.validation_usecase.ValidateCheckBox
 import app.te.architecture.presentation.base.validation_usecase.ValidateEmail
 import app.te.architecture.presentation.base.validation_usecase.ValidateField
 import app.te.architecture.presentation.base.validation_usecase.ValidatePassword
@@ -40,5 +41,10 @@ object AppPreferencesModule {
     @Singleton
     fun provideValidateField(@ApplicationContext context: Context) =
         ValidateField(context)
+
+    @Provides
+    @Singleton
+    fun provideValidateCheckBox(@ApplicationContext context: Context) =
+        ValidateCheckBox(context)
 
 }

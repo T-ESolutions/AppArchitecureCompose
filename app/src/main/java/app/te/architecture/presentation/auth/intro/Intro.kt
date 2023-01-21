@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -32,12 +33,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import androidx.lifecycle.viewmodel.compose.viewModel
-import app.te.architecture.presentation.auth.nav_graph.AuthScreens
-import app.te.architecture.presentation.base.extensions.navigateSafe
 import app.te.architecture.presentation.base.ShowLottieLoading
-import app.te.architecture.presentation.base.extensions.HandleApiError
-import app.te.architecture.presentation.base.extensions.LoadAsyncImage
-import app.te.architecture.presentation.base.extensions.findActivity
+import app.te.architecture.presentation.base.extensions.*
+import app.te.architecture.presentation.home.HomeComposeActivity
 
 @Composable
 fun OnBoarding(
@@ -65,6 +63,7 @@ fun OnBoarding(
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun IntroContent(appTutorialModel: List<AppTutorialModel>, navHostController: NavHostController) {
+    val activity = LocalContext.current.findActivity()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -83,12 +82,12 @@ fun IntroContent(appTutorialModel: List<AppTutorialModel>, navHostController: Na
 
             OnBoardingItem(items = appTutorialModel[page])
         }
-        BottomSection(size = appTutorialModel.size, index = pageState.currentPage, onButtonClick = {
-            navHostController.navigateSafe(
-                destination = AuthScreens.LoginScreen.route,
-                popUpTo = AuthScreens.OnBoardingScreen.route
-            )
-        })
+        BottomSection(
+            size = appTutorialModel.size,
+            index = pageState.currentPage,
+            onButtonClick = {
+                activity.openActivityAndClearStack(HomeComposeActivity::class.java)
+            })
     }
 }
 
@@ -145,7 +144,8 @@ fun BottomSection(size: Int = 3, index: Int = 0, onButtonClick: () -> Unit = {})
                 Icon(
                     Icons.Outlined.KeyboardArrowRight,
                     tint = Color.White,
-                    contentDescription = "Localized description"
+                    contentDescription = "Localized description",
+                    modifier = Modifier.mirror()
                 )
             }
         }
@@ -202,7 +202,8 @@ fun OnBoardingItem(items: AppTutorialModel) {
             modifier = Modifier
                 .padding(start = 50.dp, end = 50.dp)
                 .width(200.dp)
-                .height(200.dp)
+                .height(200.dp),
+            contentScale = ContentScale.Fit
         )
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -217,7 +218,7 @@ fun OnBoardingItem(items: AppTutorialModel) {
 
         Text(
             text = items.body,
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(10.dp),

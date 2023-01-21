@@ -1,21 +1,27 @@
 package app.te.architecture.presentation.base.extensions
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
-import android.content.pm.PackageManager
 import android.os.Build
-import android.widget.Toast
+import android.util.LayoutDirection
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.compose.runtime.Stable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.core.text.layoutDirection
+import androidx.navigation.NavHostController
 import app.te.architecture.R
 import app.te.architecture.domain.utils.FailureStatus
 import app.te.architecture.domain.utils.Resource.Failure
 import app.te.architecture.presentation.base.custom_views.AlerterError
 import app.te.architecture.presentation.base.utils.*
-import app.te.architecture.presentation.base.utils.Constants.MY_PERMISSIONS_REQUEST_POST_NOTIFICATIONS
+import java.util.*
 
 fun Context.findActivity(): Activity {
     var context = this
@@ -54,48 +60,64 @@ fun HandleApiError(
     }
 }
 
-fun checkNotificationsPermissions(activity: Activity, operation: () -> Unit) {
+fun checkPickPermission(
+    activity: Activity,
+): Boolean {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        if (ContextCompat.checkSelfPermission(
-                activity,
-                Manifest.permission.POST_NOTIFICATIONS
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    activity,
-                    Manifest.permission.POST_NOTIFICATIONS
-                )
-            ) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //to simplify, call requestPermissions again
-                Toast.makeText(
-                    activity,
-                    activity.getString(R.string.permission_dialog_content1),
-                    Toast.LENGTH_LONG
-                ).show()
-
-                ActivityCompat.requestPermissions(
-                    activity,
-                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    MY_PERMISSIONS_REQUEST_POST_NOTIFICATIONS
-                )
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(
-                    activity,
-                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    MY_PERMISSIONS_REQUEST_POST_NOTIFICATIONS
-                )
-            }
-        } else {
-            // permission granted
-            operation()
-        }
+        if (checkStorage13Permissions(activity))
+            return true
+    } else {
+        if (checkStoragePermissions(activity))
+            return true
     }
+    return false
+}
+
+@Stable
+fun Modifier.mirror(): Modifier {
+    return if (Locale.getDefault().layoutDirection == LayoutDirection.RTL)
+        this.scale(scaleX = -1f, scaleY = 1f)
+    else
+        this
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Stable
+@Composable
+fun CenterAlignedTopAppBarCustom(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController? = null,
+    title: Int? = null,
+    navigationIcon: Boolean = true,
+    backgroundColor: Color = MaterialTheme.colorScheme.primary,
+    onNavigateClick: (() -> Unit)? = null
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            if (title != null)
+                Text(
+                    text = stringResource(id = title),
+                    color = MaterialTheme.colorScheme.background,
+                    style = MaterialTheme.typography.titleMedium,
+                )
+        },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = backgroundColor),
+        navigationIcon = {
+            if (navigationIcon)
+                IconButton(onClick = {
+                    if (navHostController != null)
+                        navHostController.navigateUp()
+                    else
+                        onNavigateClick?.invoke()
+                }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "back",
+                        tint = Color.White,
+                        modifier = Modifier.mirror()
+                    )
+                }
+        },
+        modifier = modifier
+    )
 }

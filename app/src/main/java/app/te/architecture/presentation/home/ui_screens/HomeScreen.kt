@@ -3,10 +3,12 @@ package app.te.architecture.presentation.home.ui_screens
 import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -17,22 +19,25 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import app.te.architecture.R
+import app.te.architecture.presentation.add_stolen_phone.ADD_STOLEN_PHONE_ROUTE
 import app.te.architecture.presentation.base.ShowLottieLoading
 import app.te.architecture.presentation.base.custom_views.dialogs.PreviewImageDialog
+import app.te.architecture.presentation.base.extensions.CenterAlignedTopAppBarCustom
 import app.te.architecture.presentation.base.extensions.HandleApiError
 import app.te.architecture.presentation.base.extensions.findActivity
+import app.te.architecture.presentation.base.extensions.navigateSafe
 import app.te.architecture.presentation.base.utils.hideSoftInput
 import app.te.architecture.presentation.base.utils.openDial
 import app.te.architecture.presentation.home.ui_state.SearchState
@@ -56,17 +61,8 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.home),
-                        color = MaterialTheme.colorScheme.background,
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
-            )
-        }, floatingActionButtonPosition = FabPosition.Center, content = { paddingValues ->
+            SearchSection(searchState, viewModel, navHostController)
+        }, content = { paddingValues ->
 
             Column(
                 modifier = Modifier
@@ -84,7 +80,6 @@ fun HomeScreen(
                     )
                 }
 
-                SearchSection(searchState, viewModel)
                 ResultSection(searchResult.value.data, context)
             }
         })
@@ -120,7 +115,7 @@ fun ResultSection(data: List<StolenUiItemState>?, context: Context) {
 @Composable
 fun EmptyContent() {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -148,13 +143,19 @@ fun EmptyContent() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchSection(state: SearchState, viewModel: HomeViewModel) {
-    ConstraintLayout(modifier = Modifier.fillMaxWidth()) {
-        val (btn_search, search_container) = createRefs()
+fun SearchSection(
+    state: SearchState, viewModel: HomeViewModel, navHostController: NavHostController,
+) {
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.primary)
+    ) {
+        val (btn_search, search_container, add_new_post) = createRefs()
         IconButton(
             onClick = { viewModel.searchForStolen() },
             modifier = Modifier
-                .clip(CircleShape)
+                .border(.5.dp, color = MaterialTheme.colorScheme.background, shape = CircleShape)
                 .background(color = MaterialTheme.colorScheme.primary)
                 .constrainAs(btn_search) {
                     start.linkTo(parent.start, 10.dp)
@@ -178,7 +179,12 @@ fun SearchSection(state: SearchState, viewModel: HomeViewModel) {
                     start.linkTo(btn_search.end, 4.dp)
                     end.linkTo(parent.end, 10.dp)
                     width = Dimension.fillToConstraints
-                },
+                }
+                .border(
+                    .5.dp,
+                    color = MaterialTheme.colorScheme.background,
+                    shape = MaterialTheme.shapes.large
+                ),
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.home_search_hint),
@@ -188,7 +194,10 @@ fun SearchSection(state: SearchState, viewModel: HomeViewModel) {
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = { viewModel.searchForStolen() }
             ),
             trailingIcon = {
                 Icon(
@@ -198,38 +207,43 @@ fun SearchSection(state: SearchState, viewModel: HomeViewModel) {
                 )
             },
             shape = MaterialTheme.shapes.large,
+
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                containerColor = MaterialTheme.colorScheme.primary,
+                focusedBorderColor = Color.Unspecified,
+                unfocusedLabelColor = Color.Unspecified,
+                cursorColor = MaterialTheme.colorScheme.background,
                 textColor = MaterialTheme.colorScheme.background
             )
         )
-    }
-}
 
-@Composable
-@Preview(showBackground = true)
-fun AddFloatingActionButton() {
-
-    ExtendedFloatingActionButton(
-        onClick = {},
-        containerColor = MaterialTheme.colorScheme.primary,
+        OutlinedButton(
+            onClick = { navHostController.navigateSafe(ADD_STOLEN_PHONE_ROUTE) },
+            modifier = Modifier
+                .constrainAs(add_new_post) {
+                    start.linkTo(btn_search.start)
+                    end.linkTo(search_container.end)
+                    top.linkTo(search_container.bottom, 6.dp)
+                    bottom.linkTo(parent.bottom, 7.dp)
+                    width = Dimension.fillToConstraints
+                },
+            border = BorderStroke(.5.dp, color = MaterialTheme.colorScheme.background)
 
         ) {
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "plus",
-                tint = MaterialTheme.colorScheme.background
-            )
-            Text(
-                text = stringResource(id = R.string.add_new_stolen_phone),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.background
-            )
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "plus",
+                    tint = MaterialTheme.colorScheme.background
+                )
+                Text(
+                    text = stringResource(id = app.te.architecture.R.string.add_new_stolen_phone),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.background
+                )
+            }
         }
-
     }
 }
