@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
@@ -34,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import app.te.hero_cars.R
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginFormState
 import te.app.auth.presentation.login.view_model.LogInViewModel
@@ -48,8 +48,8 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import te.app.auth.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showBackground = true)
 fun LoginScreen(
@@ -107,18 +107,8 @@ fun LoginScreen(
 @Composable
 @Preview(showBackground = true)
 fun TopSection() {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.location))
-    val progress by animateLottieCompositionAsState(composition, iterations = Int.MAX_VALUE)
-
 
     Spacer(modifier = Modifier.height(15.dp))
-    LottieAnimation(
-        composition = composition,
-        progress = { progress },
-        modifier = Modifier
-            .width(180.dp)
-            .height(180.dp)
-    )
 
     Text(
         text = stringResource(id = R.string.welcome_to_stolen_phone),
@@ -132,7 +122,7 @@ fun TopSection() {
         modifier = Modifier.fillMaxWidth(),
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.labelMedium,
-        color = colorResource(id = R.color.colordark)
+        color = MaterialTheme.colorScheme.primary
     )
 
 }
@@ -269,7 +259,7 @@ fun BottomSection(
         Text(
             text = stringResource(id = R.string.create_an_account),
             style = MaterialTheme.typography.labelSmall,
-            color = colorResource(id = R.color.medium_color),
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable {
                 navHostController.navigateSafe(AuthScreens.SignUpScreen.route)
             }
@@ -278,7 +268,7 @@ fun BottomSection(
         Text(
             text = stringResource(id = R.string.new_account),
             style = MaterialTheme.typography.labelMedium,
-            color = colorResource(id = R.color.black),
+            color = MaterialTheme.colorScheme.onBackground,
             textDecoration = TextDecoration.Underline,
             modifier = Modifier.clickable {
                 navHostController.navigateSafe(AuthScreens.SignUpScreen.route)

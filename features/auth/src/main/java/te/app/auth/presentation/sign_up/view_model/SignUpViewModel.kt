@@ -8,16 +8,14 @@ import androidx.lifecycle.viewModelScope
 import te.app.auth.presentation.sign_up.events.SignUpFormEvent
 import te.app.auth.presentation.sign_up.state.SignUpFormState
 import te.app.auth.presentation.sign_up.state.SignUpResultState
-import app.te.hero_cars.data.general.data_source.dto.countries.CityModel
-import app.te.hero_cars.data.general.data_source.dto.countries.Government
-import app.te.hero_cars.domain.auth.entity.request.RegisterRequest
-import app.te.hero_cars.domain.auth.use_case.RegisterUseCase
 import app.te.core.validation_usecase.ValidateField
 import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import te.app.auth.domain.entity.request.RegisterRequest
+import te.app.auth.domain.use_case.RegisterUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -142,16 +140,16 @@ class SignUpViewModel @Inject constructor(
         return true
     }
 
-    fun updateGovern(government: Government) {
-        state = state.copy(
-            govern = government.title,
-            governId = government.id.toString(),
-            governError = null
-        )
-    }
-
-    fun updateCity(city: CityModel) {
-        state = state.copy(city = city.name, cityId = city.id.toString(), cityError = null)
-    }
+//    fun updateGovern(government: Government) {
+//        state = state.copy(
+//            govern = government.title,
+//            governId = government.id.toString(),
+//            governError = null
+//        )
+//    }
+//
+//    fun updateCity(city: CityModel) {
+//        state = state.copy(city = city.name, cityId = city.id.toString(), cityError = null)
+//    }
 
 }

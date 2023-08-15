@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import app.te.hero_cars.R
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme
@@ -28,10 +27,8 @@ import te.app.auth.presentation.nav_graph.AuthScreens
 import app.te.core.extension.navigateSafe
 import kotlinx.coroutines.delay
 import androidx.lifecycle.viewmodel.compose.viewModel
-import app.te.hero_cars.presentation.base.BaseActivity
 import app.te.core.extension.findActivity
-import app.te.hero_cars.presentation.base.extensions.openActivityAndClearStack
-import app.te.hero_cars.presentation.home.HomeComposeActivity
+import te.app.auth.R
 
 @Composable
 fun SplashScreenPage(
@@ -69,7 +66,7 @@ fun SplashScreenPage(
             .background(MaterialTheme.colorScheme.background)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = app.te.core.R.drawable.logo),
             contentDescription = "logo",
             modifier = Modifier
                 .size(400.dp)
@@ -78,7 +75,7 @@ fun SplashScreenPage(
         )
 
         Image(
-            painter = painterResource(id = R.drawable.tes),
+            painter = painterResource(id = app.te.core.R.drawable.tes),
             contentDescription = "logo",
             modifier = Modifier
                 .size(50.dp)
@@ -89,12 +86,12 @@ fun SplashScreenPage(
 }
 
 fun openHomeActivity(activity: Activity) {
-    (activity as BaseActivity).updateLocale("ar")
-    activity.openActivityAndClearStack(HomeComposeActivity::class.java)
+//    (activity as BaseActivity).updateLocale("ar")
+//    activity.openActivityAndClearStack(HomeComposeActivity::class.java)
 }
 
 fun openTutorialScreen(navHostController: NavHostController,activity: Activity) {
-    (activity as BaseActivity).updateLocale("ar")
+//    (activity as BaseActivity).updateLocale("ar")
     navHostController.navigateSafe(
         AuthScreens.OnBoardingScreen.route,
         popUpTo = AuthScreens.SplashScreen.route

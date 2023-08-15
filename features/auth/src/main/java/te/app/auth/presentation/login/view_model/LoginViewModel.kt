@@ -8,14 +8,14 @@ import androidx.lifecycle.viewModelScope
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginState
 import te.app.auth.presentation.login.state.LoginFormState
-import app.te.hero_cars.domain.auth.entity.request.LogInRequest
-import app.te.hero_cars.domain.auth.use_case.LogInUseCase
 import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import te.app.auth.domain.entity.request.LogInRequest
+import te.app.auth.domain.use_case.LogInUseCase
 import javax.inject.Inject
 
 @HiltViewModel

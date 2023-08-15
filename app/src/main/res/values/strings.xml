@@ -12,17 +12,11 @@
     <!-- Intro -->
 
     <!-- Log In -->
-    <string name="welcome_to_stolen_phone">Welcome to stolen phones</string>
-    <string name="find_your_phone">Find your phone</string>
-    <string name="login">Login</string>
-    <string name="phone_hint">Mobile Number</string>
-    <string name="password">Password</string>
     <string name="help_to_find">"Help us By adding your stolen phone data  "</string>
     <string name="notes">add your description of your phone or thieve</string>
     <string name="add_new_stolen_phone_warning">في حاله الابلاغ فا انت موافق انك تدي  اللي يبلغك بمكان التليفون ١٠%من قيمه التليفون كهديه</string>
 
     <!-- Sign Up -->
-    <string name="sign_up">Sign up</string>
 
     <!-- Account -->
     <!--  <string name="google_api_key">Continue as a guest</string>-->
@@ -33,11 +27,8 @@
     <string name="terms">Terms and Conditions</string>
     <string name="contact_us">Contact us</string>
     <!--  Suggestions-->
-    <string name="first_name">Name</string>
     <!--Contact Us-->
     <!--Countries-->
-    <string name="new_account">SignUp</string>
-    <string name="create_an_account">Create an account?</string>
 
     <string name="send">Send</string>
     <string name="default_notification_channel_id" translatable="false">lima_app_notification_channel_id</string>

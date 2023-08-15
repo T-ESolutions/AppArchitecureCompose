@@ -34,28 +34,20 @@ import androidx.navigation.compose.rememberNavController
 import app.te.core.utils.CenterAlignedTopAppBarCustom
 import app.te.core.utils.HandleApiError
 import app.te.core.extension.findActivity
-import app.te.hero_cars.R
 import te.app.auth.presentation.sign_up.events.SignUpFormEvent
 import te.app.auth.presentation.sign_up.state.SignUpFormState
 import te.app.auth.presentation.sign_up.view_model.SignUpViewModel
-import app.te.hero_cars.data.general.data_source.dto.countries.CityModel
-import app.te.hero_cars.data.general.data_source.dto.countries.Government
 import app.te.core.utils.ShowLottieLoading
 import app.te.core.custom_views.alert.AlerterPosition
 import app.te.core.custom_views.alert.AlerterSuccess
-import app.te.core.extension.GetOnceResult
 import app.te.core.extension.navigateSafe
-import app.te.hero_cars.presentation.base.extensions.*
 import app.te.core.utils.textFieldInteractionSource
-import app.te.hero_cars.presentation.general.screens.CITIES_ROUTE
-import app.te.hero_cars.presentation.general.screens.GOVERNMENT_ROUTE
-import app.te.hero_cars.presentation.general.screens.LocationsScreens
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import te.app.auth.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showBackground = true)
 fun SignUpScreen(
@@ -65,13 +57,6 @@ fun SignUpScreen(
     val validateState = viewModel.state
     val signUpState = viewModel.signUpState.collectAsState()
 
-    navHostController.GetOnceResult<Government>(keyResult = GOVERNMENT_ROUTE) { government ->
-        viewModel.updateGovern(government)
-    }
-
-    navHostController.GetOnceResult<CityModel>(keyResult = CITIES_ROUTE) { city ->
-        viewModel.updateCity(city)
-    }
 
     Scaffold(
         modifier = Modifier
@@ -107,30 +92,12 @@ fun SignUpScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                TopSection()
                 Spacer(modifier = Modifier.height(15.dp))
                 InputSection(validateState, viewModel, navHostController)
                 BottomSection(viewModel)
             }
         }
     )
-}
-
-@Composable
-@Preview(showBackground = true)
-fun TopSection() {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.location))
-    val progress by animateLottieCompositionAsState(composition, iterations = Int.MAX_VALUE)
-
-    Spacer(modifier = Modifier.height(15.dp))
-    LottieAnimation(
-        composition = composition,
-        progress = { progress },
-        modifier = Modifier
-            .width(180.dp)
-            .height(180.dp)
-    )
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -157,9 +124,7 @@ fun InputSection(
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp),
         label = {
-            Text(
-                text = stringResource(id = R.string.govern)
-            )
+
         },
         singleLine = true,
         readOnly = true,
@@ -180,7 +145,7 @@ fun InputSection(
             )
         },
         interactionSource = textFieldInteractionSource {
-            navHostController.navigateSafe(LocationsScreens.GovernmentScreen.route)
+//            navHostController.navigateSafe(LocationsScreens.GovernmentScreen.route)
         }
     )
     // Showing error for email
@@ -206,9 +171,9 @@ fun InputSection(
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp),
         label = {
-            Text(
-                text = stringResource(id = R.string.city)
-            )
+//            Text(
+//                text = stringResource(id = R.string.city)
+//            )
         },
         singleLine = true,
         readOnly = true,
@@ -229,12 +194,12 @@ fun InputSection(
             )
         },
         interactionSource = textFieldInteractionSource {
-            if (viewModel.state.governId.isNotEmpty())
-                navHostController.navigateSafe(
-                    destination = LocationsScreens.CitiesScreen.passGovId(
-                        viewModel.state.governId
-                    )
-                )
+//            if (viewModel.state.governId.isNotEmpty())
+//                navHostController.navigateSafe(
+//                    destination = LocationsScreens.CitiesScreen.passGovId(
+//                        viewModel.state.governId
+//                    )
+//                )
         }
     )
 
@@ -386,9 +351,9 @@ fun InputSection(
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp),
         label = {
-            Text(
-                text = stringResource(id = R.string.address)
-            )
+//            Text(
+//                text = stringResource(id = R.string.address)
+//            )
         },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
@@ -433,7 +398,7 @@ fun BottomSection(
         modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.colorPrimaryDark)),
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(4.dp)
     ) {
         Text(

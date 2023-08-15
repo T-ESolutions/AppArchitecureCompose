@@ -8,17 +8,9 @@
     <!-- Intro -->
 
     <!-- Log In -->
-    <string name="welcome_to_stolen_phone">مرحبا بك في الموبايلات المسروقه</string>
-    <string name="find_your_phone">ابحث عن هاتفك</string>
-    <string name="login">تسجيل الدخول </string>
-    <string name="phone_hint">رقم الهاتف</string>
-    <string name="password">كلمة المرور</string>
     <string name="help_to_find">ساعدنا بإضافة بيانات هاتفك المسروق</string>
     <string name="notes">أضف وصفك لهاتفك أو الحرامي</string>
     <string name="add_new_stolen_phone_warning">في حاله الابلاغ فا انت موافق انك تدي  اللي يبلغك بمكان التليفون ١٠%من قيمه التليفون كهديه</string>
-
-    <!-- Sign Up -->
-    <string name="sign_up">إنشاء حساب</string>
 
     <!-- Account -->
 
@@ -28,10 +20,7 @@
     <string name="terms">الشروط والأحكام</string>
     <string name="contact_us">إتصل بنا</string>
     <!--  Suggestions-->
-    <string name="first_name">الاسم </string>
     <!--Countries-->
-    <string name="new_account">التسجيل</string>
-    <string name="create_an_account">انشئ حساب؟</string>
 
     <string name="send">إرسال</string>
     <string name="home_search_hint">ابحث عن الموبايلات المسروقه…</string>

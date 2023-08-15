@@ -2,5 +2,14 @@
 <resources>
     <string name="skip">تخطى</string>
     <string name="open_app">ابدأ التطبيق</string>
+    <string name="login">تسجيل الدخول </string>
+    <string name="welcome_to_stolen_phone">مرحبا بك في الموبايلات المسروقه</string>
+    <string name="find_your_phone">ابحث عن هاتفك</string>
+    <string name="phone_hint">رقم الهاتف</string>
+    <string name="password">كلمة المرور</string>
+    <string name="create_an_account">انشئ حساب؟</string>
+    <string name="new_account">التسجيل</string>
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="first_name">الاسم </string>
 
 </resources>

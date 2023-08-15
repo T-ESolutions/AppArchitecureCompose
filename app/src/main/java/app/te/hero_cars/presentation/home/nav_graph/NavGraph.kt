@@ -12,6 +12,7 @@ import app.te.hero_cars.presentation.general.navigation.brandsModelsNavGraph
 import app.te.hero_cars.presentation.general.navigation.locationsNavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import te.app.auth.presentation.nav_graph.authNavGraph
 
 @Composable
 fun SetupNavGraph(
@@ -22,6 +23,7 @@ fun SetupNavGraph(
         route = ROOT_GRAPH_ROUTE,
         startDestination = BOTTOM_BAR_GRAPH_ROUTE,
     ) {
+        authNavGraph(navHostController)
         bottomBarNavGraph(navHostController)
         locationsNavGraph(navHostController)
         brandsModelsNavGraph(navHostController)

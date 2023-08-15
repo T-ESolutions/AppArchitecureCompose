@@ -2,5 +2,14 @@
 <resources>
     <string name="skip">Skip</string>
     <string name="open_app">Get started</string>
+    <string name="login">Login</string>
+    <string name="welcome_to_stolen_phone">Welcome to stolen phones</string>
+    <string name="find_your_phone">Find your phone</string>
+    <string name="phone_hint">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="create_an_account">Create an account?</string>
+    <string name="new_account">SignUp</string>
+    <string name="sign_up">Sign up</string>
+    <string name="first_name">Name</string>
 
 </resources>
