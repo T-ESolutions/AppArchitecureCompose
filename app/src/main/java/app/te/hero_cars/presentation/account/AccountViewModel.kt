@@ -3,8 +3,7 @@ package app.te.hero_cars.presentation.account
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.te.hero_cars.domain.account.use_case.AccountUseCases
-import app.te.hero_cars.domain.account.use_case.UserLocalUseCase
-import app.te.network.utils.Resource
+import te.app.storage.domain.use_case.UserLocalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

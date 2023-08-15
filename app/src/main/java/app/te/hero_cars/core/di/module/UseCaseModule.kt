@@ -1,14 +1,14 @@
 package app.te.hero_cars.core.di.module
 
 import app.te.hero_cars.domain.account.use_case.AccountUseCases
-import app.te.hero_cars.domain.account.use_case.CheckFirstTimeUseCase
-import app.te.hero_cars.domain.account.use_case.CheckLoggedInUserUseCase
-import app.te.hero_cars.domain.account.use_case.ConfigUseCase
+import te.app.storage.domain.use_case.CheckFirstTimeUseCase
+import te.app.storage.domain.use_case.CheckLoggedInUserUseCase
+import te.app.storage.domain.use_case.ConfigUseCase
 import app.te.hero_cars.domain.account.use_case.LogOutUseCase
 import app.te.hero_cars.domain.account.use_case.SendFirebaseTokenUseCase
-import app.te.hero_cars.domain.account.use_case.SetFirstTimeUseCase
-import app.te.hero_cars.domain.general.use_case.GeneralUseCases
-import app.te.hero_cars.domain.general.use_case.LanguageUseCase
+import te.app.storage.domain.use_case.SetFirstTimeUseCase
+import te.app.storage.domain.use_case.GeneralUseCases
+import te.app.storage.domain.use_case.LanguageUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

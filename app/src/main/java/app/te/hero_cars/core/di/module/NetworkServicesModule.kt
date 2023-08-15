@@ -2,7 +2,7 @@ package app.te.hero_cars.core.di.module
 
 import app.te.hero_cars.data.account.data_source.remote.AccountServices
 import app.te.hero_cars.data.add_stolen_phone.data_source.AddStolenServices
-import app.te.hero_cars.data.auth.data_source.remote.AuthServices
+import te.app.auth.data.data_source.remote.AuthServices
 import app.te.hero_cars.data.brand_model.data_source.BrandModelServices
 import app.te.hero_cars.data.general.data_source.remote.GeneralServices
 import app.te.hero_cars.data.home.data_source.remote.HomeServices

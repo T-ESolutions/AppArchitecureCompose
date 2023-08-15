@@ -1,6 +1,6 @@
 package app.te.hero_cars.domain.home.models
 
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 
 data class SerialSearchDM(
     val added_by: UserResponse? = null,

@@ -4,7 +4,7 @@ import app.te.network.BaseRemoteDataSource
 import javax.inject.Inject
 
 class IntroRemoteDataSource @Inject constructor(private val apiService: IntroServices) :
-  app.te.network.BaseRemoteDataSource() {
+  BaseRemoteDataSource() {
 
   suspend fun intro() = safeApiCall {
     apiService.intro()

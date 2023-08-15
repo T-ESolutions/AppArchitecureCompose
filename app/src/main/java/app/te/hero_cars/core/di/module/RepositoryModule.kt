@@ -4,8 +4,8 @@ import app.te.hero_cars.data.account.data_source.remote.AccountRemoteDataSource
 import app.te.hero_cars.data.account.repository.AccountRepositoryImpl
 import app.te.hero_cars.data.add_stolen_phone.data_source.AddStolenRemoteDataSource
 import app.te.hero_cars.data.add_stolen_phone.repository.AddStolenRepositoryImpl
-import app.te.hero_cars.data.auth.data_source.remote.AuthRemoteDataSource
-import app.te.hero_cars.data.auth.repository.AuthRepositoryImpl
+import te.app.auth.data.data_source.remote.AuthRemoteDataSource
+import te.app.auth.data.repository.AuthRepositoryImpl
 import app.te.hero_cars.data.brand_model.data_source.BrandsRemoteDataSource
 import app.te.hero_cars.data.brand_model.repository.BrandModelRepositoryImpl
 import app.te.hero_cars.data.general.data_source.remote.GeneralRemoteDataSource
@@ -20,7 +20,7 @@ import app.te.hero_cars.data.settings.data_source.remote.SettingsRemoteDataSourc
 import app.te.hero_cars.data.settings.repository.SettingsRepositoryImpl
 import app.te.hero_cars.domain.account.repository.AccountRepository
 import app.te.hero_cars.domain.add_stolen_phone.repository.AddStolenRepository
-import app.te.hero_cars.domain.auth.repository.AuthRepository
+import te.app.auth.domain.repository.AuthRepository
 import app.te.hero_cars.domain.brand_models.repository.BrandModelRepository
 import app.te.hero_cars.domain.general.repository.GeneralRepository
 import app.te.hero_cars.domain.home.repository.HomeRepository

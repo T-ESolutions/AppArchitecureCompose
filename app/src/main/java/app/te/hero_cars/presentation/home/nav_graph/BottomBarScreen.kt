@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import app.te.hero_cars.R
+
 const val ROOT_GRAPH_ROUTE = "root"
 const val BOTTOM_BAR_GRAPH_ROUTE = "bottom_bar"
 const val HOME_ROUTE = "home_screen"
@@ -17,22 +18,21 @@ sealed class BottomBarScreen(
     val title: Int,
     val icon: ImageVector
 ) {
-    object Home : BottomBarScreen(
+    data object Home : BottomBarScreen(
         route = HOME_ROUTE,
         title = R.string.home,
         icon = Icons.Default.Home
     )
 
-    object Account : BottomBarScreen(
+    data object Account : BottomBarScreen(
         route = ACCOUNT_ROUTE,
         title = R.string.account,
         icon = Icons.Default.Person
     )
 
-    object More : BottomBarScreen(
+    data object More : BottomBarScreen(
         route = MORE_ROUTE,
         title = R.string.more,
         icon = Icons.Default.Settings
     )
-
 }

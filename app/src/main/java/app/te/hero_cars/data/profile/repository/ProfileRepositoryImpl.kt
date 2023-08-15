@@ -3,7 +3,7 @@ package app.te.hero_cars.data.profile.repository
 import app.te.hero_cars.domain.profile.entity.UpdateProfileRequest
 import app.te.hero_cars.domain.profile.repository.ProfileRepository
 import app.te.hero_cars.data.profile.data_source.ProfileDataSource
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 import te.app.storage.data_store.AppPreferences
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
 package app.te.hero_cars.presentation.general.screens
 
-import app.te.hero_cars.presentation.auth.nav_graph.GOV_ID
+import te.app.auth.presentation.nav_graph.GOV_ID
 
 const val GOVERNMENT_ROUTE = "government_screen"
 const val CITIES_ROUTE = "cities_screen"

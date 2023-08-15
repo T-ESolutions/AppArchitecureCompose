@@ -204,5 +204,6 @@ dependencies {
     //AdvancedWebView
     implementation(Libraries.AdvancedWebView)
     implementation(project(path =Config.Modules.core))
+    implementation(project(path =Config.Modules.auth))
 
 }

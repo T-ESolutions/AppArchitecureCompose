@@ -1,7 +1,7 @@
 package app.te.hero_cars.domain.account.repository
 
 import app.te.hero_cars.domain.account.entity.request.SendFirebaseTokenRequest
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 import app.te.network.utils.BaseResponse
 import app.te.network.utils.Resource
 import com.structure.base_mvvm.User
@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface AccountRepository {
 
-    suspend fun sendFirebaseToken(request: SendFirebaseTokenRequest): app.te.network.utils.Resource<app.te.network.utils.BaseResponse<*>>
+    suspend fun sendFirebaseToken(request: SendFirebaseTokenRequest): Resource<BaseResponse<*>>
 
-    suspend fun logOut(): app.te.network.utils.Resource<app.te.network.utils.BaseResponse<*>>
+    suspend fun logOut(): Resource<BaseResponse<*>>
 
     suspend fun isLoggedIn(isLoggedIn: Boolean)
 

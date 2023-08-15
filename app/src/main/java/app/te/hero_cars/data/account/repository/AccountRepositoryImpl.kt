@@ -3,7 +3,7 @@ package app.te.hero_cars.data.account.repository
 import app.te.hero_cars.data.account.data_source.remote.AccountRemoteDataSource
 import app.te.hero_cars.domain.account.entity.request.SendFirebaseTokenRequest
 import app.te.hero_cars.domain.account.repository.AccountRepository
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 import com.structure.base_mvvm.User
 import kotlinx.coroutines.flow.Flow
 import te.app.storage.data_store.AppPreferences

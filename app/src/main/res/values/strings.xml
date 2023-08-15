@@ -25,11 +25,9 @@
     <string name="sign_up">Sign up</string>
 
     <!-- Account -->
-    <string name="skip">Skip</string>
     <!--  <string name="google_api_key">Continue as a guest</string>-->
 
     <string name="privacy">Privacy policy</string>
-    <string name="open_app">Get started</string>
     <!--  Side Menu-->
     <string name="about">About the app</string>
     <string name="terms">Terms and Conditions</string>

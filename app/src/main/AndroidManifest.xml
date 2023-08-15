@@ -27,7 +27,7 @@
         tools:replace="android:allowBackup"
         tools:targetApi="tiramisu">
         <activity
-            android:name="app.te.hero_cars.presentation.auth.AuthComposeActivity"
+            android:name="app.te.hero_cars.te.app.auth.AuthComposeActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:exported="true"
             android:screenOrientation="portrait"

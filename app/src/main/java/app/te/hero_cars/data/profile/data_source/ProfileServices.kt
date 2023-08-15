@@ -1,6 +1,6 @@
 package app.te.hero_cars.data.profile.data_source
 
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 import app.te.hero_cars.domain.profile.entity.UpdateProfileRequest
 import app.te.network.utils.BaseResponse
 import retrofit2.http.*

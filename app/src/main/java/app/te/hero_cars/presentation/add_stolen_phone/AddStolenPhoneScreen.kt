@@ -55,7 +55,6 @@ import java.io.File
 
 const val ADD_STOLEN_PHONE_ROUTE = "add_stolen_phone_screen"
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddStolenPhoneScreen(
     navHostController: NavHostController = rememberNavController(),

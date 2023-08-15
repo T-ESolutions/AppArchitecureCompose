@@ -1,7 +1,6 @@
 package app.te.hero_cars.presentation.more.nav_graph
 
 import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
@@ -13,7 +12,6 @@ import app.te.hero_cars.presentation.settings.SettingsViewModel
 import app.te.hero_cars.presentation.terms_privacy.TermsAndPrivacyScreen
 
 
-@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.moreNavGraph(navHostController: NavHostController) {
     composable(
         MoreScreens.About.route,

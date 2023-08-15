@@ -2,7 +2,7 @@ package app.te.hero_cars.data.home.dto
 
 import androidx.annotation.Keep
 import app.te.hero_cars.data.general.data_source.dto.countries.CityModel
-import app.te.hero_cars.domain.auth.entity.model.UserResponse
+import te.app.auth.domain.entity.model.UserResponse
 
 @Keep
 data class SearchData(

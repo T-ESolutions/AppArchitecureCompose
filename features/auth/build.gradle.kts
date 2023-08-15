@@ -1,7 +1,8 @@
 plugins {
-    id(Config.Plugins.androidApplication)
+    id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
     id(Config.Plugins.kotlinKapt)
+    id(Config.Plugins.kotlin_parcable)
 
 }
 
@@ -35,5 +36,5 @@ android {
 }
 
 dependencies {
-
+    implementation(project(path = Config.Modules.core))
 }

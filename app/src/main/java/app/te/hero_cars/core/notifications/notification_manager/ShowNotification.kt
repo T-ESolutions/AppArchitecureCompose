@@ -10,7 +10,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import app.te.core.utils.Constants
 import app.te.hero_cars.R
-import app.te.hero_cars.presentation.auth.AuthComposeActivity
+import te.app.auth.presentation.AuthComposeActivity
 import app.te.hero_cars.core.notifications.app_notification_model.LimaRemoteMessages
 import kotlin.random.Random
 

@@ -21,10 +21,8 @@
     <string name="sign_up">إنشاء حساب</string>
 
     <!-- Account -->
-    <string name="skip">تخطى</string>
 
     <string name="privacy">سياسة الخصوصية</string>
-    <string name="open_app">ابدأ التطبيق</string>
     <!--  Side Menu-->
     <string name="about">عن التطبيق</string>
     <string name="terms">الشروط والأحكام</string>

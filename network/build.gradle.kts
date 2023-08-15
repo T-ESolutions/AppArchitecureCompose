@@ -41,11 +41,11 @@ dependencies {
     kapt(Libraries.hilt_compose_compiler)
 
     // Networking
-    implementation(Libraries.retrofit)
-    implementation(Libraries.retrofitConverter)
-    implementation(Libraries.gson)
-    implementation(Libraries.interceptor)
-    implementation(Libraries.chuckLogging)
+    api(Libraries.retrofit)
+    api(Libraries.retrofitConverter)
+    api(Libraries.gson)
+    api(Libraries.interceptor)
+    api(Libraries.chuckLogging)
 
     api(project(path = Config.Modules.storage))
 }

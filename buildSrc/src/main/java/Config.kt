@@ -57,6 +57,7 @@ object Config {
         const val driver_settings = ":features:driver_settings"
         const val notifications = ":features:notifications"
         const val settings = ":features:settings"
+        const val general = ":libs:general"
     }
 
 }
