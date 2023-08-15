@@ -1,6 +1,7 @@
 plugins {
-    id(Config.Plugins.androidApplication)
+    id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
 }
 
 android {
@@ -27,6 +28,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = Config.Plugins.kotlinCompilerExtensionVersion
     }
@@ -37,11 +42,28 @@ android {
 }
 
 dependencies {
+    //========== Compose================
+    api(Libraries.compose_material_icon)
+    api(Libraries.compose_run_time)
+    api(Libraries.compose_ui)
+    api(Libraries.compose_ui_tooling)
+    api(Libraries.compose_ui_preview)
+    api(Libraries.compose_foundation)
+    api(Libraries.compose_material)
+    api(Libraries.compose_material_window_size)
+    api(Libraries.compose_activity)
+    api(Libraries.compose_constraint_layout)
+    api(Libraries.compose_pager)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // =========Nav compose============
+    api(Libraries.navigationHiltCompose)
+    api(Libraries.navigationCompose)
+
+    // UI
+    api(Libraries.loadingAnimations)
+    api(Libraries.coil)
+    api(Libraries.shimmer)
+    // =========Modules============
+    api(project(path = Config.Modules.network))
+
 }

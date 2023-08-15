@@ -1,6 +1,8 @@
 plugins {
-    id(Config.Plugins.androidApplication)
+    id(Config.Plugins.androidLibrary)
     id(Config.Plugins.kotlinAndroid)
+    id(Config.Plugins.kotlinKapt)
+    id(Config.Plugins.hilt)
 }
 
 android {
@@ -9,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = Config.AppConfig.minSdkVersion
-
         testInstrumentationRunner = Config.AppConfig.testRunner
     }
 
@@ -26,9 +27,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+    buildFeatures {
+        buildConfig = true
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -36,11 +36,16 @@ android {
 }
 
 dependencies {
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltDaggerCompiler)
+    kapt(Libraries.hilt_compose_compiler)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Networking
+    implementation(Libraries.retrofit)
+    implementation(Libraries.retrofitConverter)
+    implementation(Libraries.gson)
+    implementation(Libraries.interceptor)
+    implementation(Libraries.chuckLogging)
+
+    api(project(path = Config.Modules.storage))
 }

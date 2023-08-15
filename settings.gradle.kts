@@ -1,4 +1,4 @@
-rootProject.name = "AppArchitecture"
+rootProject.name = "HeroCars"
 
 // Include all the existent modules in the project
 rootDir
@@ -14,8 +14,7 @@ rootDir
   .forEach {
     include(":${it.name}")
   }
-include(":network")
-include(":core")
+
 include(":features:auth")
 include(":features:pink_ride")
 include(":features:economy_ride")

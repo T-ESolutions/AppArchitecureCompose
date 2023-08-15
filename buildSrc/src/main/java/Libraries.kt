@@ -47,7 +47,6 @@ object Libraries {
         "androidx.hilt:hilt-navigation-compose:${Versions.navigationHiltCompose}"
     const val navigationCompose =
         "androidx.navigation:navigation-compose:${Versions.androidNavigation}"
-    const val navigationComposeAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.navigationComposeAnimation}"
     const val loadingAnimations = "com.airbnb.android:lottie-compose:${Versions.loadingAnimations}"
     const val alerter = "com.github.tapadoo:alerter:${Versions.alerter}"
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"

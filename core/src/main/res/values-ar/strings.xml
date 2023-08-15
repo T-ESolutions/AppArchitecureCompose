@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_dialog_content1">Allow permission to receive notification</string>
+    <string name="not_match_password">كلمتا المرور غير متطابقتان</string>
+    <string name="no_internet">لا يوجد اتصال بالإنترنت، برجاء المحاولة فى وقت لاحق</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="some_error">حدث خطأ ما، برجاء المحاولة فى وقت لاحق</string>
+    <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
+    <string name="cancel">إلغاء</string>
+    <string name="done">تم</string>
+    <string name="empty_warning">هذا الحقل مطلوب </string>
+    <string name="email_not_valid">بريد الكتروني غير صحيح</string>
+    <string name="password_length_warning">يرجي ادخال 8 حروف الاقل</string>
+
+</resources>

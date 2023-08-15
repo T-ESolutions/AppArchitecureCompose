@@ -1,5 +1,5 @@
 object Versions {
-    const val gradleVersion = "7.0.4"
+    const val gradleVersion = "8.1.0"
     const val appGalleryConnect = "1.7.1.300"
     const val kotlin = "1.9.0"
     const val ktLint = "10.2.0"
@@ -28,7 +28,7 @@ object Versions {
     const val datastore_core = "1.0.0"
     const val datastore_protobuf = "3.24.0"
     const val datastore_protoc = "3.24.0"
-    const val classPath_protobuf = "0.8.18"
+    const val classPath_protobuf = "0.9.4"
     const val grpcVersion = "1.24.0"
 
     // Networking
@@ -38,10 +38,8 @@ object Versions {
     const val chuckLogging = "4.0.0"
 
     // UI
-    const val materialDesign = "1.7.0-alpha01"
-    const val navigationComposeAnimation = "0.30.1"
     const val accompanist_permissions = "0.29.0-alpha"
-    const val androidNavigation = "2.7.0"
+    const val androidNavigation = "2.7.0-alpha01"
     const val navigationHiltCompose = "1.0.0"
     const val loadingAnimations = "6.1.0"
     const val alerter = "7.2.4"
@@ -65,7 +63,7 @@ object Versions {
     const val compose_material_icon = "1.5.0"
     const val compose_ui = "1.5.0"
     const val compose_foundation = "1.5.0"
-    const val compose_material = "1.1.1"
+    const val compose_material = "1.1.0"
     const val compose_activity = "1.7.2"
     const val compose_constraint_layout = "1.0.1"
     const val compose_pager = "0.28.0"

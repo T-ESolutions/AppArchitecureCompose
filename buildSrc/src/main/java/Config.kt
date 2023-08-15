@@ -1,6 +1,6 @@
 object Config {
     object AppConfig {
-        const val appId = "app.te.architecture"
+        const val appId = "app.te.hero_cars"
         const val compileSdkVersion = 34
         const val minSdkVersion = 23
         const val versionCode = 8
@@ -31,7 +31,7 @@ object Config {
     object Plugins {
         const val androidApplication = "com.android.application"
         const val androidLibrary = "com.android.library"
-        const val kotlinAndroid = "kotlin-android"
+        const val kotlinAndroid = "org.jetbrains.kotlin.android"
         const val kotlinKapt = "kotlin-kapt"
         const val navigationSafeArgs = "androidx.navigation.safeargs"
         const val hilt = "dagger.hilt.android.plugin"
@@ -47,8 +47,16 @@ object Config {
     }
 
     object Modules {
-        const val data = ":data"
-        const val prettyPopUp = ":prettyPopUp"
+        const val storage = ":storage"
+        const val network = ":network"
+        const val core = ":core"
+        const val auth = ":features:auth"
+        const val pink_ride = ":features:pink_ride"
+        const val economy_ride = ":features:economy_ride"
+        const val rent_ride = ":features:rent_ride"
+        const val driver_settings = ":features:driver_settings"
+        const val notifications = ":features:notifications"
+        const val settings = ":features:settings"
     }
 
 }

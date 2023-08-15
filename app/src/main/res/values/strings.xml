@@ -1,12 +1,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">Lima Zola</string>
     <string name="app_name_debug" translatable="false">Lima Zola Test</string>
-    <string name="empty_warning">This field is required</string>
 
     <!-- General Strings -->
-    <string name="no_internet">No internet connection please try again later</string>
-    <string name="cancel">Cancel</string>
-    <string name="some_error">Some error occurred, Please try again later</string>
 
     <!-- Home -->
     <string name="home">Home</string>
@@ -29,12 +25,10 @@
     <string name="sign_up">Sign up</string>
 
     <!-- Account -->
-    <string name="log_out">Log out</string>
     <string name="skip">Skip</string>
     <!--  <string name="google_api_key">Continue as a guest</string>-->
 
     <string name="privacy">Privacy policy</string>
-    <string name="not_match_password">The two passwords do not match</string>
     <string name="open_app">Get started</string>
     <!--  Side Menu-->
     <string name="about">About the app</string>
@@ -47,18 +41,13 @@
     <string name="new_account">SignUp</string>
     <string name="create_an_account">Create an account?</string>
 
-    <string name="log_out_hint">Are you sure you want to log out?</string>
     <string name="send">Send</string>
-    <string name="email_not_valid">Email not valid</string>
     <string name="default_notification_channel_id" translatable="false">lima_app_notification_channel_id</string>
-    <string name="permission_dialog_content1">Allow permission to receive notification</string>
     <string name="home_search_hint">Search for stolen phones…</string>
-    <string name="password_length_warning">Password needs 8 characters at least</string>
     <string name="govern">Government</string>
     <string name="city">City</string>
     <string name="address">Address</string>
     <string name="more">More</string>
-    <string name="done">Done</string>
     <string name="no_stolen_phones">There is no stolen phone, try to search or add new phone to find</string>
     <string name="serial_number">Serial number</string>
     <string name="model">الموديل</string>

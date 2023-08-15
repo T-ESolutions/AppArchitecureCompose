@@ -1,9 +1,4 @@
 <resources>
-    <string name="empty_warning">هذا الحقل مطلوب </string>
-    <!-- General Strings -->
-    <string name="no_internet">لا يوجد اتصال بالإنترنت، برجاء المحاولة فى وقت لاحق</string>
-    <string name="cancel">إلغاء</string>
-    <string name="some_error">حدث خطأ ما، برجاء المحاولة فى وقت لاحق</string>
 
     <!-- Home -->
     <string name="home">الرئيسية</string>
@@ -26,11 +21,9 @@
     <string name="sign_up">إنشاء حساب</string>
 
     <!-- Account -->
-    <string name="log_out">تسجيل الخروج</string>
     <string name="skip">تخطى</string>
 
     <string name="privacy">سياسة الخصوصية</string>
-    <string name="not_match_password">كلمتا المرور غير متطابقتان</string>
     <string name="open_app">ابدأ التطبيق</string>
     <!--  Side Menu-->
     <string name="about">عن التطبيق</string>
@@ -42,17 +35,12 @@
     <string name="new_account">التسجيل</string>
     <string name="create_an_account">انشئ حساب؟</string>
 
-    <string name="log_out_hint">هل انت متأكد من أنك تريد تسجيل الخروج؟</string>
     <string name="send">إرسال</string>
-    <string name="email_not_valid">بريد الكتروني غير صحيح</string>
-    <string name="permission_dialog_content1">Allow permission to receive notification</string>
     <string name="home_search_hint">ابحث عن الموبايلات المسروقه…</string>
-    <string name="password_length_warning">Password needs 8 characters at least</string>
     <string name="govern">المحافظة</string>
     <string name="city">المدينة</string>
     <string name="address">العنوان</string>
     <string name="more">المزيد</string>
-    <string name="done">تم</string>
     <string name="no_stolen_phones">لا يوجد هاتف مسروق ، حاول البحث أو إضافة هاتف جديد للعثور عليه</string>
     <string name="serial_number">سيريال الجهاز ( imei1 )</string>
     <string name="model">الموديل</string>

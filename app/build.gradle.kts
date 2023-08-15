@@ -5,7 +5,7 @@ plugins {
     id(Config.Plugins.kotlinAndroid)
     id(Config.Plugins.kotlinKapt)
     id(Config.Plugins.kotlin_parcable)
-    id(Config.Plugins.navigationSafeArgs)
+//    id(Config.Plugins.navigationSafeArgs)
     id(Config.Plugins.hilt)
     id(Config.Plugins.proto_buf)
     id(Config.Plugins.google_secrets)
@@ -35,6 +35,7 @@ protobuf {
 }
 
 android {
+    namespace = "app.te.hero_cars"
     compileSdk = Config.AppConfig.compileSdkVersion
 
     defaultConfig {
@@ -93,15 +94,16 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = Config.Plugins.kotlinCompilerExtensionVersion
+
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     lint {
@@ -112,15 +114,16 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig =true
     }
 //    appsweep {
 //        apiKey = Libraries.appsweep_key
 //    }
-    externalNativeBuild {
-        cmake {
-            path = file("CMakeLists.txt")
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path = file("CMakeLists.txt")
+//        }
+//    }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -134,23 +137,13 @@ android {
     kapt {
         correctErrorTypes = true
     }
+
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    //========== Compose================
-    implementation(Libraries.compose_material_icon)
-    implementation(Libraries.compose_run_time)
-    implementation(Libraries.compose_ui)
-    implementation(Libraries.compose_ui_tooling)
-    implementation(Libraries.compose_ui_preview)
-    implementation(Libraries.compose_foundation)
-    implementation(Libraries.compose_material)
-    implementation(Libraries.compose_material_window_size)
-    implementation(Libraries.compose_activity)
-    implementation(Libraries.compose_constraint_layout)
-    implementation(Libraries.compose_pager)
+
     //Room
     implementation(Libraries.roomVersion)
     kapt(Libraries.roomCompiler)
@@ -203,19 +196,13 @@ dependencies {
     implementation(Libraries.datastore_core)
     implementation(Libraries.datastore_protobuf)
 
-    // =========Nav compose============
-    implementation(Libraries.navigationHiltCompose)
-    implementation(Libraries.navigationCompose)
-    implementation(Libraries.navigationComposeAnimation)
 
-    // UI
-    implementation(Libraries.loadingAnimations)
-    implementation(Libraries.coil)
-    implementation(Libraries.shimmer)
+
     implementation(Libraries.splash_screen)
     //Pin code
     implementation(Libraries.pin_code)
     //AdvancedWebView
     implementation(Libraries.AdvancedWebView)
+    implementation(project(path =Config.Modules.core))
 
 }

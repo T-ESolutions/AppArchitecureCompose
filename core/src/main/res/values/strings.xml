@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_dialog_content1">Allow permission to receive notification</string>
+    <string name="not_match_password">The two passwords do not match</string>
+    <string name="no_internet">No internet connection please try again later</string>
+    <string name="log_out">Log out</string>
+    <string name="some_error">Some error occurred, Please try again later</string>
+    <string name="log_out_hint">Are you sure you want to log out?</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="empty_warning">This field is required</string>
+    <string name="email_not_valid">Email not valid</string>
+    <string name="password_length_warning">Password needs 8 characters at least</string>
+
+</resources>
