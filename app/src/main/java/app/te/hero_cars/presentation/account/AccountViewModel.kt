@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     private val accountUseCases: AccountUseCases,
-    private val userLocalUseCase: UserLocalUseCase
+//    private val userLocalUseCase: UserLocalUseCase
 ) : ViewModel() {
 
     private val _userData = MutableStateFlow(AccountUiState())
@@ -20,13 +20,13 @@ class AccountViewModel @Inject constructor(
 
 
     fun getUserFromLocal() {
-        viewModelScope.launch {
-            userLocalUseCase.invoke().collect {
-                val uiState = AccountUiState()
-                uiState.updateUi(it)
-                _userData.value = uiState
-            }
-        }
+//        viewModelScope.launch {
+//            userLocalUseCase.invoke().collect {
+//                val uiState = AccountUiState()
+//                uiState.updateUi(it)
+//                _userData.value = uiState
+//            }
+//        }
     }
 
     fun logOut() {

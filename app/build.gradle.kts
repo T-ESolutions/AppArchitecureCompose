@@ -150,7 +150,6 @@ dependencies {
     implementation(Libraries.roomktx)
     implementation(Libraries.roomCommon)
     implementation(Libraries.startup)
-    implementation(Libraries.store_update)
 
     // Networking
     implementation(Libraries.retrofit)
@@ -159,11 +158,7 @@ dependencies {
     implementation(Libraries.interceptor)
     implementation(Libraries.chuckLogging)
 
-    // Utils
-    implementation(Libraries.playServices)
-    implementation(Libraries.localization)
-    implementation(Libraries.multidex)
-    implementation(Libraries.gson)
+
 // paging
     implementation(Libraries.paging_compose)
     implementation(Libraries.paging_version)

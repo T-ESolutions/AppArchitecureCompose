@@ -58,6 +58,7 @@ object Config {
         const val notifications = ":features:notifications"
         const val settings = ":features:settings"
         const val general = ":libs:general"
+        const val navigation = ":Navigation"
     }
 
 }

@@ -1,4 +1,4 @@
-package app.te.hero_cars.presentation.base.extensions
+package app.te.core.extension
 
 import android.app.Activity
 import android.content.Context
@@ -28,13 +28,3 @@ fun <A : Activity> Activity.openIntentActivity(activity: Class<A>, extra: String
 }
 
 
-fun Context.adjustFontScale() {
-    if (resources.configuration.fontScale > 1.1f) {
-        resources.configuration.fontScale = 1f
-        val metrics = resources.displayMetrics
-        val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        wm.defaultDisplay.getMetrics(metrics)
-        metrics.scaledDensity = resources.configuration.fontScale * metrics.density
-        resources.updateConfiguration(resources.configuration, metrics)
-    }
-}

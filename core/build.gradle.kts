@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+
+
     //========== Compose================
     api(Libraries.compose_material_icon)
     api(Libraries.compose_run_time)
@@ -63,7 +65,14 @@ dependencies {
     api(Libraries.loadingAnimations)
     api(Libraries.coil)
     api(Libraries.shimmer)
+    implementation(Libraries.store_update)
+    // Utils
+    implementation(Libraries.playServices)
+    api(Libraries.localization)
+    api(Libraries.multidex)
+    api(Libraries.gson)
     // =========Modules============
     api(project(path = Config.Modules.network))
+    api(project(path = Config.Modules.navigation))
 
 }

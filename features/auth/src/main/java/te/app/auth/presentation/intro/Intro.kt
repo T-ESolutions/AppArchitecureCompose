@@ -24,7 +24,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import te.app.auth.R
 import te.app.auth.presentation.intro.view_model.TutorialViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -40,7 +39,6 @@ import te.app.auth.domain.entity.model.AppTutorialModel
 
 @Composable
 fun OnBoarding(
-    navHostController: NavHostController,
     viewModel: TutorialViewModel = viewModel()
 ) {
 
@@ -58,12 +56,12 @@ fun OnBoarding(
         )
     }
     if (introData.value.data != null)
-        IntroContent(appTutorialModel = introData.value.data!!, navHostController)
+        IntroContent(appTutorialModel = introData.value.data!!, viewModel)
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun IntroContent(appTutorialModel: List<AppTutorialModel>, navHostController: NavHostController) {
+fun IntroContent(appTutorialModel: List<AppTutorialModel>, viewModel: TutorialViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,9 +83,8 @@ fun IntroContent(appTutorialModel: List<AppTutorialModel>, navHostController: Na
         BottomSection(
             size = appTutorialModel.size,
             index = pageState.currentPage,
-            onButtonClick = {
-//                activity.openActivityAndClearStack(HomeComposeActivity::class.java)
-            })
+            onButtonClick = viewModel::openLogin
+        )
     }
 }
 

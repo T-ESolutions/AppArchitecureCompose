@@ -35,19 +35,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import app.te.auth.AuthenticationDirections
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginFormState
 import te.app.auth.presentation.login.view_model.LogInViewModel
-import te.app.auth.presentation.nav_graph.AuthScreens
 import app.te.core.extension.navigateSafe
 import app.te.core.utils.ShowLottieLoading
 import app.te.core.utils.CenterAlignedTopAppBarCustom
 import app.te.core.utils.HandleApiError
 import app.te.core.extension.findActivity
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
 import te.app.auth.R
 
 @Composable
@@ -261,7 +257,7 @@ fun BottomSection(
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable {
-                navHostController.navigateSafe(AuthScreens.SignUpScreen.route)
+                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
             }
         )
 
@@ -271,7 +267,7 @@ fun BottomSection(
             color = MaterialTheme.colorScheme.onBackground,
             textDecoration = TextDecoration.Underline,
             modifier = Modifier.clickable {
-                navHostController.navigateSafe(AuthScreens.SignUpScreen.route)
+                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
             }
         )
 

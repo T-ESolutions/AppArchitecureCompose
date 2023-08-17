@@ -45,8 +45,8 @@ import app.te.core.custom_views.dialogs.CustomAlertDialog
 import app.te.hero_cars.presentation.base.extensions.*
 import app.te.core.utils.textFieldInteractionSource
 import app.te.hero_cars.presentation.general.screens.*
-import app.te.hero_cars.presentation.home.HomeComposeActivity
-import app.te.hero_cars.presentation.home.nav_graph.BottomBarScreen
+import app.te.hero_cars.presentation.MainActivity
+import app.te.hero_cars.presentation.bottom_bar.BottomBarScreen
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
@@ -414,7 +414,7 @@ fun InputSection(
             .padding(start = 15.dp, end = 15.dp),
         label = {
             Text(
-                text = stringResource(id = R.string.phone_hint)
+                text = stringResource(id = te.app.auth.R.string.phone_hint)
             )
         },
         singleLine = true,
@@ -511,7 +511,7 @@ fun InputSection(
         },
         interactionSource = textFieldInteractionSource {
             if (checkPickPermission(activity))
-                selectImage(activity as HomeComposeActivity, viewModel)
+                selectImage(activity as MainActivity, viewModel)
         }
     )
 
@@ -567,7 +567,7 @@ fun InputSection(
 }
 
 private fun selectImage(
-    homeComposeActivity: HomeComposeActivity,
+    homeComposeActivity: MainActivity,
     viewModel: AddStolenPhoneViewModel
 ) {
     homeComposeActivity.filePicker.pickImage() { result ->

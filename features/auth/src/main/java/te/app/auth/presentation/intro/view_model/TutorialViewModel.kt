@@ -2,6 +2,9 @@ package te.app.auth.presentation.intro.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.te.auth.AuthenticationDirections
+import app.te.auth.BOARDING_ROUTE
+import app.te.navigation.NavigationManager
 import app.te.network.utils.Resource
 import te.app.auth.presentation.intro.state.IntroState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TutorialViewModel @Inject constructor(
     private val generalUseCases: GeneralUseCases,
-    private val introUseCase: IntroUseCase
+    private val introUseCase: IntroUseCase,
+    private val navigationManager: NavigationManager
 ) : ViewModel() {
     private val _appTutorialState =
         MutableStateFlow(IntroState())
@@ -30,16 +34,19 @@ class TutorialViewModel @Inject constructor(
                         )
                         setFirstTime()
                     }
+
                     is Resource.Failure -> {
                         _appTutorialState.value = IntroState(
                             failureStatus = resource
                         )
                     }
+
                     is Resource.Loading -> {
                         _appTutorialState.value = IntroState(
                             isLoading = true
                         )
                     }
+
                     else -> {}
                 }
             }
@@ -52,4 +59,7 @@ class TutorialViewModel @Inject constructor(
         }
     }
 
+    fun openLogin() {
+        navigationManager.navigate(AuthenticationDirections.LoginScreen(AuthenticationDirections.OnBoardingScreen().destination))
+    }
 }

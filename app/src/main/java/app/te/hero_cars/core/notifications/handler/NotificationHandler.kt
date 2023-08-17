@@ -14,6 +14,7 @@ import app.te.hero_cars.R
 import app.te.hero_cars.core.notifications.app_notification_model.LimaRemoteMessages
 import app.te.hero_cars.core.notifications.notification_manager.SoundUtils
 import app.te.hero_cars.core.notifications.notification_manager.showNotification
+import app.te.hero_cars.presentation.MainActivity
 import kotlin.random.Random
 
 class NotificationHandler(private val context: Context) {
@@ -25,7 +26,7 @@ class NotificationHandler(private val context: Context) {
     }
 
     fun sendNotification(messageBody: LimaRemoteMessages) {
-        val intent = Intent(context, AuthComposeActivity::class.java)
+        val intent = Intent(context, MainActivity::class.java)
         intent.putExtra(Constants.NOTIFICATION, true)
         // Set the Activity to start in a new, empty task
         val pendingIntent = PendingIntent.getActivity(
@@ -93,7 +94,7 @@ class NotificationHandler(private val context: Context) {
     private fun createDefaultNotificationIntent(
         context: Context,
     ): Intent {
-        return Intent(context, AuthComposeActivity::class.java).apply {
+        return Intent(context, MainActivity::class.java).apply {
             try {
                 putExtra(Constants.NOTIFICATION, true)
             } catch (e: Exception) {

@@ -2,6 +2,7 @@ package app.te.hero_cars.core.di.module
 
 import android.content.Context
 import app.te.hero_cars.core.notifications.handler.NotificationHandler
+import app.te.navigation.NavigationManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +18,11 @@ object AppsModule {
     @Singleton
     fun providePushNotificationHandler(@ApplicationContext context: Context) =
         NotificationHandler(context)
+
+    @Provides
+    @Singleton
+    fun providesNavigationManager() =
+        NavigationManager()
+
 
 }

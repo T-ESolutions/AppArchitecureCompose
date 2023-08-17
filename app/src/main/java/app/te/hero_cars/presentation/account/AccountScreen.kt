@@ -22,10 +22,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import app.te.hero_cars.R
-import te.app.auth.presentation.nav_graph.LOGIN_ROUTE
 import app.te.core.custom_views.dialogs.CustomAlertDialog
 import app.te.core.extension.findActivity
-import app.te.hero_cars.presentation.base.extensions.openIntentActivity
 
 @Composable
 @Preview(showBackground = true)

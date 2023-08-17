@@ -1,18 +1,12 @@
 package app.te.hero_cars.presentation.general.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.composable
-import te.app.auth.presentation.locations.CityScreen
-import te.app.auth.presentation.locations.GovernmentScreen
-import te.app.auth.presentation.locations.view_model.LocationsViewModel
-import te.app.auth.presentation.nav_graph.GOV_ID
+import app.te.hero_cars.presentation.general.screens.GOV_ID
 import app.te.hero_cars.presentation.general.screens.LocationsScreens
 
-@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.locationsNavGraph(navHostController: NavHostController) {
         composable(
             LocationsScreens.GovernmentScreen.route,
@@ -41,8 +35,8 @@ fun NavGraphBuilder.locationsNavGraph(navHostController: NavHostController) {
                 )
             },
         ) {
-            val viewModel = hiltViewModel<LocationsViewModel>()
-            GovernmentScreen(viewModel, navHostController)
+//            val viewModel = hiltViewModel<LocationsViewModel>()
+//            GovernmentScreen(viewModel, navHostController)
         }
         composable(
             LocationsScreens.CitiesScreen.route,
@@ -77,8 +71,8 @@ fun NavGraphBuilder.locationsNavGraph(navHostController: NavHostController) {
             )
         ) {
 
-            val viewModel = hiltViewModel<LocationsViewModel>()
-            CityScreen(viewModel, navHostController)
+//            val viewModel = hiltViewModel<LocationsViewModel>()
+//            CityScreen(viewModel, navHostController)
         }
 
 }

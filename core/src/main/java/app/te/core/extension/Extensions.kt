@@ -3,6 +3,7 @@ package app.te.core.extension
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.view.WindowManager
 
 fun Context.findActivity(): Activity {
     var context = this
@@ -11,6 +12,17 @@ fun Context.findActivity(): Activity {
         context = context.baseContext
     }
     throw IllegalStateException("no activity")
+}
+
+fun Context.adjustFontScale() {
+    if (resources.configuration.fontScale > 1.1f) {
+        resources.configuration.fontScale = 1f
+        val metrics = resources.displayMetrics
+        val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        wm.defaultDisplay.getMetrics(metrics)
+        metrics.scaledDensity = resources.configuration.fontScale * metrics.density
+        resources.updateConfiguration(resources.configuration, metrics)
+    }
 }
 
 fun String.isNumeric(toCheck: String): Boolean {

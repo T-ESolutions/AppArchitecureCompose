@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import app.te.core.utils.Constants
 import app.te.hero_cars.R
 import app.te.hero_cars.core.notifications.app_notification_model.LimaRemoteMessages
+import app.te.hero_cars.presentation.MainActivity
 import kotlin.random.Random
 
 
@@ -75,7 +76,7 @@ private fun createNotificationIntent(
 private fun createDefaultNotificationIntent(
     context: Context,
 ): Intent {
-    return Intent(context, AuthComposeActivity::class.java).apply {
+    return Intent(context, MainActivity::class.java).apply {
         try {
             putExtra(Constants.NOTIFICATION, true)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
