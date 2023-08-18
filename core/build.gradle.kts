@@ -56,6 +56,7 @@ dependencies {
     api(Libraries.compose_activity)
     api(Libraries.compose_constraint_layout)
     api(Libraries.compose_pager)
+    api(Libraries.compose_lifeCycle)
 
     // =========Nav compose============
     api(Libraries.navigationHiltCompose)

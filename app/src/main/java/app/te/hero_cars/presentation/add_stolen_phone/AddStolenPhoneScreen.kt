@@ -42,7 +42,6 @@ import app.te.core.custom_views.alert.AlerterPosition
 import app.te.core.extension.GetOnceResult
 import app.te.core.extension.navigateSafe
 import app.te.core.custom_views.dialogs.CustomAlertDialog
-import app.te.hero_cars.presentation.base.extensions.*
 import app.te.core.utils.textFieldInteractionSource
 import app.te.hero_cars.presentation.general.screens.*
 import app.te.hero_cars.presentation.MainActivity

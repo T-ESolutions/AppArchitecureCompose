@@ -67,6 +67,7 @@ object Versions {
     const val compose_activity = "1.7.2"
     const val compose_constraint_layout = "1.0.1"
     const val compose_pager = "0.28.0"
+    const val compose_lifeCycle = "2.6.1"
 
     //Fire base
     const val firebase = "32.2.2"

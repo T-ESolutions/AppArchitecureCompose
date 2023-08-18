@@ -12,7 +12,9 @@ import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import te.app.auth.domain.entity.request.LogInRequest
 import te.app.auth.domain.use_case.LogInUseCase
@@ -39,12 +41,14 @@ class LogInViewModel @Inject constructor(
                     phoneError = validatePhone.invoke(event.phone).errorMessage
                 )
             }
+
             is LoginFormEvent.PasswordChanged -> {
                 state = state.copy(
                     password = event.password,
                     passwordError = validatePassword.invoke(event.password).errorMessage
                 )
             }
+
             is LoginFormEvent.Submit -> {
                 submitData()
             }
@@ -62,16 +66,19 @@ class LogInViewModel @Inject constructor(
                                     data = resource.value.data
                                 )
                             }
+
                             is app.te.network.utils.Resource.Failure -> {
                                 _loginState.value = LoginState(
                                     failureStatus = resource
                                 )
                             }
+
                             is app.te.network.utils.Resource.Loading -> {
                                 _loginState.value = LoginState(
                                     isLoading = true
                                 )
                             }
+
                             else -> {}
                         }
                     }

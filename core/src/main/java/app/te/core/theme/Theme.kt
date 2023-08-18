@@ -5,19 +5,27 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColorScheme(
-    primary = colorPrimaryDark,
-    secondary = secondaryDark,
+    primary = colorPrimaryLight,
+    secondary = secondaryLight,
+    onSecondary = onSecondaryLight,
     primaryContainer = primaryContainer,
+    onPrimaryContainer = onPrimaryContainer,
     outline = outline,
-    onPrimary = onPrimary
+    onPrimary = onPrimary,
+    background = background,
+    onBackground = onBackground,
 )
 
 private val LightColorPalette = lightColorScheme(
     primary = colorPrimaryLight,
     secondary = secondaryLight,
+    onSecondary = onSecondaryLight,
     primaryContainer = primaryContainer,
+    onPrimaryContainer = onPrimaryContainer,
     outline = outline,
-    onPrimary = onPrimary
+    onPrimary = onPrimary,
+    background = background,
+    onBackground = onBackground,
 
     /* Other default colors to override
     background = Color.White,

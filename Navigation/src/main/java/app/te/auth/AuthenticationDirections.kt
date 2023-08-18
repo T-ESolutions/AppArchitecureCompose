@@ -1,8 +1,6 @@
 package app.te.auth
 
 import androidx.navigation.NamedNavArgument
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import app.te.navigation.NavigationCommand
 
 object AuthenticationDirections {
@@ -43,7 +41,7 @@ object AuthenticationDirections {
 
     }
 
-    data class LoginScreen(val popUp: String? = null) : NavigationCommand {
+    data class LoginScreenNav(val popUp: String? = null) : NavigationCommand {
 
         override val arguments = emptyList<NamedNavArgument>()
 

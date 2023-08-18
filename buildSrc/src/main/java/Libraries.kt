@@ -90,6 +90,7 @@ object Libraries {
     const val compose_activity = "androidx.activity:activity-compose:${Versions.compose_activity}"
     const val compose_constraint_layout = "androidx.constraintlayout:constraintlayout-compose:${Versions.compose_constraint_layout}"
     const val compose_pager = "com.google.accompanist:accompanist-pager:${Versions.compose_pager}"
+    const val compose_lifeCycle = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.compose_pager}"
 
     //FireBase
     const val firebase_platform = "com.google.firebase:firebase-bom:${Versions.firebase}"

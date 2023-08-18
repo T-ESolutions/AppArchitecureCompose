@@ -42,6 +42,6 @@ class SplashViewModel @Inject constructor(
 
     private fun openHomeActivity() {
         _splashState.value = SplashState(openTutorialScreen = false)
-        navigationManager.navigate(AuthenticationDirections.LoginScreen(SPLASH_ROUTE))
+        navigationManager.navigate(AuthenticationDirections.LoginScreenNav(SPLASH_ROUTE))
     }
 }

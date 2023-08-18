@@ -1,5 +1,7 @@
 package te.app.auth.presentation.login
 
+import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -7,7 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
@@ -18,10 +19,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -32,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -47,13 +47,11 @@ import app.te.core.extension.findActivity
 import te.app.auth.R
 
 @Composable
-@Preview(showBackground = true)
 fun LoginScreen(
-    navHostController: NavHostController = rememberNavController(),
     viewModel: LogInViewModel = viewModel()
 ) {
     val validateState = viewModel.state
-    val loginState = viewModel.loginState.collectAsState()
+    val loginState by viewModel.loginState.collectAsStateWithLifecycle()
     val activity = LocalContext.current.findActivity()
     Scaffold(
         modifier = Modifier
@@ -64,44 +62,62 @@ fun LoginScreen(
             ) {
                 activity.finish()
             }
-        }, content = {
-
-            if (loginState.value.isLoading)
+        }, content = { paddingValues ->
+            if (loginState.isLoading)
                 ShowLottieLoading()
 
-            if (loginState.value.failureStatus != null) {
+            if (loginState.failureStatus != null) {
                 HandleApiError(
                     activity = LocalContext.current.findActivity(),
-                    loginState.value.failureStatus!!
+                    loginState.failureStatus!!
                 )
             }
 
-            if (loginState.value.data != null) {
+            if (loginState.data != null) {
                 activity.finish()
             }
+            LogInView(
+                paddingValues, validateState,
+                onPhoneChanged = viewModel::onEvent,
+                onPasswordChanged = viewModel::onEvent,
+                onLoginSubmittedChanged = viewModel::onEvent
+            )
 
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .navigationBarsPadding()
-                    .imePadding()
-                    .padding(it)
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                TopSection()
-                Spacer(modifier = Modifier.height(15.dp))
-                InputSection(validateState, viewModel)
-                BottomSection(navHostController, viewModel)
-            }
         }
     )
 }
 
 @Composable
-@Preview(showBackground = true)
+@Preview(showBackground = true, locale = "ar")
+fun LogInView(
+    paddingValues: PaddingValues = PaddingValues(6.dp),
+    validateState: LoginFormState = LoginFormState(),
+    onPhoneChanged: (event: LoginFormEvent) -> Unit = {},
+    onPasswordChanged: (event: LoginFormEvent.PasswordChanged) -> Unit = {},
+    onLoginSubmittedChanged: (event: LoginFormEvent.Submit) -> Unit = {},
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .navigationBarsPadding()
+            .imePadding()
+            .padding(paddingValues)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        TopSection()
+        Spacer(modifier = Modifier.height(15.dp))
+        InputPhoneSection(validateState.phone, validateState.phoneError, onPhoneChanged)
+        InputPasswordSection(validateState.password, validateState.passwordError, onPasswordChanged)
+        ForgetPasswordSection()
+        SocialButtons()
+        //        LoginButtonSection()
+    }
+}
+
+@Composable
 fun TopSection() {
 
     Spacer(modifier = Modifier.height(15.dp))
@@ -123,23 +139,16 @@ fun TopSection() {
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview(showBackground = true)
-fun InputSection(
-    state: LoginFormState = LoginFormState(),
-    viewModel: LogInViewModel = viewModel(),
+fun InputPhoneSection(
+    state: String = "",
+    phoneError: String? = null,
+    onPhoneChanged: (event: LoginFormEvent.PhoneChanged) -> Unit = {},
 ) {
-    var showPassword by remember {
-        mutableStateOf(false)
-    }
-    val focusManager = LocalFocusManager.current
     OutlinedTextField(
-        value = state.phone,
-        onValueChange = {
-            viewModel.onEvent(LoginFormEvent.PhoneChanged(it))
-        },
-        isError = state.phoneError != null,
+        value = state,
+        onValueChange = { onPhoneChanged.invoke(LoginFormEvent.PhoneChanged(it)) },
+        isError = phoneError != null,
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp),
@@ -161,9 +170,9 @@ fun InputSection(
         },
     )
     // Showing error for email
-    if (state.phoneError != null) {
+    if (phoneError != null) {
         Text(
-            text = state.phoneError,
+            text = phoneError,
             color = MaterialTheme.colorScheme.error,
             textAlign = TextAlign.Start,
             modifier = Modifier
@@ -173,12 +182,26 @@ fun InputSection(
     }
     Spacer(modifier = Modifier.height(10.dp))
 
+
+}
+
+@Composable
+fun InputPasswordSection(
+    password: String = "",
+    passwordError: String? = null,
+    onPasswordChanged: (event: LoginFormEvent.PasswordChanged) -> Unit = {}
+) {
+    var showPassword by remember {
+        mutableStateOf(false)
+    }
+    val focusManager = LocalFocusManager.current
+
     OutlinedTextField(
-        value = state.password,
+        value = password,
         onValueChange = {
-            viewModel.onEvent(LoginFormEvent.PasswordChanged(it))
+            onPasswordChanged.invoke(LoginFormEvent.PasswordChanged(it))
         },
-        isError = state.passwordError != null,
+        isError = passwordError != null,
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp),
@@ -212,9 +235,9 @@ fun InputSection(
         visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation()
     )
     // Showing error for password
-    if (state.passwordError != null) {
+    if (passwordError != null) {
         Text(
-            text = state.passwordError,
+            text = passwordError,
             color = MaterialTheme.colorScheme.error,
             textAlign = TextAlign.Start,
             modifier = Modifier
@@ -226,8 +249,57 @@ fun InputSection(
 }
 
 @Composable
-@Preview(showBackground = true)
-fun BottomSection(
+fun ForgetPasswordSection() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Text(
+            text = stringResource(id = R.string.forget_password_login),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.padding(top = 11.dp, start = 15.dp, end = 15.dp)
+        )
+    }
+
+}
+
+@Composable
+fun SocialButtons() {
+    Button(
+        onClick = { },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(15.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+        shape = MaterialTheme.shapes.small
+    ) {
+        Text(
+            text = stringResource(id = R.string.login_facebook),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.background
+        )
+    }
+
+    Button(
+        onClick = { },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(15.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onSecondary),
+        shape = MaterialTheme.shapes.small
+    ) {
+        Text(
+            text = stringResource(id = R.string.login_facebook),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.background
+        )
+    }
+
+}
+
+@Composable
+fun LoginButtonSection(
     navHostController: NavHostController = rememberNavController(),
     viewModel: LogInViewModel = viewModel()
 ) {
@@ -239,7 +311,7 @@ fun BottomSection(
             .fillMaxWidth()
             .padding(15.dp),
         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-        shape = RoundedCornerShape(4.dp)
+        shape = MaterialTheme.shapes.small
     ) {
         Text(
             text = stringResource(id = R.string.login),

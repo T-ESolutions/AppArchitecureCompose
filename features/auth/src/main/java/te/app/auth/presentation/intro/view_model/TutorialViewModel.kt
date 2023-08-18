@@ -3,7 +3,6 @@ package te.app.auth.presentation.intro.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.te.auth.AuthenticationDirections
-import app.te.auth.BOARDING_ROUTE
 import app.te.navigation.NavigationManager
 import app.te.network.utils.Resource
 import te.app.auth.presentation.intro.state.IntroState
@@ -60,6 +59,6 @@ class TutorialViewModel @Inject constructor(
     }
 
     fun openLogin() {
-        navigationManager.navigate(AuthenticationDirections.LoginScreen(AuthenticationDirections.OnBoardingScreen().destination))
+        navigationManager.navigate(AuthenticationDirections.LoginScreenNav(AuthenticationDirections.OnBoardingScreen().destination))
     }
 }

@@ -11,5 +11,7 @@
     <string name="new_account">SignUp</string>
     <string name="sign_up">Sign up</string>
     <string name="first_name">Name</string>
+    <string name="forget_password_login">Forget password?</string>
+    <string name="login_facebook">Login with FaceBook</string>
 
 </resources>

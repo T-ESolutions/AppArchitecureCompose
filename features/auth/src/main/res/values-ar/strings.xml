@@ -11,5 +11,7 @@
     <string name="new_account">التسجيل</string>
     <string name="sign_up">إنشاء حساب</string>
     <string name="first_name">الاسم </string>
+    <string name="forget_password_login">هل نسيت كلمة المرور؟</string>
+    <string name="login_facebook">دخول بإستخدام فيسبوك</string>
 
 </resources>

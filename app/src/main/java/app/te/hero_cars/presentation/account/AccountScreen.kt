@@ -46,7 +46,7 @@ fun AccountScreen(
 
         val (ic_logo, ic_login_logout) = createRefs()
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = app.te.core.R.drawable.logo),
             contentDescription = "LOGO",
             modifier = Modifier
                 .constrainAs(ic_logo) {

@@ -1,7 +1,5 @@
 package te.app.auth.presentation.nav_graph
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.tween
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.composable
@@ -9,10 +7,12 @@ import app.te.auth.AuthenticationDirections
 import app.te.auth.AuthenticationDirections.AUTH_GRAPH_ROUTE
 import app.te.auth.AuthenticationDirections.OnBoardingScreen
 import app.te.auth.AuthenticationDirections.SplashScreen
-import app.te.auth.AuthenticationDirections.LoginScreen
-import app.te.auth.BOARDING_ROUTE
-import app.te.auth.LOGIN_ROUTE
+import app.te.auth.AuthenticationDirections.LoginScreenNav
 import app.te.auth.SPLASH_ROUTE
+import app.te.core.utils.enterTransition
+import app.te.core.utils.exitTransition
+import app.te.core.utils.popEnterTransition
+import app.te.core.utils.popExitTransition
 import te.app.auth.presentation.intro.OnBoarding
 import te.app.auth.presentation.intro.view_model.TutorialViewModel
 import te.app.auth.presentation.login.LoginScreen
@@ -32,122 +32,42 @@ fun NavGraphBuilder.authNavGraph(
     ) {
         composable(
             SplashScreen().destination,
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() },
         ) {
             val viewModel = hiltViewModel<SplashViewModel>()
             SplashScreenPage(viewModel)
         }
         composable(
             OnBoardingScreen().destination,
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() },
         ) {
             val viewModel = hiltViewModel<TutorialViewModel>()
             OnBoarding(viewModel)
         }
 
         composable(
-            LoginScreen().destination,
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
+            LoginScreenNav().destination,
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() },
         ) {
             val viewModel = hiltViewModel<LogInViewModel>()
-            LoginScreen(navHostController, viewModel)
+            LoginScreen(viewModel)
         }
 
         composable(
             AuthenticationDirections.SignUpScreen().destination,
-            enterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            popEnterTransition = {
-                slideIntoContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            },
-            popExitTransition = {
-                slideOutOfContainer(
-                    AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            }
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() }
         ) {
             val viewModel = hiltViewModel<SignUpViewModel>()
             SignUpScreen(navHostController, viewModel)
