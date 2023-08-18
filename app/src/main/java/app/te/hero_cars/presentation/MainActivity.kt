@@ -1,12 +1,16 @@
 package app.te.hero_cars.presentation
 
 import android.annotation.SuppressLint
-import androidx.activity.ComponentActivity
+import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavHostController
 import app.te.core.extension.navigateSafe
 import app.te.core.theme.AppArchitectureTheme
@@ -17,6 +21,7 @@ import app.te.hero_cars.presentation.bottom_bar.BottomBarScreen
 import app.te.hero_cars.presentation.home.nav_graph.SetupNavGraph
 import app.te.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -28,10 +33,16 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var navigationManager: NavigationManager
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen().setOnExitAnimationListener{
+            updateLocale("ar")
+        }
+        super.onCreate(savedInstanceState)
+    }
     override fun setUpContent() {
         setContent {
-            val showFloatingButton = remember { mutableStateOf(true) }
-            val showBottomBar = remember { mutableStateOf(true) }
+            val showFloatingButton = remember { mutableStateOf(false) }
+            val showBottomBar = remember { mutableStateOf(false) }
             AppArchitectureTheme {
                 navHostController = rememberNavController()
                 HandleNavigation(navHostController)
@@ -63,9 +74,18 @@ class MainActivity : BaseActivity() {
 
     @Composable
     private fun HandleNavigation(navHostController: NavHostController) {
-        navigationManager.commands.collectAsState().value.also { command ->
-            if (command.destination.isNotEmpty()) {
-                navHostController.navigateSafe(command.destination, popUpTo = command.popUpTo)
+        SideEffect {
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                    navigationManager.commands.collect { command ->
+                        if (command.destination.isNotEmpty()) {
+                            navHostController.navigateSafe(
+                                command.destination,
+                                popUpTo = command.popUpTo
+                            )
+                        }
+                    }
+                }
             }
         }
     }

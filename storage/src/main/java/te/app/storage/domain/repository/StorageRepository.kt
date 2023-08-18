@@ -19,12 +19,13 @@ interface StorageRepository {
 
     suspend fun saveUserToLocal(user: Any)
 
-    suspend fun getUserToLocal(): Flow<User>
+    suspend fun getUserToLocal(): User
 
     suspend fun saveUserToken(userToken: String)
 
     suspend fun getUserToken(): Flow<String>
-
+    suspend fun saveUserType(userType: Int)
+    suspend fun getUserType(): Int
     suspend fun setLang(lang: String)
 
     suspend fun getLang(): Flow<String>

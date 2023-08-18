@@ -59,6 +59,12 @@ class TutorialViewModel @Inject constructor(
     }
 
     fun openLogin() {
-        navigationManager.navigate(AuthenticationDirections.LoginScreenNav(AuthenticationDirections.OnBoardingScreen().destination))
+        viewModelScope.launch {
+            navigationManager.navigate(
+                AuthenticationDirections.LoginScreenNav(
+                    AuthenticationDirections.OnBoardingScreen().destination
+                )
+            )
+        }
     }
 }

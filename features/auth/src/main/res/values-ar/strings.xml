@@ -7,11 +7,16 @@
     <string name="find_your_phone">ابحث عن هاتفك</string>
     <string name="phone_hint">رقم الهاتف</string>
     <string name="password">كلمة المرور</string>
-    <string name="create_an_account">انشئ حساب؟</string>
+    <string name="create_an_account">ليس لديك حساب؟</string>
     <string name="new_account">التسجيل</string>
     <string name="sign_up">إنشاء حساب</string>
     <string name="first_name">الاسم </string>
     <string name="forget_password_login">هل نسيت كلمة المرور؟</string>
     <string name="login_facebook">دخول بإستخدام فيسبوك</string>
+    <string name="login_google">دخول بإستخدام جوجل</string>
+    <string name="select_user">تحديد المستخدم</string>
+    <string name="need_car">احتاج سيارة</string>
+    <string name="car_owner">مالك السيارة</string>
+    <string name="next">إستمرار</string>
 
 </resources>

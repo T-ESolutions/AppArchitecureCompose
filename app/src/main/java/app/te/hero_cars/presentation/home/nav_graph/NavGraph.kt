@@ -10,7 +10,7 @@ import app.te.hero_cars.presentation.general.navigation.brandsModelsNavGraph
 import app.te.hero_cars.presentation.general.navigation.locationsNavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import app.te.auth.AuthenticationDirections.AUTH_GRAPH_ROUTE
+import app.te.auth.Navigation
 import app.te.core.utils.enterTransition
 import app.te.core.utils.exitTransition
 import app.te.core.utils.popEnterTransition
@@ -26,7 +26,7 @@ fun SetupNavGraph(
     NavHost(
         navController = navHostController,
         route = ROOT_GRAPH_ROUTE,
-        startDestination = AUTH_GRAPH_ROUTE.destination,
+        startDestination = Navigation.AuthGraph.destination,
     ) {
         authNavGraph(navHostController)
         bottomBarNavGraph(navHostController)

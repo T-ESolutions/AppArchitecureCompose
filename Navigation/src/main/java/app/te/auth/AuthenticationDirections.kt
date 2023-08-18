@@ -3,27 +3,9 @@ package app.te.auth
 import androidx.navigation.NamedNavArgument
 import app.te.navigation.NavigationCommand
 
-object AuthenticationDirections {
+sealed class AuthenticationDirections : Navigation() {
 
-    val Default = object : NavigationCommand {
-
-        override val arguments = emptyList<NamedNavArgument>()
-
-        override val destination = ""
-        override val popUpTo: String = ""
-
-
-    }
-    val AUTH_GRAPH_ROUTE = object : NavigationCommand {
-
-        override val arguments = emptyList<NamedNavArgument>()
-
-        override val destination = "AUTH_GRAPH_ROUTE"
-        override val popUpTo: String = ""
-
-    }
-
-    data class SplashScreen(val popUp: String?= null) : NavigationCommand {
+    data class SplashScreen(val popUp: String? = null) : AuthenticationDirections() {
 
         override val arguments = emptyList<NamedNavArgument>()
 
@@ -31,7 +13,7 @@ object AuthenticationDirections {
         override val popUpTo: String? = popUp
     }
 
-    data class OnBoardingScreen(val popUp: String?= null) : NavigationCommand {
+    data class OnBoardingScreen(val popUp: String? = null) : AuthenticationDirections() {
 
         override val arguments = emptyList<NamedNavArgument>()
 
@@ -41,7 +23,17 @@ object AuthenticationDirections {
 
     }
 
-    data class LoginScreenNav(val popUp: String? = null) : NavigationCommand {
+    data class UserTypeScreen(val popUp: String? = null) : AuthenticationDirections() {
+
+        override val arguments = emptyList<NamedNavArgument>()
+
+        override val destination = USER_TYPE_ROUTE
+
+        override val popUpTo: String? = popUp
+
+    }
+
+    data class LoginScreenNav(val popUp: String? = null) : AuthenticationDirections() {
 
         override val arguments = emptyList<NamedNavArgument>()
 
@@ -49,7 +41,7 @@ object AuthenticationDirections {
         override val popUpTo: String? = popUp
     }
 
-    data class SignUpScreen(val popUp: String? = null) : NavigationCommand {
+    data class SignUpScreen(val popUp: String? = null) : AuthenticationDirections() {
 
         override val arguments = emptyList<NamedNavArgument>()
 

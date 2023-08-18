@@ -7,31 +7,12 @@ plugins {
     id(Config.Plugins.kotlin_parcable)
 //    id(Config.Plugins.navigationSafeArgs)
     id(Config.Plugins.hilt)
-    id(Config.Plugins.proto_buf)
     id(Config.Plugins.google_secrets)
 //    id(Config.Plugins.google_services)
 //    id(Config.Plugins.huawei_services)
     id(Config.Plugins.checkDependencyUpdates) version "1.5.0"
 
 //    id(Config.Plugins.appsweep) version "latest.release"
-}
-protobuf {
-    protoc {
-        artifact = Libraries.datastore_protoc
-    }
-
-    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-    // for more information.
-    generateProtoTasks {
-        all().forEach { task ->
-            task.plugins {
-                create("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
 }
 
 android {

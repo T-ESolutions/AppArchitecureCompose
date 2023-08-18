@@ -5,8 +5,8 @@ object Keys {
         System.loadLibrary("native-lib")
     }
 
-    external fun debugBaseUrl(): String
-    external fun releaseBaseUrl(): String
+    private external fun debugBaseUrl(): String
+    private external fun releaseBaseUrl(): String
     external fun appDataStore(): String
     external fun appDataStoreFirstTime(): String
     external fun userDataStoreFileName(): String
@@ -17,6 +17,7 @@ object Keys {
     external fun lang(): String
     external fun splash(): String
     external fun platForm(): String
+    external fun userTypeKey(): String
 
     fun baseUrl(): String {
         return if (BuildConfig.DEBUG)

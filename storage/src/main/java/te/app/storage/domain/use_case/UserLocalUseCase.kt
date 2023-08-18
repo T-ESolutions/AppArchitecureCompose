@@ -11,7 +11,7 @@ class UserLocalUseCase @Inject constructor(private val storageRepository: Storag
         storageRepository.saveUserToLocal(user)
     }
 
-    suspend operator fun invoke(): Flow<User> = storageRepository.getUserToLocal()
+    suspend operator fun invoke(): User = storageRepository.getUserToLocal()
 
     suspend fun logOut() = storageRepository.clearPreferences()
 

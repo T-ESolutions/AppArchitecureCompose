@@ -5,26 +5,30 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.te.auth.AuthenticationDirections
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginState
 import te.app.auth.presentation.login.state.LoginFormState
 import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
+import app.te.navigation.NavigationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import te.app.auth.domain.entity.request.LogInRequest
 import te.app.auth.domain.use_case.LogInUseCase
+import te.app.storage.domain.entity.UserType
+import te.app.storage.domain.use_case.UserTypeUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class LogInViewModel @Inject constructor(
     private val logInUseCase: LogInUseCase,
     private val validatePhone: ValidatePhone,
-    private val validatePassword: ValidatePassword
+    private val validatePassword: ValidatePassword,
+    private val checkUserTypeUseCase: UserTypeUseCase,
+    private val navigationManager: NavigationManager
 ) : ViewModel() {
 
     var state by mutableStateOf(LoginFormState())
@@ -32,6 +36,13 @@ class LogInViewModel @Inject constructor(
     private val _loginState =
         MutableStateFlow(LoginState())
     val loginState = _loginState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            state =
+                state.copy(isSocialAvailable = checkUserTypeUseCase.invoke() == UserType.CLIENT.userType)
+        }
+    }
 
     fun onEvent(event: LoginFormEvent) {
         when (event) {
@@ -49,9 +60,29 @@ class LogInViewModel @Inject constructor(
                 )
             }
 
-            is LoginFormEvent.Submit -> {
+            is LoginFormEvent.Login -> {
                 submitData()
             }
+
+            is LoginFormEvent.SignUp -> {
+                openSignScreen()
+            }
+
+            is LoginFormEvent.ResetPassword -> {
+                openResetPasswordScreen()
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun openResetPasswordScreen() {
+//        navigationManager.navigate(AuthenticationDirections.SignUpScreen())
+    }
+
+    private fun openSignScreen() {
+        viewModelScope.launch {
+            navigationManager.navigate(AuthenticationDirections.SignUpScreen())
         }
     }
 

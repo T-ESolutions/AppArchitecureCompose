@@ -9,19 +9,23 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import te.app.auth.presentation.splash.state.SplashState
+import te.app.storage.domain.use_case.CheckLoggedInUserUseCase
 import te.app.storage.domain.use_case.GeneralUseCases
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val generalUseCases: GeneralUseCases,
+    private val checkLoggedInUserUseCase: CheckLoggedInUserUseCase,
     private val navigationManager: NavigationManager
 ) : ViewModel() {
     private val _splashState =
         MutableStateFlow(SplashState())
     val splashState = _splashState.asStateFlow()
+
     fun checkFirstTime() {
         viewModelScope.launch {
             generalUseCases.checkFirstTimeUseCase().collect { isFirst ->
@@ -29,7 +33,12 @@ class SplashViewModel @Inject constructor(
                 if (isFirst) {
                     openTutorialScreen()
                 } else {
-                    openTutorialScreen()
+                    if (checkLoggedInUserUseCase.invoke())
+                        openHomeActivity()
+                    else
+                        openUserType()
+
+
                 }
             }
         }
@@ -37,11 +46,23 @@ class SplashViewModel @Inject constructor(
 
     private fun openTutorialScreen() {
         _splashState.value = SplashState(openTutorialScreen = true)
-        navigationManager.navigate(AuthenticationDirections.OnBoardingScreen(SPLASH_ROUTE))
+        viewModelScope.launch {
+            navigationManager.navigate(AuthenticationDirections.OnBoardingScreen(SPLASH_ROUTE))
+        }
     }
 
     private fun openHomeActivity() {
-        _splashState.value = SplashState(openTutorialScreen = false)
-        navigationManager.navigate(AuthenticationDirections.LoginScreenNav(SPLASH_ROUTE))
+        _splashState.value = SplashState(openTutorialScreen = true)
+        viewModelScope.launch {
+            navigationManager.navigate(AuthenticationDirections.LoginScreenNav(SPLASH_ROUTE))
+        }
     }
+
+    private fun openUserType() {
+        _splashState.value = SplashState(openTutorialScreen = true)
+        viewModelScope.launch {
+            navigationManager.navigate(AuthenticationDirections.UserTypeScreen(SPLASH_ROUTE))
+        }
+    }
+
 }

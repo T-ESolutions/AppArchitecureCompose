@@ -5,5 +5,6 @@ import javax.inject.Inject
 
 class CheckLoggedInUserUseCase @Inject constructor(private val storageRepository: StorageRepository) {
 
-  suspend operator fun invoke() = storageRepository.getUserToLocal()
+    suspend operator fun invoke() = storageRepository.getUserToLocal().id != 0
+
 }

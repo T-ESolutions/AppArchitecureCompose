@@ -29,7 +29,9 @@ class AppPreferences @Inject constructor(private val context: Context) {
     private val IS_LOGGED_IN = booleanPreferencesKey(Keys.isLoggedIn())
     private val LANG = stringPreferencesKey(Keys.lang())
     private val SPLASH_SCREEN = stringPreferencesKey(Keys.splash())
-//
+    private val UserTypeKey = intPreferencesKey(Keys.userTypeKey())
+
+    //
 //
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = STORE_NAME)
     private val Context.dataStoreFirstTime: DataStore<Preferences> by preferencesDataStore(name = STORE_NAME_FIRST_TIME)
@@ -37,7 +39,8 @@ class AppPreferences @Inject constructor(private val context: Context) {
         fileName = USER_DATA_STORE_FILE_NAME,
         serializer = UserSerializer
     )
-//
+
+    //
     suspend fun saveFireBaseToken(token: String) {
         context.dataStore.edit {
             it[FIREBASE_TOKEN] = token
@@ -63,9 +66,26 @@ class AppPreferences @Inject constructor(private val context: Context) {
             it[IS_LOGGED_IN] = isLoggedIn
         }
     }
-//
+
+    //
     fun getIsLoggedIn() = context.dataStore.data.map {
         it[IS_LOGGED_IN] ?: false
+    }
+
+    suspend fun saveUserType(userType: Int) {
+        context.dataStore.edit {
+            it[UserTypeKey] = userType
+        }
+    }
+
+    //
+    suspend fun getUserType(): Int = suspendCancellableCoroutine { continuation ->
+        CoroutineScope(Dispatchers.IO).launch {
+            context.dataStore.data.collectLatest {
+                if (continuation.isActive)
+                    continuation.resume(it[UserTypeKey] ?: 0)
+            }
+        }
     }
 
     suspend fun userToken(userToken: String) {
@@ -77,6 +97,7 @@ class AppPreferences @Inject constructor(private val context: Context) {
     fun getUserToken() = context.dataStore.data.map {
         it[USER_TOKEN] ?: ""
     }
+
     suspend fun getUserToKenValue(): String = suspendCancellableCoroutine { continuation ->
         CoroutineScope(Dispatchers.IO).launch {
             context.userDataStore.data.collectLatest {
@@ -96,7 +117,8 @@ class AppPreferences @Inject constructor(private val context: Context) {
     fun getLang() = context.dataStore.data.map {
         it[LANG] ?: "ar"
     }
-//TODO UPDATE THIS FUNCTION
+
+    //TODO UPDATE THIS FUNCTION
 //    suspend fun saveUser(user: UserResponse) {
 //        context.userDataStore.updateData { store ->
 //            store.toBuilder()

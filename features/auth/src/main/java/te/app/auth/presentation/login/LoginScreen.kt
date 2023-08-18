@@ -1,11 +1,10 @@
 package te.app.auth.presentation.login
 
-import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -19,29 +18,29 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import app.te.auth.AuthenticationDirections
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginFormState
 import te.app.auth.presentation.login.view_model.LogInViewModel
-import app.te.core.extension.navigateSafe
 import app.te.core.utils.ShowLottieLoading
-import app.te.core.utils.CenterAlignedTopAppBarCustom
 import app.te.core.utils.HandleApiError
 import app.te.core.extension.findActivity
 import te.app.auth.R
@@ -56,13 +55,7 @@ fun LoginScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        topBar = {
-            CenterAlignedTopAppBarCustom(
-                title = R.string.login
-            ) {
-                activity.finish()
-            }
-        }, content = { paddingValues ->
+        content = { paddingValues ->
             if (loginState.isLoading)
                 ShowLottieLoading()
 
@@ -77,10 +70,15 @@ fun LoginScreen(
                 activity.finish()
             }
             LogInView(
-                paddingValues, validateState,
+                paddingValues,
+                validateState,
                 onPhoneChanged = viewModel::onEvent,
                 onPasswordChanged = viewModel::onEvent,
-                onLoginSubmittedChanged = viewModel::onEvent
+                onLoginSubmittedChanged = viewModel::onEvent,
+                onSignUpSubmittedChanged = viewModel::onEvent,
+                onResetClicked = viewModel::onEvent,
+                onFaceBookClicked = viewModel::onEvent,
+                onGoogleClicked = viewModel::onEvent
             )
 
         }
@@ -91,10 +89,14 @@ fun LoginScreen(
 @Preview(showBackground = true, locale = "ar")
 fun LogInView(
     paddingValues: PaddingValues = PaddingValues(6.dp),
-    validateState: LoginFormState = LoginFormState(),
+    loginFormState: LoginFormState = LoginFormState(),
     onPhoneChanged: (event: LoginFormEvent) -> Unit = {},
     onPasswordChanged: (event: LoginFormEvent.PasswordChanged) -> Unit = {},
-    onLoginSubmittedChanged: (event: LoginFormEvent.Submit) -> Unit = {},
+    onResetClicked: (event: LoginFormEvent.ResetPassword) -> Unit = {},
+    onFaceBookClicked: (event: LoginFormEvent.LoginFaceBook) -> Unit = {},
+    onGoogleClicked: (event: LoginFormEvent.LoginGoogle) -> Unit = {},
+    onLoginSubmittedChanged: (event: LoginFormEvent.Login) -> Unit = {},
+    onSignUpSubmittedChanged: (event: LoginFormEvent.SignUp) -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -102,40 +104,49 @@ fun LogInView(
             .background(MaterialTheme.colorScheme.background)
             .navigationBarsPadding()
             .imePadding()
-            .padding(paddingValues)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         TopSection()
         Spacer(modifier = Modifier.height(15.dp))
-        InputPhoneSection(validateState.phone, validateState.phoneError, onPhoneChanged)
-        InputPasswordSection(validateState.password, validateState.passwordError, onPasswordChanged)
-        ForgetPasswordSection()
-        SocialButtons()
-        //        LoginButtonSection()
+        InputPhoneSection(loginFormState.phone, loginFormState.phoneError, onPhoneChanged)
+        InputPasswordSection(
+            loginFormState.password,
+            loginFormState.passwordError,
+            onPasswordChanged
+        )
+        ForgetPasswordSection(onResetClicked)
+        if (loginFormState.isSocialAvailable)
+            SocialButtons(onFaceBookClicked, onGoogleClicked)
+        LoginButtonSection(onLoginSubmittedChanged, onSignUpSubmittedChanged)
     }
 }
 
 @Composable
 fun TopSection() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.login_header),
+            contentDescription = "Login Header",
+            modifier = Modifier.fillMaxSize(), contentScale = ContentScale.FillBounds
+        )
 
-    Spacer(modifier = Modifier.height(15.dp))
+        Text(
+            text = stringResource(id = R.string.login),
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.background,
+            fontWeight = FontWeight(900)
+        )
 
-    Text(
-        text = stringResource(id = R.string.welcome_to_stolen_phone),
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.primary
-    )
-    Text(
-        text = stringResource(id = R.string.find_your_phone),
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.labelMedium,
-        color = MaterialTheme.colorScheme.primary
-    )
+    }
 
 }
 
@@ -154,7 +165,14 @@ fun InputPhoneSection(
             .padding(start = 15.dp, end = 15.dp),
         label = {
             Text(
-                text = stringResource(id = R.string.phone_hint)
+                text = stringResource(id = R.string.phone_hint),
+                style = TextStyle(
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    fontWeight = FontWeight(300)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
             )
         },
         singleLine = true,
@@ -175,9 +193,14 @@ fun InputPhoneSection(
             text = phoneError,
             color = MaterialTheme.colorScheme.error,
             textAlign = TextAlign.Start,
+            style = TextStyle(
+                fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                color = MaterialTheme.colorScheme.error,
+                fontWeight = FontWeight(200)
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 15.dp, end = 15.dp)
+                .padding(start = 20.dp, end = 15.dp, top = 2.dp)
         )
     }
     Spacer(modifier = Modifier.height(10.dp))
@@ -207,7 +230,14 @@ fun InputPasswordSection(
             .padding(start = 15.dp, end = 15.dp),
         label = {
             Text(
-                text = stringResource(id = R.string.password)
+                text = stringResource(id = R.string.password),
+                style = TextStyle(
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    fontWeight = FontWeight(300)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
             )
         },
         singleLine = true,
@@ -218,12 +248,6 @@ fun InputPasswordSection(
         keyboardActions = KeyboardActions(
             onDone = { focusManager.clearFocus() }
         ),
-        leadingIcon = {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_password),
-                contentDescription = "Phone number"
-            )
-        },
         trailingIcon = {
             IconButton(onClick = { showPassword = !showPassword }) {
                 Icon(
@@ -238,18 +262,24 @@ fun InputPasswordSection(
     if (passwordError != null) {
         Text(
             text = passwordError,
-            color = MaterialTheme.colorScheme.error,
             textAlign = TextAlign.Start,
+            style = TextStyle(
+                fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                color = MaterialTheme.colorScheme.error,
+                fontWeight = FontWeight(200)
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 15.dp, end = 15.dp)
+                .padding(start = 20.dp, end = 15.dp, top = 2.dp)
         )
     }
 
 }
 
 @Composable
-fun ForgetPasswordSection() {
+fun ForgetPasswordSection(
+    onResetClicked: (event: LoginFormEvent.ResetPassword) -> Unit = {}
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Start
@@ -258,22 +288,33 @@ fun ForgetPasswordSection() {
             text = stringResource(id = R.string.forget_password_login),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(top = 11.dp, start = 15.dp, end = 15.dp)
+            modifier = Modifier
+                .padding(top = 11.dp, start = 15.dp, end = 15.dp)
+                .clickable { onResetClicked }
         )
     }
 
 }
 
 @Composable
-fun SocialButtons() {
+fun SocialButtons(
+    onFaceBookClicked: (event: LoginFormEvent.LoginFaceBook) -> Unit = {},
+    onGoogleClicked: (event: LoginFormEvent.LoginGoogle) -> Unit = {}
+) {
+
     Button(
         onClick = { },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(15.dp),
+            .padding(start = 15.dp, end = 15.dp, top = 15.dp),
         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
         shape = MaterialTheme.shapes.small
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_facebook),
+            contentDescription = "logo",
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
         Text(
             text = stringResource(id = R.string.login_facebook),
             style = MaterialTheme.typography.bodyMedium,
@@ -285,12 +326,17 @@ fun SocialButtons() {
         onClick = { },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(15.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onSecondary),
+            .padding(start = 15.dp, end = 15.dp, top = 5.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
         shape = MaterialTheme.shapes.small
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_google),
+            contentDescription = "logo",
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
         Text(
-            text = stringResource(id = R.string.login_facebook),
+            text = stringResource(id = R.string.login_google),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.background
         )
@@ -300,17 +346,17 @@ fun SocialButtons() {
 
 @Composable
 fun LoginButtonSection(
-    navHostController: NavHostController = rememberNavController(),
-    viewModel: LogInViewModel = viewModel()
+    onLoginClicked: (event: LoginFormEvent.Login) -> Unit = {},
+    onSignUpClicked: (event: LoginFormEvent.SignUp) -> Unit = {},
 ) {
-    Spacer(modifier = Modifier.height(10.dp))
+    Spacer(modifier = Modifier.height(80.dp))
 
     Button(
-        onClick = { viewModel.onEvent(LoginFormEvent.Submit) },
+        onClick = { onLoginClicked.invoke(LoginFormEvent.Login) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
         shape = MaterialTheme.shapes.small
     ) {
         Text(
@@ -319,29 +365,33 @@ fun LoginButtonSection(
             color = MaterialTheme.colorScheme.background
         )
     }
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally),
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = stringResource(id = R.string.create_an_account),
+            text = buildAnnotatedString {
+                append(stringResource(id = R.string.create_an_account))
+                append(" ")
+                withStyle(
+                    style = SpanStyle(
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
+                    )
+                ) {
+                    append(stringResource(id = R.string.sign_up))
+                }
+            },
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.clickable {
-                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
+                onSignUpClicked.invoke(LoginFormEvent.SignUp)
+//                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
             }
         )
 
-        Text(
-            text = stringResource(id = R.string.new_account),
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onBackground,
-            textDecoration = TextDecoration.Underline,
-            modifier = Modifier.clickable {
-                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
-            }
-        )
 
     }
 }

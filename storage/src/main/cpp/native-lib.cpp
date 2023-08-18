@@ -69,3 +69,10 @@ Java_te_app_storage_Keys_platForm(JNIEnv *env, jobject thiz) {
     std::string platform = "android";
     return env->NewStringUTF(platform.c_str());
 }
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_te_app_storage_Keys_userTypeKey(JNIEnv *env, jobject thiz) {
+    std::string platform = "user_type";
+    return env->NewStringUTF(platform.c_str());
+}

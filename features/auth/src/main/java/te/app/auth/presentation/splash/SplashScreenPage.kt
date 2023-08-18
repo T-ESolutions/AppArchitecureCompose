@@ -18,9 +18,10 @@ import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.te.core.BaseActivity
 import app.te.core.extension.findActivity
@@ -29,7 +30,7 @@ import app.te.core.extension.findActivity
 fun SplashScreenPage(
     viewModel: SplashViewModel = viewModel()
 ) {
-    val splashState = viewModel.splashState.collectAsState()
+    val splashState by viewModel.splashState.collectAsStateWithLifecycle()
     val activity = LocalContext.current.findActivity()
 
     val scale = remember {
@@ -38,7 +39,7 @@ fun SplashScreenPage(
     LaunchedEffect(key1 = true) {
         viewModel.checkFirstTime()
         scale.animateTo(
-            targetValue = 0.3f,
+            targetValue = 1f,
             animationSpec = tween(
                 durationMillis = 500,
                 easing = {
@@ -46,8 +47,8 @@ fun SplashScreenPage(
                 }
             )
         )
-        if (splashState.value.openTutorialScreen)
-            (activity as BaseActivity).updateLocale("en")
+//        if (splashState.openTutorialScreen)
+//            (activity as BaseActivity).updateLocale("ar")
 
     }
     SplashScreenUI(scale)
@@ -58,13 +59,12 @@ fun SplashScreenUI(scale: Animatable<Float, AnimationVector1D> = Animatable(0f))
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.onBackground)
     ) {
         Image(
-            painter = painterResource(id = app.te.core.R.drawable.tes),
+            painter = painterResource(id = app.te.core.R.drawable.logo),
             contentDescription = "logo",
             modifier = Modifier
-                .size(400.dp)
                 .align(Alignment.Center)
                 .scale(scale.value)
         )

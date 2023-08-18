@@ -4,10 +4,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import app.te.auth.AuthenticationDirections
-import app.te.auth.AuthenticationDirections.AUTH_GRAPH_ROUTE
 import app.te.auth.AuthenticationDirections.OnBoardingScreen
 import app.te.auth.AuthenticationDirections.SplashScreen
 import app.te.auth.AuthenticationDirections.LoginScreenNav
+import app.te.auth.Navigation
 import app.te.auth.SPLASH_ROUTE
 import app.te.core.utils.enterTransition
 import app.te.core.utils.exitTransition
@@ -21,13 +21,15 @@ import te.app.auth.presentation.sign_up.SignUpScreen
 import te.app.auth.presentation.sign_up.view_model.SignUpViewModel
 import te.app.auth.presentation.splash.SplashScreenPage
 import te.app.auth.presentation.splash.SplashViewModel
+import te.app.auth.presentation.user_type.CheckUserTypeViewModel
+import te.app.auth.presentation.user_type.UserTypeScreen
 
 fun NavGraphBuilder.authNavGraph(
     navHostController: NavHostController,
     startDestination: String = SPLASH_ROUTE
 ) {
     navigation(
-        route = AUTH_GRAPH_ROUTE.destination,
+        route = Navigation.AuthGraph.destination,
         startDestination = startDestination
     ) {
         composable(
@@ -49,6 +51,16 @@ fun NavGraphBuilder.authNavGraph(
         ) {
             val viewModel = hiltViewModel<TutorialViewModel>()
             OnBoarding(viewModel)
+        }
+        composable(
+            AuthenticationDirections.UserTypeScreen().destination,
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() },
+        ) {
+            val viewModel = hiltViewModel<CheckUserTypeViewModel>()
+            UserTypeScreen(viewModel)
         }
 
         composable(
