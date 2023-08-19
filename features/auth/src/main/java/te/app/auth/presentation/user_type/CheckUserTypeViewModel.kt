@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import app.te.auth.AuthenticationDirections
 import app.te.auth.USER_TYPE_ROUTE
 import app.te.navigation.NavigationManager
+import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import te.app.storage.domain.entity.UserType
@@ -20,7 +21,13 @@ class CheckUserTypeViewModel @Inject constructor(
     fun openLogin(selection: Boolean) {
         viewModelScope.launch {
             userTypeUseCase.invoke(if (selection) UserType.CLIENT.userType else UserType.CAR_OWNER.userType)
-            navigationManager.navigate(AuthenticationDirections.LoginScreenNav(USER_TYPE_ROUTE))
+            navigationManager.navigate(
+                AuthenticationDirections.LoginScreenNav(
+                    NavigationOptions(
+                        popUpTo = USER_TYPE_ROUTE
+                    )
+                )
+            )
         }
     }
 

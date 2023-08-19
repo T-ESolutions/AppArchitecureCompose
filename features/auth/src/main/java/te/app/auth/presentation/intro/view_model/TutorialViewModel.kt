@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.te.auth.AuthenticationDirections
 import app.te.navigation.NavigationManager
+import app.te.navigation.NavigationOptions
 import app.te.network.utils.Resource
 import te.app.auth.presentation.intro.state.IntroState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,7 +63,7 @@ class TutorialViewModel @Inject constructor(
         viewModelScope.launch {
             navigationManager.navigate(
                 AuthenticationDirections.LoginScreenNav(
-                    AuthenticationDirections.OnBoardingScreen().destination
+                    NavigationOptions(popUpTo = AuthenticationDirections.OnBoardingScreen().destination)
                 )
             )
         }

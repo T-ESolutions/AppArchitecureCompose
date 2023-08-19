@@ -26,9 +26,9 @@ fun SetupNavGraph(
     NavHost(
         navController = navHostController,
         route = ROOT_GRAPH_ROUTE,
-        startDestination = Navigation.AuthGraph.destination,
+        startDestination = Navigation.AuthGraph().destination,
     ) {
-        authNavGraph(navHostController)
+        authNavGraph()
         bottomBarNavGraph(navHostController)
         locationsNavGraph(navHostController)
         brandsModelsNavGraph(navHostController)

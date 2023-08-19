@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -39,6 +40,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
@@ -206,4 +210,23 @@ fun TextHtml(text: String, modifier: Modifier) {
         },
         modifier = modifier
     )
+}
+
+@Composable
+fun InputError(fieldError:String?=null) {
+    if (fieldError != null) {
+        Text(
+            text = fieldError,
+            color = MaterialTheme.colorScheme.error,
+            textAlign = TextAlign.Start,
+            style = TextStyle(
+                fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                color = MaterialTheme.colorScheme.error,
+                fontWeight = FontWeight(200)
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 15.dp, top = 2.dp)
+        )
+    }
 }

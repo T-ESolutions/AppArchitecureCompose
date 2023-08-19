@@ -2,6 +2,7 @@ package app.te.core.extension
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 
 fun NavController.navigateSafe(
@@ -23,6 +24,10 @@ fun NavController.navigateSafe(
             popUpTo(popUpToId)
 
     }
+}
+
+fun NavController.backToPreviousScreen() {
+    navigateUp()
 }
 
 @Composable

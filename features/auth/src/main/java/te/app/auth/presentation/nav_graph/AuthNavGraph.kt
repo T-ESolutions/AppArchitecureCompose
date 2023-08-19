@@ -17,6 +17,7 @@ import te.app.auth.presentation.intro.OnBoarding
 import te.app.auth.presentation.intro.view_model.TutorialViewModel
 import te.app.auth.presentation.login.LoginScreen
 import te.app.auth.presentation.login.view_model.LogInViewModel
+import te.app.auth.presentation.otp.OtpVerificationScreen
 import te.app.auth.presentation.sign_up.SignUpScreen
 import te.app.auth.presentation.sign_up.view_model.SignUpViewModel
 import te.app.auth.presentation.splash.SplashScreenPage
@@ -25,11 +26,10 @@ import te.app.auth.presentation.user_type.CheckUserTypeViewModel
 import te.app.auth.presentation.user_type.UserTypeScreen
 
 fun NavGraphBuilder.authNavGraph(
-    navHostController: NavHostController,
     startDestination: String = SPLASH_ROUTE
 ) {
     navigation(
-        route = Navigation.AuthGraph.destination,
+        route = Navigation.AuthGraph().destination,
         startDestination = startDestination
     ) {
         composable(
@@ -82,7 +82,18 @@ fun NavGraphBuilder.authNavGraph(
             popExitTransition = { popExitTransition() }
         ) {
             val viewModel = hiltViewModel<SignUpViewModel>()
-            SignUpScreen(navHostController, viewModel)
+            SignUpScreen(viewModel)
         }
+        composable(
+            AuthenticationDirections.VerifyScreen().destination,
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() }
+        ) {
+//            val viewModel = hiltViewModel<SignUpViewModel>()
+            OtpVerificationScreen()
+        }
+
     }
 }

@@ -18,8 +18,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import te.app.auth.domain.entity.request.LogInRequest
 import te.app.auth.domain.use_case.LogInUseCase
-import te.app.storage.domain.entity.UserType
-import te.app.storage.domain.use_case.UserTypeUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +25,6 @@ class LogInViewModel @Inject constructor(
     private val logInUseCase: LogInUseCase,
     private val validatePhone: ValidatePhone,
     private val validatePassword: ValidatePassword,
-    private val checkUserTypeUseCase: UserTypeUseCase,
     private val navigationManager: NavigationManager
 ) : ViewModel() {
 
@@ -36,13 +33,6 @@ class LogInViewModel @Inject constructor(
     private val _loginState =
         MutableStateFlow(LoginState())
     val loginState = _loginState.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            state =
-                state.copy(isSocialAvailable = checkUserTypeUseCase.invoke() == UserType.CLIENT.userType)
-        }
-    }
 
     fun onEvent(event: LoginFormEvent) {
         when (event) {
@@ -77,7 +67,9 @@ class LogInViewModel @Inject constructor(
     }
 
     private fun openResetPasswordScreen() {
-//        navigationManager.navigate(AuthenticationDirections.SignUpScreen())
+        viewModelScope.launch {
+            navigationManager.navigate(AuthenticationDirections.VerifyScreen())
+        }
     }
 
     private fun openSignScreen() {

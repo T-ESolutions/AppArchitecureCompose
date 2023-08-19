@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import app.te.core.extension.navigateSafe
 import app.te.core.theme.AppArchitectureTheme
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.get
 import app.te.core.BaseActivity
 import app.te.hero_cars.presentation.bottom_bar.BottomBar
 import app.te.hero_cars.presentation.bottom_bar.BottomBarScreen
@@ -28,17 +29,17 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    private lateinit var navHostController: NavHostController
 
     @Inject
     lateinit var navigationManager: NavigationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen().setOnExitAnimationListener{
+        installSplashScreen().setOnExitAnimationListener {
             updateLocale("ar")
         }
         super.onCreate(savedInstanceState)
     }
+
     override fun setUpContent() {
         setContent {
             val showFloatingButton = remember { mutableStateOf(false) }
@@ -81,7 +82,8 @@ class MainActivity : BaseActivity() {
                         if (command.destination.isNotEmpty()) {
                             navHostController.navigateSafe(
                                 command.destination,
-                                popUpTo = command.popUpTo
+                                popUpTo = command.popUpTo,
+                                popUpToId = if (command.popUpToId != null) navHostController.graph[command.popUpToId!!].id else null
                             )
                         }
                     }

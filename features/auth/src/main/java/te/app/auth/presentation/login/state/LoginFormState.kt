@@ -5,5 +5,4 @@ data class LoginFormState(
     val phoneError: String? = null,
     val password: String = "",
     val passwordError: String? = null,
-    val isSocialAvailable: Boolean = false,
 )

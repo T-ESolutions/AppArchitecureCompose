@@ -8,4 +8,6 @@ interface NavigationCommand {
     val destination: String
 
     val popUpTo: String?
+
+    val popUpToId: String?
 }

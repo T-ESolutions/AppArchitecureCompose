@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import app.te.auth.AuthenticationDirections
 import app.te.auth.SPLASH_ROUTE
 import app.te.navigation.NavigationManager
+import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,21 +48,42 @@ class SplashViewModel @Inject constructor(
     private fun openTutorialScreen() {
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
-            navigationManager.navigate(AuthenticationDirections.OnBoardingScreen(SPLASH_ROUTE))
+            navigationManager.navigate(
+                AuthenticationDirections.OnBoardingScreen(
+                    NavigationOptions(
+                        popUpTo =
+                        SPLASH_ROUTE
+                    )
+                )
+            )
         }
     }
 
     private fun openHomeActivity() {
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
-            navigationManager.navigate(AuthenticationDirections.LoginScreenNav(SPLASH_ROUTE))
+            navigationManager.navigate(
+                AuthenticationDirections.LoginScreenNav(
+                    NavigationOptions(
+                        popUpTo =
+                        SPLASH_ROUTE
+                    )
+                )
+            )
         }
     }
 
     private fun openUserType() {
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
-            navigationManager.navigate(AuthenticationDirections.UserTypeScreen(SPLASH_ROUTE))
+            navigationManager.navigate(
+                AuthenticationDirections.UserTypeScreen(
+                    NavigationOptions(
+                        popUpTo =
+                        SPLASH_ROUTE
+                    )
+                )
+            )
         }
     }
 

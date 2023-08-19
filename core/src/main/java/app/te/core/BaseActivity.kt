@@ -5,8 +5,11 @@ import android.content.IntentSender
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.navigation.NavHostController
+import androidx.navigation.findNavController
 import app.te.core.ImmediateUpdateActivity.Companion.UPDATE_REQUEST_CODE
 import app.te.core.extension.adjustFontScale
+import app.te.core.extension.backToPreviousScreen
 import app.te.core.filepicker.core.FilePicker
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
@@ -19,6 +22,7 @@ abstract class BaseActivity : ComponentActivity() {
     private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
     private lateinit var immediateUpdateActivity: ImmediateUpdateActivity
     lateinit var filePicker: FilePicker
+    lateinit var navHostController: NavHostController
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
@@ -83,6 +87,9 @@ abstract class BaseActivity : ComponentActivity() {
         localeDelegate.setLocale(this, Locale(language))
     }
 
+    open fun isBackPressed() {
+        navHostController.backToPreviousScreen()
+    }
 //    override
 //    fun getDelegate() = localeDelegate.getAppCompatDelegate(super.getDelegate())
 

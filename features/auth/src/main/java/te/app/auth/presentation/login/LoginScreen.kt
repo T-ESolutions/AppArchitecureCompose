@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.*
@@ -43,7 +44,10 @@ import te.app.auth.presentation.login.view_model.LogInViewModel
 import app.te.core.utils.ShowLottieLoading
 import app.te.core.utils.HandleApiError
 import app.te.core.extension.findActivity
+import app.te.core.utils.mirror
 import te.app.auth.R
+import te.app.storage.domain.entity.UserType
+import te.app.storage.domain.use_case.UserTypeSingle
 
 @Composable
 fun LoginScreen(
@@ -108,7 +112,7 @@ fun LogInView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        TopSection()
+        TopSection(headerImage = R.drawable.login_header, headerText = R.string.login)
         Spacer(modifier = Modifier.height(15.dp))
         InputPhoneSection(loginFormState.phone, loginFormState.phoneError, onPhoneChanged)
         InputPasswordSection(
@@ -117,29 +121,31 @@ fun LogInView(
             onPasswordChanged
         )
         ForgetPasswordSection(onResetClicked)
-        if (loginFormState.isSocialAvailable)
+        if (UserTypeSingle.userType == UserType.CLIENT.userType)
             SocialButtons(onFaceBookClicked, onGoogleClicked)
         LoginButtonSection(onLoginSubmittedChanged, onSignUpSubmittedChanged)
     }
 }
 
 @Composable
-fun TopSection() {
+fun TopSection(headerImage: Int, headerText: Int) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(220.dp),
-        contentAlignment = Alignment.Center
+            .height(220.dp)
     ) {
+
         Image(
-            painter = painterResource(id = R.drawable.login_header),
+            painter = painterResource(id = headerImage),
             contentDescription = "Login Header",
             modifier = Modifier.fillMaxSize(), contentScale = ContentScale.FillBounds
         )
 
         Text(
-            text = stringResource(id = R.string.login),
-            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(id = headerText),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Center),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.background,
@@ -290,7 +296,7 @@ fun ForgetPasswordSection(
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier
                 .padding(top = 11.dp, start = 15.dp, end = 15.dp)
-                .clickable { onResetClicked }
+                .clickable { onResetClicked.invoke(LoginFormEvent.ResetPassword) }
         )
     }
 
@@ -388,7 +394,6 @@ fun LoginButtonSection(
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.clickable {
                 onSignUpClicked.invoke(LoginFormEvent.SignUp)
-//                navHostController.navigateSafe(AuthenticationDirections.SignUpScreen().destination)
             }
         )
 
