@@ -1,12 +1,11 @@
 package app.te.navigation
 
-import app.te.auth.Navigation
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 class NavigationManager {
-    var commands = MutableSharedFlow<Navigation>()
+    var commands = MutableSharedFlow<NavigationCommand>()
     suspend fun navigate(
-        directions: Navigation
+        directions: NavigationCommand
     ) {
         commands.emit(directions)
     }
