@@ -5,13 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.AuthenticationDirections
+import app.te.auth.SignUpScreenNav
+import app.te.auth.VerifyScreen
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginState
 import te.app.auth.presentation.login.state.LoginFormState
 import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
 import app.te.navigation.NavigationManager
+import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -68,13 +70,13 @@ class LogInViewModel @Inject constructor(
 
     private fun openResetPasswordScreen() {
         viewModelScope.launch {
-            navigationManager.navigate(AuthenticationDirections.VerifyScreen())
+            navigationManager.navigate(VerifyScreen(navigationOptions = NavigationOptions()))
         }
     }
 
     private fun openSignScreen() {
         viewModelScope.launch {
-            navigationManager.navigate(AuthenticationDirections.SignUpScreen())
+            navigationManager.navigate(SignUpScreenNav())
         }
     }
 
