@@ -83,9 +83,6 @@ fun OtpVerificationScreen() {
             }, textAlign = TextAlign.Center, modifier = Modifier
                 .fillMaxWidth()
                 .padding(30.dp)
-                .clickable {
-//                onSignUpClicked.invoke(LoginFormEvent.SignUp)
-                }
         )
         OtpView(
             modifier = Modifier
