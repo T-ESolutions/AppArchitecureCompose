@@ -2,8 +2,8 @@ package te.app.auth.presentation.intro.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.LoginScreenNav
-import app.te.auth.OnBoardingScreen
+import app.te.auth.LoginNav
+import app.te.auth.OnBoardingNav
 import app.te.navigation.NavigationManager
 import app.te.navigation.NavigationOptions
 import app.te.network.utils.Resource
@@ -63,8 +63,8 @@ class TutorialViewModel @Inject constructor(
     fun openLogin() {
         viewModelScope.launch {
             navigationManager.navigate(
-                LoginScreenNav(
-                    NavigationOptions(popUpTo = OnBoardingScreen().destination)
+                LoginNav(
+                    NavigationOptions(popUpTo = OnBoardingNav().destination)
                 )
             )
         }

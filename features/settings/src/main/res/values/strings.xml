@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="privacy">Privacy policy</string>
+    <!--  Side Menu-->
+    <string name="about">About the app</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="contact_us">Contact us</string>
+
+</resources>

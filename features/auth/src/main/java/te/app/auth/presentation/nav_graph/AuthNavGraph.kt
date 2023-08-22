@@ -3,18 +3,19 @@ package te.app.auth.presentation.nav_graph
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.composable
-import app.te.auth.LoginScreenNav
-import app.te.auth.OnBoardingScreen
-import app.te.auth.SPLASH_ROUTE
-import app.te.auth.SignUpScreenNav
-import app.te.auth.SplashScreen
-import app.te.auth.UserTypeScreenNav
-import app.te.auth.VerifyScreen
+import app.te.auth.ChangePasswordNav
+import app.te.auth.LoginNav
+import app.te.auth.OnBoardingNav
+import app.te.auth.SignUpNav
+import app.te.auth.SplashNav
+import app.te.auth.UserTypeNav
+import app.te.auth.VerifyNav
 import app.te.core.utils.enterTransition
 import app.te.core.utils.exitTransition
 import app.te.core.utils.popEnterTransition
 import app.te.core.utils.popExitTransition
 import app.te.navigation.RootGraph
+import te.app.auth.presentation.change_password.ChangePasswordScreen
 import te.app.auth.presentation.intro.OnBoarding
 import te.app.auth.presentation.intro.view_model.TutorialViewModel
 import te.app.auth.presentation.login.LoginScreen
@@ -28,14 +29,14 @@ import te.app.auth.presentation.user_type.CheckUserTypeViewModel
 import te.app.auth.presentation.user_type.UserTypeScreen
 
 fun NavGraphBuilder.authNavGraph(
-    startDestination: String = SPLASH_ROUTE
+    startDestination: String = SplashNav().destination
 ) {
     navigation(
         route = RootGraph().destination,
         startDestination = startDestination
     ) {
         composable(
-            SplashScreen().destination,
+            SplashNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -45,7 +46,7 @@ fun NavGraphBuilder.authNavGraph(
             SplashScreenPage(viewModel)
         }
         composable(
-            OnBoardingScreen().destination,
+            OnBoardingNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -55,7 +56,7 @@ fun NavGraphBuilder.authNavGraph(
             OnBoarding(viewModel)
         }
         composable(
-            UserTypeScreenNav().destination,
+            UserTypeNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -66,7 +67,7 @@ fun NavGraphBuilder.authNavGraph(
         }
 
         composable(
-            LoginScreenNav().destination,
+            LoginNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -77,7 +78,7 @@ fun NavGraphBuilder.authNavGraph(
         }
 
         composable(
-            SignUpScreenNav().destination,
+            SignUpNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -87,7 +88,7 @@ fun NavGraphBuilder.authNavGraph(
             SignUpScreen(viewModel)
         }
         composable(
-            VerifyScreen().destination,
+            VerifyNav().destination,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },
             popEnterTransition = { popEnterTransition() },
@@ -95,6 +96,16 @@ fun NavGraphBuilder.authNavGraph(
         ) {
 //            val viewModel = hiltViewModel<SignUpViewModel>()
             OtpVerificationScreen()
+        }
+        composable(
+            ChangePasswordNav().destination,
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() }
+        ) {
+            val viewModel = hiltViewModel<LogInViewModel>()
+            ChangePasswordScreen(viewModel)
         }
 
     }

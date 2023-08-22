@@ -32,7 +32,6 @@ fun SetupNavGraph(
         bottomBarNavGraph(navHostController)
         locationsNavGraph(navHostController)
         brandsModelsNavGraph(navHostController)
-
         composable(ADD_STOLEN_PHONE_ROUTE,
             enterTransition = { enterTransition() },
             exitTransition = { exitTransition() },

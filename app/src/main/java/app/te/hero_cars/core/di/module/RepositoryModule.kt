@@ -16,8 +16,6 @@ import app.te.hero_cars.data.intro.data_source.IntroRemoteDataSource
 import app.te.hero_cars.data.intro.repository.IntroRepositoryImpl
 import app.te.hero_cars.data.profile.data_source.ProfileDataSource
 import app.te.hero_cars.data.profile.repository.ProfileRepositoryImpl
-import app.te.hero_cars.data.settings.data_source.remote.SettingsRemoteDataSource
-import app.te.hero_cars.data.settings.repository.SettingsRepositoryImpl
 import app.te.hero_cars.domain.account.repository.AccountRepository
 import app.te.hero_cars.domain.add_stolen_phone.repository.AddStolenRepository
 import te.app.auth.domain.repository.AuthRepository
@@ -26,7 +24,6 @@ import app.te.hero_cars.domain.general.repository.GeneralRepository
 import app.te.hero_cars.domain.home.repository.HomeRepository
 import app.te.hero_cars.domain.intro.repository.IntroRepository
 import app.te.hero_cars.domain.profile.repository.ProfileRepository
-import app.te.hero_cars.domain.settings.repository.SettingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -74,11 +71,6 @@ class RepositoryModule {
         remoteDataSource: IntroRemoteDataSource
     ): IntroRepository = IntroRepositoryImpl(remoteDataSource)
 
-    @Provides
-    @Singleton
-    fun provideSettingsRepository(
-        remoteDataSource: SettingsRemoteDataSource
-    ): SettingsRepository = SettingsRepositoryImpl(remoteDataSource)
 
     @Provides
     @Singleton

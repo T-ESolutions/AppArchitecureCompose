@@ -5,8 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.SignUpScreenNav
-import app.te.auth.VerifyScreen
+import app.te.auth.ChangePasswordNav
+import app.te.auth.SignUpNav
+import app.te.auth.VerifyNav
 import te.app.auth.presentation.login.events.LoginFormEvent
 import te.app.auth.presentation.login.state.LoginState
 import te.app.auth.presentation.login.state.LoginFormState
@@ -70,13 +71,13 @@ class LogInViewModel @Inject constructor(
 
     private fun openResetPasswordScreen() {
         viewModelScope.launch {
-            navigationManager.navigate(VerifyScreen(navigationOptions = NavigationOptions()))
+            navigationManager.navigate(ChangePasswordNav())
         }
     }
 
     private fun openSignScreen() {
         viewModelScope.launch {
-            navigationManager.navigate(SignUpScreenNav())
+            navigationManager.navigate(SignUpNav())
         }
     }
 

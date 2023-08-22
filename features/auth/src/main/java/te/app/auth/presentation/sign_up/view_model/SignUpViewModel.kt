@@ -5,8 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.LOGIN_ROUTE
-import app.te.auth.LoginScreenNav
+import app.te.auth.LoginNav
 import te.app.auth.presentation.sign_up.events.SignUpFormEvent
 import te.app.auth.presentation.sign_up.state.SignUpFormState
 import te.app.auth.presentation.sign_up.state.SignUpResultState
@@ -86,9 +85,9 @@ class SignUpViewModel @Inject constructor(
     private fun onBackPressed() {
         viewModelScope.launch {
             navigationManager.navigate(
-                LoginScreenNav(
+                LoginNav(
                     NavigationOptions(
-                        popUpTo = LOGIN_ROUTE
+                        popUpTo = LoginNav().destination
                     )
                 )
             )

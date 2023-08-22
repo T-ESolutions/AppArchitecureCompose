@@ -7,9 +7,9 @@ import app.te.hero_cars.presentation.account.AccountScreen
 import app.te.hero_cars.presentation.account.AccountViewModel
 import app.te.hero_cars.presentation.home.ui_screens.HomeScreen
 import app.te.hero_cars.presentation.home.view_model.HomeViewModel
-import app.te.hero_cars.presentation.more.MoreScreen
-import app.te.hero_cars.presentation.more.MoreViewModel
-import app.te.hero_cars.presentation.more.nav_graph.moreNavGraph
+import te.app.settings.presentation.more.MoreScreen
+import te.app.settings.presentation.more.MoreViewModel
+import te.app.settings.presentation.nav_graph.settingsGraph
 
 fun NavGraphBuilder.bottomBarNavGraph(navHostController: NavHostController) {
     navigation(
@@ -26,9 +26,12 @@ fun NavGraphBuilder.bottomBarNavGraph(navHostController: NavHostController) {
         }
         composable(route = BottomBarScreen.More.route) {
             val viewModel = hiltViewModel<MoreViewModel>()
-            MoreScreen(viewModel = viewModel, navHostController = navHostController)
+            MoreScreen(
+                viewModel = viewModel,
+                navHostController = navHostController
+            )
         }
 
-        moreNavGraph(navHostController)
+        settingsGraph(navHostController)
     }
 }

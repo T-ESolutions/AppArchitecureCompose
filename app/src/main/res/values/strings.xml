@@ -21,11 +21,7 @@
     <!-- Account -->
     <!--  <string name="google_api_key">Continue as a guest</string>-->
 
-    <string name="privacy">Privacy policy</string>
-    <!--  Side Menu-->
-    <string name="about">About the app</string>
-    <string name="terms">Terms and Conditions</string>
-    <string name="contact_us">Contact us</string>
+
     <!--  Suggestions-->
     <!--Contact Us-->
     <!--Countries-->

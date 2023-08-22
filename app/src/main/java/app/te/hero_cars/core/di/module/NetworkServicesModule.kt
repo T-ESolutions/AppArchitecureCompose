@@ -8,7 +8,6 @@ import app.te.hero_cars.data.general.data_source.remote.GeneralServices
 import app.te.hero_cars.data.home.data_source.remote.HomeServices
 import app.te.hero_cars.data.intro.data_source.IntroServices
 import app.te.hero_cars.data.profile.data_source.ProfileServices
-import app.te.hero_cars.data.settings.data_source.remote.SettingsServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,10 +50,6 @@ object NetworkServicesModule {
     fun provideIntroServices(retrofit: Retrofit): IntroServices =
         retrofit.create(IntroServices::class.java)
 
-    @Provides
-    @Singleton
-    fun provideSettingsServices(retrofit: Retrofit): SettingsServices =
-        retrofit.create(SettingsServices::class.java)
 
     @Provides
     @Singleton

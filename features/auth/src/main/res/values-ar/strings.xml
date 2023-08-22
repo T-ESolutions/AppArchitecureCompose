@@ -26,6 +26,9 @@
     <string name="verify_phone">التحقق من الهاتف</string>
     <string name="enter_code">أدخل الرمز الخاص بك</string>
     <string name="verify">تحقق الآن</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="confirm">تأكيد</string>
+    <string name="enter_new_password">من فضلك أعد\nإدخال كلمة مرور جديدة</string>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

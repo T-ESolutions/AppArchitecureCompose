@@ -12,14 +12,7 @@
     <string name="notes">أضف وصفك لهاتفك أو الحرامي</string>
     <string name="add_new_stolen_phone_warning">في حاله الابلاغ فا انت موافق انك تدي  اللي يبلغك بمكان التليفون ١٠%من قيمه التليفون كهديه</string>
 
-    <!-- Account -->
 
-    <string name="privacy">سياسة الخصوصية</string>
-    <!--  Side Menu-->
-    <string name="about">عن التطبيق</string>
-    <string name="terms">الشروط والأحكام</string>
-    <string name="contact_us">إتصل بنا</string>
-    <!--  Suggestions-->
     <!--Countries-->
 
     <string name="send">إرسال</string>

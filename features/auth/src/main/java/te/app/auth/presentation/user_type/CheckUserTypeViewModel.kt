@@ -2,8 +2,8 @@ package te.app.auth.presentation.user_type
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.LoginScreenNav
-import app.te.auth.USER_TYPE_ROUTE
+import app.te.auth.LoginNav
+import app.te.auth.UserTypeNav
 import app.te.navigation.NavigationManager
 import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,9 +22,9 @@ class CheckUserTypeViewModel @Inject constructor(
         viewModelScope.launch {
             userTypeUseCase.invoke(if (selection) UserType.CLIENT.userType else UserType.CAR_OWNER.userType)
             navigationManager.navigate(
-                LoginScreenNav(
+                LoginNav(
                     NavigationOptions(
-                        popUpTo = USER_TYPE_ROUTE
+                        popUpTo = UserTypeNav().destination
                     )
                 )
             )

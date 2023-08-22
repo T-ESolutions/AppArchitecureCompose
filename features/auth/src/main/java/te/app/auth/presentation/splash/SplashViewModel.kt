@@ -2,10 +2,10 @@ package te.app.auth.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.te.auth.LoginScreenNav
-import app.te.auth.OnBoardingScreen
-import app.te.auth.SPLASH_ROUTE
-import app.te.auth.UserTypeScreenNav
+import app.te.auth.LoginNav
+import app.te.auth.OnBoardingNav
+import app.te.auth.SplashNav
+import app.te.auth.UserTypeNav
 import app.te.navigation.NavigationManager
 import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import te.app.auth.presentation.splash.state.SplashState
-import te.app.auth.presentation.user_type.UserTypeScreen
 import te.app.storage.domain.use_case.CheckLoggedInUserUseCase
 import te.app.storage.domain.use_case.GeneralUseCases
 import javax.inject.Inject
@@ -51,10 +50,10 @@ class SplashViewModel @Inject constructor(
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
             navigationManager.navigate(
-                OnBoardingScreen(
+                OnBoardingNav(
                     NavigationOptions(
                         popUpTo =
-                        SPLASH_ROUTE
+                        SplashNav().destination
                     )
                 )
             )
@@ -65,10 +64,10 @@ class SplashViewModel @Inject constructor(
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
             navigationManager.navigate(
-                LoginScreenNav(
+                LoginNav(
                     NavigationOptions(
                         popUpTo =
-                        SPLASH_ROUTE
+                        SplashNav().destination
                     )
                 )
             )
@@ -79,10 +78,10 @@ class SplashViewModel @Inject constructor(
         _splashState.value = SplashState(openTutorialScreen = true)
         viewModelScope.launch {
             navigationManager.navigate(
-                UserTypeScreenNav(
+                UserTypeNav(
                     NavigationOptions(
                         popUpTo =
-                        SPLASH_ROUTE
+                        SplashNav().destination
                     )
                 )
             )
