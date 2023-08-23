@@ -5,13 +5,11 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import app.te.account.AccountScreenNav
 import app.te.hero_cars.R
+import app.te.home.HomeScreenNav
+import app.te.settings.MoreScreenNav
 
-const val ROOT_GRAPH_ROUTE = "root"
-const val BOTTOM_BAR_GRAPH_ROUTE = "bottom_bar"
-const val HOME_ROUTE = "home_screen"
-const val ACCOUNT_ROUTE = "account_screen"
-const val MORE_ROUTE = "more_screen"
 
 sealed class BottomBarScreen(
     val route: String,
@@ -19,19 +17,19 @@ sealed class BottomBarScreen(
     val icon: ImageVector
 ) {
     data object Home : BottomBarScreen(
-        route = HOME_ROUTE,
+        route = HomeScreenNav().destination,
         title = R.string.home,
         icon = Icons.Default.Home
     )
 
     data object Account : BottomBarScreen(
-        route = ACCOUNT_ROUTE,
+        route = AccountScreenNav().destination,
         title = R.string.account,
         icon = Icons.Default.Person
     )
 
     data object More : BottomBarScreen(
-        route = MORE_ROUTE,
+        route = MoreScreenNav().destination,
         title = R.string.more,
         icon = Icons.Default.Settings
     )

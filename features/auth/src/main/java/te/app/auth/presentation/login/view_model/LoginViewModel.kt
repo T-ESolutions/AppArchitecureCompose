@@ -6,6 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.te.auth.ChangePasswordNav
+import app.te.auth.LoginNav
+import app.te.auth.OnBoardingNav
 import app.te.auth.SignUpNav
 import app.te.auth.VerifyNav
 import te.app.auth.presentation.login.events.LoginFormEvent
@@ -13,6 +15,7 @@ import te.app.auth.presentation.login.state.LoginState
 import te.app.auth.presentation.login.state.LoginFormState
 import app.te.core.validation_usecase.ValidatePassword
 import app.te.core.validation_usecase.ValidatePhone
+import app.te.home.HomeScreenNav
 import app.te.navigation.NavigationManager
 import app.te.navigation.NavigationOptions
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -77,7 +80,7 @@ class LogInViewModel @Inject constructor(
 
     private fun openSignScreen() {
         viewModelScope.launch {
-            navigationManager.navigate(SignUpNav())
+            navigationManager.navigate(HomeScreenNav(NavigationOptions(popUpTo = LoginNav().destination)))
         }
     }
 

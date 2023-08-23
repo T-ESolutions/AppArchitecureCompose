@@ -3,5 +3,9 @@
     <string name="privacy">سياسة الخصوصية</string>
     <string name="about">عن التطبيق</string>
     <string name="terms">الشروط والأحكام</string>
-    <string name="contact_us">إتصل بنا</string>
+    <string name="suggestions">الشكاوي والمقترحات</string>
+    <string name="current_trip">الرحلة الحالية</string>
+    <string name="trips_history">سجل الرحلات</string>
+    <string name="rate_app">تقييم التطبيق</string>
+    <string name="share_app">مشاركة التطبيق</string>
 </resources>

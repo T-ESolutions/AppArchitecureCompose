@@ -10,12 +10,13 @@ import app.te.hero_cars.presentation.general.navigation.brandsModelsNavGraph
 import app.te.hero_cars.presentation.general.navigation.locationsNavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import app.te.auth.SplashNav
 import app.te.core.utils.enterTransition
 import app.te.core.utils.exitTransition
 import app.te.core.utils.popEnterTransition
 import app.te.core.utils.popExitTransition
-import app.te.hero_cars.presentation.bottom_bar.ROOT_GRAPH_ROUTE
 import app.te.hero_cars.presentation.bottom_bar.bottomBarNavGraph
+import app.te.navigation.AuthGraph
 import app.te.navigation.RootGraph
 import te.app.auth.presentation.nav_graph.authNavGraph
 
@@ -25,8 +26,8 @@ fun SetupNavGraph(
 ) {
     NavHost(
         navController = navHostController,
-        route = ROOT_GRAPH_ROUTE,
-        startDestination = RootGraph().destination,
+        route = RootGraph().destination,
+        startDestination = AuthGraph().destination,
     ) {
         authNavGraph()
         bottomBarNavGraph(navHostController)

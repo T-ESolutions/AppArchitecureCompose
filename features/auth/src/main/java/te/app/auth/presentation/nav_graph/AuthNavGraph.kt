@@ -14,6 +14,7 @@ import app.te.core.utils.enterTransition
 import app.te.core.utils.exitTransition
 import app.te.core.utils.popEnterTransition
 import app.te.core.utils.popExitTransition
+import app.te.navigation.AuthGraph
 import app.te.navigation.RootGraph
 import te.app.auth.presentation.change_password.ChangePasswordScreen
 import te.app.auth.presentation.intro.OnBoarding
@@ -28,12 +29,10 @@ import te.app.auth.presentation.splash.SplashViewModel
 import te.app.auth.presentation.user_type.CheckUserTypeViewModel
 import te.app.auth.presentation.user_type.UserTypeScreen
 
-fun NavGraphBuilder.authNavGraph(
-    startDestination: String = SplashNav().destination
-) {
+fun NavGraphBuilder.authNavGraph() {
     navigation(
-        route = RootGraph().destination,
-        startDestination = startDestination
+        route = AuthGraph().destination,
+        startDestination = SplashNav().destination
     ) {
         composable(
             SplashNav().destination,

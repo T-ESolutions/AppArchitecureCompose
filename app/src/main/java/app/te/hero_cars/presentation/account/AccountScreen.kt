@@ -86,6 +86,7 @@ fun AccountScreen(
 //                                    AuthComposeActivity::class.java,
 //                                    LOGIN_ROUTE
 //                                )
+                                            viewModel.logOut()
                             }, onLoginOutAction = {
                                 openDialog.value = true
                             }

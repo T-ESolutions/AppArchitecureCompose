@@ -4,6 +4,10 @@
     <!--  Side Menu-->
     <string name="about">About the app</string>
     <string name="terms">Terms and Conditions</string>
-    <string name="contact_us">Contact us</string>
+    <string name="suggestions">Contact us</string>
+    <string name="current_trip">الرحلة الحالية</string>
+    <string name="trips_history">سجل الرحلات</string>
+    <string name="rate_app">تقييم التطبيق</string>
+    <string name="share_app">مشاركة التطبيق</string>
 
 </resources>

@@ -40,7 +40,7 @@ fun ContactUsScreen(
         topBar = {
             CenterAlignedTopAppBarCustom(
                 navHostController = navHostController,
-                title = R.string.contact_us
+                title = R.string.suggestions
             )
         }, content = { paddingValues ->
 

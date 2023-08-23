@@ -1,15 +1,15 @@
-package app.te.settings
+package app.te.bottom_bar
 
 import androidx.navigation.NamedNavArgument
 import app.te.navigation.NavigationCommand
 import app.te.navigation.NavigationOptions
 
-data class MoreScreenNav(val navigationOptions: NavigationOptions = NavigationOptions()) :
+data class BottomBarNav(val navigationOptions: NavigationOptions = NavigationOptions()) :
     NavigationCommand {
 
     override val arguments = emptyList<NamedNavArgument>()
 
-    override val destination = "more_screen"
+    override val destination = "bottom_bar"
 
     override val popUpTo: String? = navigationOptions.popUpTo
 

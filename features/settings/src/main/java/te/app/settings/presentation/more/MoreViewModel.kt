@@ -1,10 +1,7 @@
 package te.app.settings.presentation.more
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Apps
-import androidx.compose.material.icons.filled.Assessment
 import androidx.compose.material.icons.filled.PeopleAlt
-import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.lifecycle.ViewModel
 import app.te.settings.AboutAppNav
 import app.te.settings.ContactUsNav
@@ -21,21 +18,31 @@ class MoreViewModel @Inject constructor() : ViewModel() {
     private val _moreListScreen = MutableStateFlow<List<MoreItem>>(emptyList())
     val moreListScreen = _moreListScreen.asStateFlow()
 
-    fun initMoreListScreen() {
+    init {
+        initMoreListScreen()
+    }
+
+    private fun initMoreListScreen() {
         val listScreen = listOf(
             MoreItem(
-                title = R.string.about,
-                icon = Icons.Filled.Apps,
+                title = R.string.current_trip,
+                icon = R.drawable.ic_history,
                 route = AboutAppNav().destination
             ),
             MoreItem(
-                title = R.string.contact_us,
-                icon = Icons.Filled.PeopleAlt,
-                route = ContactUsNav().destination
+                title = R.string.trips_history,
+                icon = R.drawable.ic_history,
+                route = AboutAppNav().destination
             ),
             MoreItem(
+                title = R.string.about,
+                icon = R.drawable.about_app,
+                route = AboutAppNav().destination
+            ),
+
+            MoreItem(
                 title = R.string.terms,
-                icon = Icons.Filled.Assessment,
+                icon = R.drawable.terms,
                 route = TermsAndPrivacyNav().passPageAndTitle(
                     page = "terms",
                     title = R.string.terms
@@ -43,12 +50,28 @@ class MoreViewModel @Inject constructor() : ViewModel() {
             ),
             MoreItem(
                 title = R.string.privacy,
-                icon = Icons.Filled.PrivacyTip,
+                icon = R.drawable.terms,
                 route = TermsAndPrivacyNav().passPageAndTitle(
                     page = "privacy",
                     title = R.string.privacy
                 )
             ),
+            MoreItem(
+                title = R.string.suggestions,
+                icon = R.drawable.terms,
+                route = ContactUsNav().destination
+            ),
+            MoreItem(
+                title = R.string.rate_app,
+                icon = R.drawable.rate_app,
+                route = ContactUsNav().destination
+            ),
+            MoreItem(
+                title = R.string.share_app,
+                icon = R.drawable.ic_share,
+                route = ContactUsNav().destination
+            )
+
         )
         _moreListScreen.value = listScreen
     }

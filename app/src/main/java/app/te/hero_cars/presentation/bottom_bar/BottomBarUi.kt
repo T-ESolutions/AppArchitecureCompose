@@ -12,9 +12,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import app.te.bottom_bar.BottomBarNav
 import app.te.core.extension.navigateSafe
 
 @Composable
@@ -62,7 +62,7 @@ fun RowScope.AddItem(
             navHostController.navigateSafe(
                 screen.route,
                 launchSingleTop = true,
-                popUpToId = navHostController.graph.findStartDestination().id
+                popUpToId = navHostController.graph.findNode(BottomBarNav().destination)?.id
             )
         },
         alwaysShowLabel = true,

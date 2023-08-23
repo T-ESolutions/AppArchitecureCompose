@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.navigation.NavHostController
-import androidx.navigation.findNavController
 import app.te.core.ImmediateUpdateActivity.Companion.UPDATE_REQUEST_CODE
 import app.te.core.extension.adjustFontScale
 import app.te.core.extension.backToPreviousScreen

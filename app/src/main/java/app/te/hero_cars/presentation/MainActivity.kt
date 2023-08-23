@@ -29,14 +29,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-
     @Inject
     lateinit var navigationManager: NavigationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen().setOnExitAnimationListener {
-            updateLocale("ar")
-        }
+        installSplashScreen()
+            .setOnExitAnimationListener {
+                updateLocale("ar")
+            }
         super.onCreate(savedInstanceState)
     }
 
