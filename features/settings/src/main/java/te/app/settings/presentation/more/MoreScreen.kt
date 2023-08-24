@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +35,6 @@ import te.app.settings.R
 
 @Composable
 fun MoreScreen(
-    navHostController: NavHostController = rememberNavController(),
     viewModel: MoreViewModel = viewModel()
 ) {
 
@@ -56,58 +56,8 @@ fun MoreScreenUi(moreListScreen: List<MoreItem> = emptyList()) {
 //            viewModel.initMoreListScreen()
         }
         TopSection()
+        BodySection(moreListScreen)
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            moreListScreen.forEach { item ->
-                item {
-                    ConstraintLayout(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        val (itemIcon, itemTitle, vDivider) = createRefs()
-                        Icon(
-                            painter = painterResource(id = item.icon),
-                            contentDescription = "icon",
-                            modifier = Modifier.constrainAs(itemIcon) {
-                                start.linkTo(parent.start)
-                                top.linkTo(parent.top)
-                            }
-                        )
-                        Text(
-                            text = stringResource(id = item.title),
-                            modifier = Modifier
-                                .constrainAs(itemTitle) {
-                                    top.linkTo(parent.top)
-                                    start.linkTo(itemIcon.end, 4.dp)
-                                    end.linkTo(parent.end, 4.dp)
-                                    width = Dimension.fillToConstraints
-                                }
-                                .clickable {
-//                                    navHostController.navigateSafe(item.route)
-                                },
-                            textAlign = TextAlign.Start,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                        Divider(
-                            color = MaterialTheme.colorScheme.outline,
-                            thickness = 1.dp,
-                            modifier = Modifier
-                                .constrainAs(vDivider) {
-                                    top.linkTo(itemTitle.bottom, 10.dp)
-
-                                }
-                                .fillMaxWidth()
-                        )
-
-                    }
-                }
-
-            }
-        }
 
     }
 }
@@ -161,3 +111,60 @@ fun TopSection() {
     }
 
 }
+
+@Composable
+fun BodySection(moreListScreen: List<MoreItem> = emptyList()) {
+//    LazyColumn(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//    ) {
+//        moreListScreen.forEach { item ->
+//            item {
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxWidth()
+
+    ) {
+        val (itemIcon, itemTitle, vDivider) = createRefs()
+        Icon(
+            painter = painterResource(id = R.drawable.ic_history),
+            contentDescription = "icon",
+            modifier = Modifier.constrainAs(itemIcon) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+            }
+        )
+
+        Text(
+            text = stringResource(id = R.string.trips_history),
+            modifier = Modifier
+                .constrainAs(itemTitle) {
+                    top.linkTo(parent.top)
+                    start.linkTo(itemIcon.end, 4.dp)
+                    end.linkTo(parent.end, 4.dp)
+                    width = Dimension.fillToConstraints
+                }
+                .clickable {
+//                                    navHostController.navigateSafe(item.route)
+                },
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.bodyMedium
+        )
+
+        Divider(
+            color = MaterialTheme.colorScheme.outline,
+            thickness = 1.dp,
+            modifier = Modifier
+                .constrainAs(vDivider) {
+                    top.linkTo(itemTitle.bottom, 10.dp)
+                }
+                .fillMaxWidth()
+        )
+
+    }
+}
+
+//        }
+//    }
+//
+//}

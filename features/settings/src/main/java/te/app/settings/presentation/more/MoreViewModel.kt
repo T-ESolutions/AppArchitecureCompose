@@ -1,7 +1,5 @@
 package te.app.settings.presentation.more
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PeopleAlt
 import androidx.lifecycle.ViewModel
 import app.te.settings.AboutAppNav
 import app.te.settings.ContactUsNav

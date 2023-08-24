@@ -29,7 +29,6 @@ fun NavGraphBuilder.bottomBarNavGraph(navHostController: NavHostController) {
             val viewModel = hiltViewModel<MoreViewModel>()
             MoreScreen(
                 viewModel = viewModel,
-                navHostController = navHostController
             )
         }
 
