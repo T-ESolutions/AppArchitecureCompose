@@ -9,8 +9,9 @@ import app.te.core.utils.popEnterTransition
 import app.te.core.utils.popExitTransition
 import app.te.settings.AboutAppNav
 import app.te.settings.ContactUsNav
-import app.te.settings.TermsAndPrivacyNav
+import app.te.settings.TermsNav
 import te.app.settings.presentation.about_app.AboutAppScreen
+import te.app.settings.presentation.contact_us.ContactUsScreen
 import te.app.settings.presentation.contact_us.ContactUsViewModel
 import te.app.settings.presentation.settings.SettingsViewModel
 import te.app.settings.presentation.terms_privacy.TermsAndPrivacyScreen
@@ -25,7 +26,7 @@ fun NavGraphBuilder.settingsGraph(navHostController: NavHostController) {
         popExitTransition = { popExitTransition() }
     ) {
         val viewModel = hiltViewModel<SettingsViewModel>()
-        AboutAppScreen(navHostController, viewModel)
+        AboutAppScreen(viewModel)
     }
     composable(
         ContactUsNav().destination,
@@ -35,18 +36,18 @@ fun NavGraphBuilder.settingsGraph(navHostController: NavHostController) {
         popExitTransition = { popExitTransition() }
     ) {
         val viewModel = hiltViewModel<ContactUsViewModel>()
-        te.app.settings.presentation.contact_us.ContactUsScreen(navHostController, viewModel)
+        ContactUsScreen(navHostController, viewModel)
     }
 
     composable(
-        TermsAndPrivacyNav().destination,
+        TermsNav().route,
         enterTransition = { enterTransition() },
         exitTransition = { exitTransition() },
         popEnterTransition = { popEnterTransition() },
-        popExitTransition = { popExitTransition() }, arguments = TermsAndPrivacyNav().arguments
+        popExitTransition = { popExitTransition() }, arguments = TermsNav().arguments
     ) {
         val viewModel = hiltViewModel<SettingsViewModel>()
-        TermsAndPrivacyScreen(navHostController)
+        TermsAndPrivacyScreen(viewModel)
     }
 
 }

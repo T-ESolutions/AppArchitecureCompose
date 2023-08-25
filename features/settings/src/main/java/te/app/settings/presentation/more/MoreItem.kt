@@ -1,9 +1,10 @@
 package te.app.settings.presentation.more
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import app.te.navigation.NavigationCommand
+
 
 data class MoreItem(
     val title: Int,
     val icon: Int,
-    val route: String
+    val route: NavigationCommand
 )

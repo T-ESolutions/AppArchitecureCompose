@@ -11,5 +11,8 @@
     <string name="empty_warning">This field is required</string>
     <string name="email_not_valid">Email not valid</string>
     <string name="password_length_warning">Password needs 8 characters at least</string>
+    <string name="app_name" translatable="false">Lima Zola</string>
+    <string name="app_name_debug" translatable="false">Lima Zola Test</string>
+    <string name="send">ارسال</string>
 
 </resources>

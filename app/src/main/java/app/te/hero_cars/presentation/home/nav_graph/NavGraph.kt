@@ -19,6 +19,7 @@ import app.te.hero_cars.presentation.bottom_bar.bottomBarNavGraph
 import app.te.navigation.AuthGraph
 import app.te.navigation.RootGraph
 import te.app.auth.presentation.nav_graph.authNavGraph
+import te.app.settings.presentation.nav_graph.settingsGraph
 
 @Composable
 fun SetupNavGraph(
@@ -31,6 +32,7 @@ fun SetupNavGraph(
     ) {
         authNavGraph()
         bottomBarNavGraph(navHostController)
+        settingsGraph(navHostController)
         locationsNavGraph(navHostController)
         brandsModelsNavGraph(navHostController)
         composable(ADD_STOLEN_PHONE_ROUTE,

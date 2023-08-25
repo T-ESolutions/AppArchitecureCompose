@@ -11,5 +11,6 @@
     <string name="empty_warning">هذا الحقل مطلوب </string>
     <string name="email_not_valid">بريد الكتروني غير صحيح</string>
     <string name="password_length_warning">يرجي ادخال 8 حروف الاقل</string>
+    <string name="send">ارسال</string>
 
 </resources>

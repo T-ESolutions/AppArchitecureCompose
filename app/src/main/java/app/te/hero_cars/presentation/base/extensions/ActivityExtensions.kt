@@ -1,9 +1,7 @@
-package app.te.core.extension
+package app.te.hero_cars.presentation.base.extensions
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.view.WindowManager
 
 fun <A : Activity> Activity.openActivityAndClearStack(activity: Class<A>) {
     Intent(this, activity).apply {

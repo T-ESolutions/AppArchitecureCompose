@@ -2,6 +2,7 @@ package app.te.core.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -42,6 +43,7 @@ fun HandleApiError(
                     AlerterError(message = it)
             }
         }
+
         FailureStatus.NO_INTERNET -> {
             AlerterError(message = activity.getString(R.string.no_internet), icon = R.raw.wifi)
         }
@@ -57,17 +59,17 @@ fun HandleApiError(
 }
 
 fun openBrowser(context: Context, url: String) {
-  var urlIntent = url
-  if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    urlIntent = "https://$url"
-  }
-  val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(urlIntent))
-  context.startActivity(browserIntent)
+    var urlIntent = url
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        urlIntent = "https://$url"
+    }
+    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(urlIntent))
+    context.startActivity(browserIntent)
 }
 
 fun openDial(context: Context, number: String) {
-  val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", number, null))
-  context.startActivity(intent)
+    val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", number, null))
+    context.startActivity(intent)
 }
 
 @SuppressLint("HardwareIds")
@@ -85,4 +87,39 @@ fun copyText(text: String, context: Context) {
     val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clipData = ClipData.newPlainText("text", text)
     clipboardManager.setPrimaryClip(clipData)
+}
+
+fun shareApp(activity: Activity) {
+    val intent = Intent(Intent.ACTION_SEND)
+    intent.type = "text/plain"
+    val shareSub = activity.getString(R.string.app_name)
+    val shareBody: String = getPlayStoreLink(activity)
+    intent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
+    intent.putExtra(Intent.EXTRA_TEXT, shareBody)
+    activity.startActivity(Intent.createChooser(intent, "share"))
+}
+
+fun getPlayStoreLink(context: Context): String {
+    val appPackageName = context.packageName
+    return "https://play.google.com/store/apps/details?id=$appPackageName"
+}
+
+fun rateApp(context: Context) {
+    val uri = Uri.parse("market://details?id=" + context.packageName)
+    val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+    goToMarket.addFlags(
+        Intent.FLAG_ACTIVITY_NO_HISTORY or
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+    )
+    try {
+        context.startActivity(goToMarket)
+    } catch (e: ActivityNotFoundException) {
+        context.startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(getPlayStoreLink(context))
+            )
+        )
+    }
 }

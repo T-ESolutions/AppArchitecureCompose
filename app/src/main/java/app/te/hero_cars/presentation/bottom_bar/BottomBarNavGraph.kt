@@ -32,6 +32,5 @@ fun NavGraphBuilder.bottomBarNavGraph(navHostController: NavHostController) {
             )
         }
 
-        settingsGraph(navHostController)
     }
 }

@@ -8,4 +8,7 @@
     <string name="trips_history">سجل الرحلات</string>
     <string name="rate_app">تقييم التطبيق</string>
     <string name="share_app">مشاركة التطبيق</string>
+    <string name="name">الاسم</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="leave_message">اترك رسالتك</string>
 </resources>

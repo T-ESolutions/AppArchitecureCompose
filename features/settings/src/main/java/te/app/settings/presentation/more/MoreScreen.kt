@@ -1,5 +1,6 @@
 package te.app.settings.presentation.more
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -7,9 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -29,35 +29,46 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import app.te.core.extension.findActivity
+import app.te.core.utils.rateApp
+import app.te.core.utils.shareApp
+import app.te.navigation.NavigationCommand
+import app.te.settings.RateAppNav
+import app.te.settings.ShareAppNav
+import kotlinx.coroutines.flow.collectLatest
 import te.app.settings.R
 
 @Composable
 fun MoreScreen(
     viewModel: MoreViewModel = viewModel()
 ) {
-
+    val validateState = viewModel.state
+    val context = LocalContext.current.findActivity()
     val moreListScreen by viewModel.moreListScreen.collectAsStateWithLifecycle()
-    MoreScreenUi(moreListScreen)
+    LaunchedEffect(key1 = validateState) {
+        validateState.collectLatest {
+            if (it == RateAppNav()) rateApp(context)
+            if (it == ShareAppNav()) shareApp(context)
+        }
+    }
+    MoreScreenUi(moreListScreen, viewModel::moreNavigation)
 
 }
 
 @Composable
 @Preview(showBackground = true, locale = "ar")
-fun MoreScreenUi(moreListScreen: List<MoreItem> = emptyList()) {
+fun MoreScreenUi(
+    moreListScreen: List<MoreItem> = emptyList(),
+    onItemClicked: (NavigationCommand) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LaunchedEffect(key1 = true) {
-//            viewModel.initMoreListScreen()
-        }
         TopSection()
-        BodySection(moreListScreen)
-
+        BodySection(moreListScreen,onItemClicked)
 
     }
 }
@@ -113,58 +124,68 @@ fun TopSection() {
 }
 
 @Composable
-fun BodySection(moreListScreen: List<MoreItem> = emptyList()) {
-//    LazyColumn(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//    ) {
-//        moreListScreen.forEach { item ->
-//            item {
-    ConstraintLayout(
+fun BodySection(
+    moreListScreen: List<MoreItem> = emptyList(),
+    onItemClicked: (NavigationCommand) -> Unit = {},
+) {
+    LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-
     ) {
-        val (itemIcon, itemTitle, vDivider) = createRefs()
-        Icon(
-            painter = painterResource(id = R.drawable.ic_history),
-            contentDescription = "icon",
-            modifier = Modifier.constrainAs(itemIcon) {
-                start.linkTo(parent.start)
-                top.linkTo(parent.top)
+        moreListScreen.forEach { item ->
+            item {
+                ConstraintLayout(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .fillMaxWidth()
+
+                ) {
+                    val (itemIcon, itemTitle, vDivider) = createRefs()
+                    Icon(
+                        painter = painterResource(id = item.icon),
+                        contentDescription = "icon",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .constrainAs(itemIcon) {
+                                start.linkTo(parent.start)
+                                top.linkTo(itemTitle.top)
+                                bottom.linkTo(itemTitle.bottom)
+                            }
+                    )
+
+                    Text(
+                        text = stringResource(id = item.title),
+                        modifier = Modifier
+                            .constrainAs(itemTitle) {
+                                top.linkTo(parent.top)
+                                start.linkTo(itemIcon.end, 4.dp)
+                                end.linkTo(parent.end, 4.dp)
+                                width = Dimension.fillToConstraints
+                            }
+                            .clickable {
+                                onItemClicked.invoke(item.route)
+                            },
+                        textAlign = TextAlign.Start,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Image(
+                        painterResource(id = R.drawable.horizental_line),
+                        contentDescription = "LINE",
+                        modifier = Modifier
+                            .constrainAs(vDivider) {
+                                top.linkTo(itemTitle.bottom, 10.dp)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
+                                width = Dimension.fillToConstraints
+                            }
+                            .fillMaxWidth()
+                    )
+
+
+                }
             }
-        )
 
-        Text(
-            text = stringResource(id = R.string.trips_history),
-            modifier = Modifier
-                .constrainAs(itemTitle) {
-                    top.linkTo(parent.top)
-                    start.linkTo(itemIcon.end, 4.dp)
-                    end.linkTo(parent.end, 4.dp)
-                    width = Dimension.fillToConstraints
-                }
-                .clickable {
-//                                    navHostController.navigateSafe(item.route)
-                },
-            textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.bodyMedium
-        )
-
-        Divider(
-            color = MaterialTheme.colorScheme.outline,
-            thickness = 1.dp,
-            modifier = Modifier
-                .constrainAs(vDivider) {
-                    top.linkTo(itemTitle.bottom, 10.dp)
-                }
-                .fillMaxWidth()
-        )
-
+        }
     }
-}
 
-//        }
-//    }
-//
-//}
+}

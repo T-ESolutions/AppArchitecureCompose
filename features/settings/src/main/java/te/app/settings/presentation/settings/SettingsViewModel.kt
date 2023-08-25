@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.te.network.utils.Resource
-import app.te.settings.TermsAndPrivacyNav
+import app.te.settings.TermsNav
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class SettingsViewModel @Inject constructor(
     var title: Int = R.string.privacy
 
     init {
-        savedStateHandle.get<Int>(TermsAndPrivacyNav().PAGEARGUMENT)?.let { title ->
+        savedStateHandle.get<Int>(TermsNav().TITLEARGUMENT)?.let { title ->
             this.title = title
         }
     }
